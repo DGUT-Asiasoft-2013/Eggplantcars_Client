@@ -22,36 +22,32 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int car=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int dot_blur=0x7f020000;
+        public static final int dot_foucus=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f080010;
-        public static final int btn_forgot_password=0x7f080002;
-        public static final int btn_login=0x7f080004;
-        public static final int btn_register=0x7f080003;
-        public static final int btn_submit=0x7f08000a;
-        public static final int edit=0x7f08000e;
-        public static final int frag_version=0x7f080005;
-        public static final int hint=0x7f08000c;
-        public static final int image_pic=0x7f08000d;
-        public static final int input_account=0x7f080000;
-        public static final int input_avatar=0x7f080009;
-        public static final int input_email=0x7f080007;
-        public static final int input_name=0x7f080006;
-        public static final int input_password=0x7f080001;
-        public static final int input_password_repeat=0x7f080008;
-        public static final int label=0x7f08000b;
-        public static final int text=0x7f08000f;
+        public static final int action_settings=0x7f080009;
+        public static final int dotLayout=0x7f080006;
+        public static final int edit=0x7f080003;
+        public static final int hint=0x7f080001;
+        public static final int image_pic=0x7f080002;
+        public static final int label=0x7f080000;
+        public static final int text=0x7f080004;
+        public static final int v_dot1=0x7f080007;
+        public static final int v_dot2=0x7f080008;
+        public static final int viewPager=0x7f080005;
     }
     public static final class layout {
         public static final int activity_helloworld=0x7f030000;
         public static final int activity_login=0x7f030001;
         public static final int activity_main=0x7f030002;
-        public static final int activity_register=0x7f030003;
-        public static final int fragment_inputcell_picture=0x7f030004;
-        public static final int fragment_inputcell_simpletext=0x7f030005;
-        public static final int fragment_version=0x7f030006;
+        public static final int activity_password_recover=0x7f030003;
+        public static final int activity_register=0x7f030004;
+        public static final int fragment_inputcell_picture=0x7f030005;
+        public static final int fragment_inputcell_simpletext=0x7f030006;
+        public static final int fragment_version=0x7f030007;
+        public static final int layout_slideshow=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f070000;

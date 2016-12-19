@@ -9,16 +9,16 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:scaleType="centerInside"
-        android:src="@drawable/car"/>
+        android:src="@drawable/ic_launcher"/>
     
     <TextView 
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="2dp"
-        android:text="茄子二手车"
+        android:text="APPNAME VER"
         android:textColor="@android:color/black"
-        android:textSize="9sp"/> 
+        android:textSize="9sp"/>
     
 
 </LinearLayout>
