@@ -2,6 +2,8 @@ package com.rotk.eggplantcars;
 
 import java.io.IOException;
 
+import com.rotk.eggplantcars.api.Server;
+
 import android.R.menu;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +17,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import api.Server;
+
 public class MainActivity extends Activity {
 
 	@Override

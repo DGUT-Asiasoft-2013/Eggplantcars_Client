@@ -4,7 +4,7 @@ package com.rotk.eggplantcars;
 
 import java.io.IOException;
 
-import api.Server;
+import com.rotk.eggplantcars.api.Server;
 import inputcells.PictureInputCellFragment;
 import inputcells.SimpleTextInputCellFragment;
 

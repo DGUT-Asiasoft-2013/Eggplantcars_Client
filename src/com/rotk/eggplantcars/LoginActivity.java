@@ -3,10 +3,10 @@ package com.rotk.eggplantcars;
 import java.io.IOException;
 import java.util.List;
 
-import api.Server;
 import entity.User;
 import inputcells.SimpleTextInputCellFragment;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rotk.eggplantcars.api.Server;
 
 import android.app.Activity;
 import android.app.AlertDialog;
