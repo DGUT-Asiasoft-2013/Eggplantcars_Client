@@ -1,4 +1,4 @@
-package Fragment;
+package Fragment.pages;
 
 import android.app.Fragment;
 

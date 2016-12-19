@@ -2,12 +2,12 @@ package com.rotk.eggplantcars;
 
 
 
-import Fragment.ItemFragment;
-import Fragment.MainFragment;
 import Fragment.MainTabbarFragment;
 import Fragment.MainTabbarFragment.OnSelectedListener;
-import Fragment.MyFragment;
-import Fragment.SearchFragment;
+import Fragment.pages.ItemFragment;
+import Fragment.pages.MainFragment;
+import Fragment.pages.MyFragment;
+import Fragment.pages.SearchFragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
