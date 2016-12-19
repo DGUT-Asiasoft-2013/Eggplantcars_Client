@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white" >
+    android:background="@android:color/white"
+    android:orientation="vertical" >
 
     <TextView
         android:layout_width="match_parent"
@@ -12,10 +12,10 @@
         android:gravity="center_horizontal"
         android:padding="16dp"
         android:text="茄子二手车"
+        android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
-    
+        android:textStyle="bold" />
+
     <fragment
         android:id="@+id/input_account"
         android:layout_width="match_parent"
@@ -58,7 +58,5 @@
             android:layout_weight="0.5"
             android:text="登陆" />
     </LinearLayout>
-    
-    
 
 </LinearLayout>
