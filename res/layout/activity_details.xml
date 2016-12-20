@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:orientation="horizontal" >
+
+        <com.rotk.eggplantcars.AvatarView
+            android:id="@+id/avatar"
+            android:layout_width="130dp"
+            android:layout_height="130dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/sellername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="卖家："
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/carmodel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="车型："
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/traveldistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="里程："
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/buydate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="使用年限："
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="价格："
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="介绍："
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_take"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:text="加入购物车" />
+
+        <Button
+            android:id="@+id/btn_letter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="私信卖家" />
+
+        <Button
+            android:id="@+id/btn_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="评价商品" />
+    </LinearLayout>
+
+</LinearLayout>
