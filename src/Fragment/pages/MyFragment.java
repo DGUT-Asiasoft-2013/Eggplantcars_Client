@@ -7,12 +7,15 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
+import com.rotk.eggplantcars.PasswordRecoverActivity;
 import com.rotk.eggplantcars.R;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+
 import android.content.DialogInterface.OnCancelListener;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -59,7 +62,7 @@ public class MyFragment extends Fragment{
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
+					goRecoverPassword();
 					//onpasswordchange();
 				}
 
@@ -69,14 +72,14 @@ public class MyFragment extends Fragment{
 
 				@Override
 				public void onClick(View v) {
+
 					// TODO Auto-generated method stub
 					onzhuxiao();
 				}
-
-
-
-
 			});
+
+				
+
 			personal.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -85,10 +88,6 @@ public class MyFragment extends Fragment{
 
 					//onexit();
 				}
-
-
-
-
 			});
 		}
 
@@ -114,6 +113,11 @@ public class MyFragment extends Fragment{
 		.setNegativeButton("·µ»Ø", null)
 		.show();
 
+	}
+	
+	void goRecoverPassword(){
+		Intent itnt = new Intent(this.getActivity(),PasswordRecoverActivity.class);
+		startActivity(itnt);
 	}
 
 
