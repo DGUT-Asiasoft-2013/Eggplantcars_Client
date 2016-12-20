@@ -16,6 +16,9 @@ public class ImageAdapter extends BaseAdapter{
 		this.res = res;
 		this.context = convert;
 	}
+	 public int getResLength() {
+		return res.length;
+	}
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
