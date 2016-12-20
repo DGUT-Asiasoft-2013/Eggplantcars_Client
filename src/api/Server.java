@@ -18,7 +18,7 @@ public class Server {
 		client = new OkHttpClient.Builder().cookieJar(new JavaNetCookieJar(cookieManager)).build();
 	}
 		//17
-	public static String serverAddress = "http://172.27.0.17:8080/membercenter/";
+	public static String serverAddress = "http://172.27.0.32:8080/membercenter/";
 
 	// 通过 公开 getsharedClient类提供给其他类使用
 	public static OkHttpClient getsharedClient() {

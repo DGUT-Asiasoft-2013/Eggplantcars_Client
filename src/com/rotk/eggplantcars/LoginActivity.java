@@ -6,7 +6,7 @@ import java.util.List;
 import entity.User;
 import inputcells.SimpleTextInputCellFragment;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rotk.eggplantcars.api.Server;
+import api.Server;
 
 import android.app.Activity;
 import android.app.AlertDialog;
