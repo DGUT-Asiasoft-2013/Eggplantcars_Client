@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/p"
+    android:background="@android:color/white"
     android:orientation="vertical" >
 
     <TextView
@@ -37,6 +37,7 @@
         android:layout_gravity="right"
         android:padding="2dp"
         android:text="忘记密码？"
+        android:layout_marginBottom="8dp"
         android:textColor="#00f" />
 
     <LinearLayout
@@ -58,5 +59,10 @@
             android:layout_weight="0.5"
             android:text="登陆" />
     </LinearLayout>
+    
+    <ImageView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/item6"/>
 
 </LinearLayout>

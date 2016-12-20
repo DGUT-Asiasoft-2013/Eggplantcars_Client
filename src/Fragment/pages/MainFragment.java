@@ -28,6 +28,7 @@ public class MainFragment extends Fragment  {
 			view = inflater.inflate(R.layout.fragment_page_main, null);
 			gallery = (Gallery) view.findViewById(R.id.img_gallery);
 			adapter = new ImageAdapter(res, getActivity());
+			
 			gallery.setAdapter(adapter);
 			
 			
