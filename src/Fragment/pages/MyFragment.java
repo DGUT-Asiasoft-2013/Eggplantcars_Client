@@ -9,8 +9,10 @@ import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
 import com.rotk.eggplantcars.R;
 
-
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -71,7 +73,7 @@ public class MyFragment extends Fragment{
 					onzhuxiao();
 				}
 
-				
+
 
 
 			});
@@ -80,11 +82,11 @@ public class MyFragment extends Fragment{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					
+
 					//onexit();
 				}
 
-				
+
 
 
 			});
@@ -92,18 +94,29 @@ public class MyFragment extends Fragment{
 
 		return view;
 	}
-	
-	
-	
+
+
+
 	private void onzhuxiao() {
 		// TODO Auto-generated method stub
-		getActivity().finish();
-		Intent inten = new Intent(getActivity(),LoginActivity.class);
-		startActivity(inten);
-		
+		new AlertDialog.Builder(getActivity())
+		.setTitle("注销")
+		.setMessage("注销当前用户")
+		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				getActivity().finish();
+				Intent intent = new Intent(getActivity(),LoginActivity.class);
+				startActivity(intent);
+			}
+		})
+		.setNegativeButton("返回", null)
+		.show();
+
 	}
 
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -121,7 +134,7 @@ public class MyFragment extends Fragment{
 			@Override
 			public void onResponse(final Call arg0, Response arg1) throws IOException {
 				try {
-				    final User user = new ObjectMapper().readValue(arg1.body().bytes(), User.class);
+					final User user = new ObjectMapper().readValue(arg1.body().bytes(), User.class);
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
 							u = user;
