@@ -125,9 +125,6 @@ public class PasswordRecoverActivity extends Activity {
 		})
 		.show();
 
-
-
-
 	}
 
 	void onFailureYes(){
