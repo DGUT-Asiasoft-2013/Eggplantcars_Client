@@ -7,7 +7,7 @@ import entity.User;
 import inputcells.SimpleTextInputCellFragment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rotk.eggplantcars.api.Server;
+import api.Server;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -121,7 +121,7 @@ public class LoginActivity extends Activity {
 
 									@Override
 									public void onClick(DialogInterface dialog, int which) {
-										finish();
+										//finish();
 										Intent iten = new Intent(LoginActivity.this,HelloWorldActivity.class);
 										startActivity(iten);
 									}
