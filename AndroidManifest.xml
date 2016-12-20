@@ -42,6 +42,7 @@
             android:name="NewsUpLoading"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        <activity android:name="com.rotk.eggplantcars.NewsContentActivity"></activity>
     </application>
 
 </manifest>
