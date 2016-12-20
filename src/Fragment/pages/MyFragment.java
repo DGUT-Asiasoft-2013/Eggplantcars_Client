@@ -4,6 +4,8 @@ package Fragment.pages;
 
 import java.io.IOException;
 
+import org.w3c.dom.Text;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
@@ -36,9 +38,10 @@ import okhttp3.Response;
 
 public class MyFragment extends Fragment{
 	View view;
-	Button passwordchange;
-	Button zhuxiao;
-	Button personal;
+	TextView passwordchange; //ÐÞ¸ÄÃÜÂë
+	TextView zhuxiao;	//×¢Ïú
+	TextView personal;//Ë½ÐÅ
+	TextView comment;
 	User u;
 
 	TextView textView;
@@ -54,9 +57,10 @@ public class MyFragment extends Fragment{
 			nicheng = (TextView) view.findViewById(R.id.nicheng);
 			progress = (ProgressBar) view.findViewById(R.id.my_progress);
 			avatar = (AvatarView) view.findViewById(R.id.my_avatar);
-			passwordchange = (Button)view.findViewById(R.id.btn_passwordchange);
-			zhuxiao = (Button)view.findViewById(R.id.btn_zhuxiao);
-			personal = (Button)view.findViewById(R.id.personal);
+			passwordchange = (TextView) view.findViewById(R.id.btn_passwordchange);
+			zhuxiao = (TextView) view.findViewById(R.id.btn_zhuxiao);
+			personal = (TextView) view.findViewById(R.id.personal);
+			comment =(TextView) view .findViewById(R.id.mycomment);
 
 			passwordchange.setOnClickListener(new OnClickListener() {
 

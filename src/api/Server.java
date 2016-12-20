@@ -20,8 +20,11 @@ public class Server {
 		//17
 
 
-	public static String serverAddress = "http://172.27.0.5:8080/membercenter/";
-    //github.com/DGUT-Asiasoft-2013/Eggplantcars_Client.git
+
+
+	public static String serverAddress = "http://172.27.0.17:8080/membercenter/";
+
+
 
 
 	// 通过 公开 getsharedClient类提供给其他类使用

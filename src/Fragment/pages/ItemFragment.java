@@ -3,14 +3,17 @@ package Fragment.pages;
 import java.io.IOException;
 import java.util.List;
 
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
+import com.rotk.eggplantcars.DetailsActivity;
 import com.rotk.eggplantcars.R;
 import com.rotk.eggplantcars.api.Server;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -177,7 +180,19 @@ public class ItemFragment extends Fragment{
 	}
 	
 	void onClick(int position){
-		
+		Deal deal=data.get(position);
+		Intent intn=new Intent(getActivity(),DetailsActivity.class);
+		intn.putExtra("text", deal.getText()); 
+		intn.putExtra("title", deal.getTitle());
+		intn.putExtra("dealavatar", deal.getDealAvatar());
+		intn.putExtra("carModel", deal.getCarModel());
+		intn.putExtra("traveldistance", deal.getTravelDistance());
+		intn.putExtra("buydate", deal.getBuyDate());
+		intn.putExtra("price", deal.getPrice());
+		intn.putExtra("name",deal.getSellerName());
+		intn.putExtra("deal_id",deal.getId());
+
+		startActivity(intn);
 	}
 	
 	BaseAdapter listAdapter=new BaseAdapter() {
