@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
 import com.rotk.eggplantcars.R;
-import com.rotk.eggplantcars.api.Server;
+
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import api.Server;
 import entity.User;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -78,7 +79,7 @@ public class MyFragment extends Fragment{
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					
-					onexit();
+					//onexit();
 				}
 
 				
@@ -90,10 +91,7 @@ public class MyFragment extends Fragment{
 		return view;
 	}
 	
-	private void onexit() {
-		// TODO Auto-generated method stub
-         System.exit(1000);
-	}
+	
 	
 	private void onzhuxiao() {
 		// TODO Auto-generated method stub

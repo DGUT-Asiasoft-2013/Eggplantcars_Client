@@ -2,7 +2,7 @@ package com.rotk.eggplantcars;
 
 import java.io.IOException;
 
-import com.rotk.eggplantcars.api.Server;
+
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +16,7 @@ import android.graphics.Shader.TileMode;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
+import api.Server;
 import entity.User;
 import okhttp3.Call;
 import okhttp3.Callback;
