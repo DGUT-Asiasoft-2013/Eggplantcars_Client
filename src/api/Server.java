@@ -20,7 +20,9 @@ public class Server {
 		//17
 
 
+
 	public static String serverAddress = "http://172.27.0.17:8080/membercenter/";
+
     //github.com/DGUT-Asiasoft-2013/Eggplantcars_Client.git
 
 

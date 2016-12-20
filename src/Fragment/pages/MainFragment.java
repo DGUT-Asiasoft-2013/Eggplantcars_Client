@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.List;
 
 import com.cloudage.membercenter.entity.Article;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
+import com.rotk.eggplantcars.NewsContentActivity;
 import com.rotk.eggplantcars.NewsUpLoading;
 import com.rotk.eggplantcars.R;
 
@@ -80,6 +82,7 @@ public class MainFragment extends Fragment {
 				}
 			});
 
+			
 			gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 				@Override
@@ -109,7 +112,10 @@ public class MainFragment extends Fragment {
 	}
 
 	void onItemClicked(int position) {
-
+		News news = data.get(position);	
+		Intent itent = new Intent(getActivity(), NewsContentActivity.class);	
+		itent.putExtra("news", news);
+		startActivity(itent);
 	}
 
 	void loadApi() {

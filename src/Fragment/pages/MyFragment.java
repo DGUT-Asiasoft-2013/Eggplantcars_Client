@@ -15,6 +15,9 @@ import com.rotk.eggplantcars.R;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+
+import android.content.DialogInterface.OnCancelListener;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -73,58 +76,47 @@ public class MyFragment extends Fragment{
 
 				@Override
 				public void onClick(View v) {
-					new AlertDialog.Builder(getActivity())
-					.setMessage("确定要注销吗")//arg1.body().string()放后台
-					.setNegativeButton("确定", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							Intent itnt = new Intent(getActivity(), LoginActivity.class);
-							startActivity(itnt);
-							getActivity().finish();
-						
-						}
-					})
-					.setPositiveButton("取消", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							
-							
-						}
-					})
-					.show();				
-}
+
+					// TODO Auto-generated method stub
+					onzhuxiao();
+				}
+			});
+
 				
 
-
-			});
 			personal.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					
+
 					//onexit();
 				}
-
-				
-
-
 			});
 		}
 
 		return view;
 	}
-	
-	
-	
+
+
+
 	private void onzhuxiao() {
 		// TODO Auto-generated method stub
-		getActivity().finish();
-		Intent inten = new Intent(getActivity(),LoginActivity.class);
-		startActivity(inten);
-		
+		new AlertDialog.Builder(getActivity())
+		.setTitle("注销")
+		.setMessage("注销当前用户")
+		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				getActivity().finish();
+				Intent intent = new Intent(getActivity(),LoginActivity.class);
+				startActivity(intent);
+			}
+		})
+		.setNegativeButton("返回", null)
+		.show();
+
 	}
 	
 	void goRecoverPassword(){
@@ -132,7 +124,7 @@ public class MyFragment extends Fragment{
 		startActivity(itnt);
 	}
 
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -150,7 +142,7 @@ public class MyFragment extends Fragment{
 			@Override
 			public void onResponse(final Call arg0, Response arg1) throws IOException {
 				try {
-				    final User user = new ObjectMapper().readValue(arg1.body().bytes(), User.class);
+					final User user = new ObjectMapper().readValue(arg1.body().bytes(), User.class);
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
 							u = user;
