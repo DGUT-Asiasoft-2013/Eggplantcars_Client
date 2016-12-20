@@ -82,8 +82,18 @@ public class LoginActivity extends Activity {
 
 	void goLogin(){
 		OkHttpClient client = Server.getsharedClient();
-
+		
+		String account = fragAccount.getText();
 		final String password = MD5.getMD5(fragPassword.getText());
+		
+		if(account.length() == 0 || password.length() == 0){
+			new AlertDialog.Builder(LoginActivity.this)
+			.setMessage("用户名和密码不能空")
+			.setIcon(android.R.drawable.ic_dialog_alert)
+			.setNegativeButton("好", null)
+			.show();
+			return ;
+}
 		
 		MultipartBody requestBody = new MultipartBody.Builder()
 				.addFormDataPart("account", fragAccount.getText())
