@@ -7,10 +7,12 @@ import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
+import com.rotk.eggplantcars.PasswordRecoverActivity;
 import com.rotk.eggplantcars.R;
 
-
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -55,7 +57,7 @@ public class MyFragment extends Fragment{
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
+					goRecoverPassword();
 					//onpasswordchange();
 				}
 
@@ -65,10 +67,28 @@ public class MyFragment extends Fragment{
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					onzhuxiao();
-				}
-
+					new AlertDialog.Builder(getActivity())
+					.setMessage("确定要注销吗")//arg1.body().string()放后台
+					.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Intent itnt = new Intent(getActivity(), LoginActivity.class);
+							startActivity(itnt);
+							getActivity().finish();
+						
+						}
+					})
+					.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							
+							
+						}
+					})
+					.show();				
+}
 				
 
 
@@ -99,6 +119,11 @@ public class MyFragment extends Fragment{
 		Intent inten = new Intent(getActivity(),LoginActivity.class);
 		startActivity(inten);
 		
+	}
+	
+	void goRecoverPassword(){
+		Intent itnt = new Intent(this.getActivity(),PasswordRecoverActivity.class);
+		startActivity(itnt);
 	}
 
 	
