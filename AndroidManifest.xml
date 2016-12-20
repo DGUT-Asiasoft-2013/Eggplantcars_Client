@@ -38,6 +38,10 @@
             android:name="RegisterActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+         <activity
+            android:name="NewsUpLoading"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>
