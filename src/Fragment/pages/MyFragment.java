@@ -39,6 +39,7 @@ public class MyFragment extends Fragment{
 	User u;
 
 	TextView textView;
+	TextView nicheng;
 	ProgressBar progress;
 	AvatarView avatar;
 
@@ -47,6 +48,7 @@ public class MyFragment extends Fragment{
 		if (view==null){
 			view = inflater.inflate(R.layout.fragment_page_me, null);
 			textView = (TextView) view.findViewById(R.id.text);
+			nicheng = (TextView) view.findViewById(R.id.nicheng);
 			progress = (ProgressBar) view.findViewById(R.id.my_progress);
 			avatar = (AvatarView) view.findViewById(R.id.my_avatar);
 			passwordchange = (Button)view.findViewById(R.id.btn_passwordchange);
@@ -175,8 +177,9 @@ public class MyFragment extends Fragment{
 		progress.setVisibility(View.GONE);
 		avatar.load(user);
 		textView.setVisibility(View.VISIBLE);
-		textView.setTextColor(Color.BLACK);
-		textView.setText("Hello,"+user.getName());
+		textView.setTextColor(Color.BLUE);
+		textView.setText("”√ªß√˚£∫"+user.getAccount());
+		nicheng.setText("Í«≥∆£∫"+user.getName());
 	}
 
 	void onFailuer(Call call, Exception ex){
