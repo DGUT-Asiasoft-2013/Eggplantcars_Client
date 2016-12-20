@@ -152,7 +152,7 @@ public class MyFragment extends Fragment{
 		progress.setVisibility(View.GONE);
 		avatar.load(user);
 		textView.setVisibility(View.VISIBLE);
-		textView.setTextColor(Color.BLACK);
+		textView.setTextColor(Color.BLUE);
 		textView.setText("”√ªß√˚£∫"+user.getAccount());
 		nicheng.setText("Í«≥∆£∫"+user.getName());
 	}
