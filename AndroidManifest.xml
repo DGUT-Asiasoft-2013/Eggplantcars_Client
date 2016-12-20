@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.rotk.eggplantcars.HelloWorldActivity" >
+        <activity 
+            android:name="com.rotk.eggplantcars.HelloWorldActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
         <activity
             android:name="LoginActivity"
@@ -37,6 +39,16 @@
         <activity
             android:name="RegisterActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+
+        <activity
+            android:name="NewActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+	  </activity>
+         <activity
+            android:name="NewsUpLoading"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+
         </activity>
     </application>
 
