@@ -5,6 +5,7 @@ import inputcells.SimpleTextInputCellFragment;
 
 import com.rotk.eggplantcars.R;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 public class PasswordRecoverStep1Fragment extends Fragment {
 	SimpleTextInputCellFragment fragEmail;
 	View view;
-	
+	static String email;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
@@ -58,8 +59,19 @@ public class PasswordRecoverStep1Fragment extends Fragment {
 	}
 	
 	void goNext(){
-		if(onGoNextListener!=null){
+		if(onGoNextListener != null){
+
+			//≈–∂œ” œ‰ «∑ÒŒ™ø’
+			email = fragEmail.getText();
+			if(email.length() == 0){
+				new AlertDialog.Builder(getActivity())
+				.setMessage("«Î ‰»Î” œ‰µÿ÷∑")
+				.setNegativeButton("∫√", null)
+				.show();
+				return ;
+			}
+			
 			onGoNextListener.onGoNext();
 		}
-	}
+}
 }
