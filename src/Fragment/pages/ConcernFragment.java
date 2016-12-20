@@ -9,12 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SearchFragment extends Fragment{
+public class ConcernFragment extends Fragment{
 	View view;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if(view ==null){
-			view = inflater.inflate(R.layout.fragment_page_search, null);
+			view = inflater.inflate(R.layout.fragment_page_concern, null);
 		}
 		return view;
 	}

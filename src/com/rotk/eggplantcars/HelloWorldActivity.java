@@ -7,7 +7,7 @@ import Fragment.MainTabbarFragment.OnSelectedListener;
 import Fragment.pages.ItemFragment;
 import Fragment.pages.MainFragment;
 import Fragment.pages.MyFragment;
-import Fragment.pages.SearchFragment;
+import Fragment.pages.ConcernFragment;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.os.Bundle;
 public class HelloWorldActivity extends Activity{
 	MainFragment mainpage=new MainFragment();
 	ItemFragment itempage=new ItemFragment();
-	SearchFragment searchspage=new SearchFragment();
+	ConcernFragment searchspage=new ConcernFragment();
 	MyFragment mypage=new MyFragment();
 	MainTabbarFragment tab;
 	@Override

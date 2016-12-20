@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="订阅" />
+            android:text="关注" />
 
         <Button
             android:id="@+id/btn_good"
