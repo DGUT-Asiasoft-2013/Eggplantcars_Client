@@ -2,6 +2,7 @@ package Fragment;
 
 
 
+import com.rotk.eggplantcars.NewActivity;
 import com.rotk.eggplantcars.R;
 
 import android.app.Fragment;
@@ -31,9 +32,9 @@ public class MainTabbarFragment extends Fragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-//				Intent intent=new Intent(getActivity(),NewActivity.class);
-//				startActivity(intent);
-//				getActivity().overridePendingTransition(R.anim.slide_in_bottom,0);
+				Intent intent=new Intent(getActivity(),NewActivity.class);
+				startActivity(intent);
+				getActivity().overridePendingTransition(R.anim.slide_in_bottom,0);
 			}
 		});
 		//将tab放到数组中
