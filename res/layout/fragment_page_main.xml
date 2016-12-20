@@ -2,21 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:layout_gravity="center_horizontal">
-    
-    <Gallery 
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <Gallery
         android:id="@+id/img_gallery"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:layout_marginTop="10dp"/> 
-       
-    <ListView 
+        android:layout_height="170dp"
+        android:layout_marginTop="10dp" />
+    <Button 
+        android:id="@+id/btn_loadNews"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:text="lo"/>
+
+    <ListView
         android:id="@+id/list_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
-        android:layout_marginTop="10dp"></ListView>
+        android:layout_marginTop="10dp" >
+    </ListView>
 
 </LinearLayout>

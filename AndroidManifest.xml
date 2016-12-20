@@ -17,8 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.rotk.eggplantcars.MainActivity"
-            android:label="@string/app_name" >
+              android:name="com.rotk.eggplantcars.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,9 +40,15 @@
             android:name="RegisterActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+
         <activity
             android:name="NewActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+	  </activity>
+         <activity
+            android:name="NewsUpLoading"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+
         </activity>
     </application>
 

@@ -5,8 +5,9 @@ import java.util.List;
 
 import entity.User;
 import inputcells.SimpleTextInputCellFragment;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rotk.eggplantcars.api.Server;
+import api.Server;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -82,9 +83,11 @@ public class LoginActivity extends Activity {
 	void goLogin(){
 		OkHttpClient client = Server.getsharedClient();
 
+		final String password = MD5.getMD5(fragPassword.getText());
+		
 		MultipartBody requestBody = new MultipartBody.Builder()
 				.addFormDataPart("account", fragAccount.getText())
-				.addFormDataPart("passwordHash", MD5.getMD5(fragPassword.getText()))
+				.addFormDataPart("passwordHash", password)
 				.build();
 
 		Request request = Server.requestBuilderWithApi("login")
@@ -102,27 +105,58 @@ public class LoginActivity extends Activity {
 
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
-				
-				final String responseString = arg1.body().string();
-				ObjectMapper mapper = new ObjectMapper();
-				final User user = mapper.readValue(responseString, User.class);
-				
-				runOnUiThread(new Runnable() {
-					public void run() {
+				try {
+					final String responseString = arg1.body().string();
+					ObjectMapper mapper = new ObjectMapper();
+					final User user = mapper.readValue(responseString, User.class);
+					if(user != null){
 						dlg.dismiss();
-						new AlertDialog.Builder(LoginActivity.this)
-						.setMessage("欢迎登陆茄子二手车,"+user.getName())
-//						.setMessage(responseString)
-						.setPositiveButton("OK", new DialogInterface.OnClickListener(){
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								Intent itnt = new Intent(LoginActivity.this, HelloWorldActivity.class);
-								startActivity(itnt);	
-							}	
-						})
-						.show();
+						runOnUiThread(new Runnable() {
+							public void run() {
+								dlg.dismiss();
+								new AlertDialog.Builder(LoginActivity.this)
+								.setTitle("登录成功")
+								.setMessage("欢迎用户："+user.getAccount())
+								.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										//finish();
+										Intent iten = new Intent(LoginActivity.this,HelloWorldActivity.class);
+										startActivity(iten);
+									}
+								})
+								.show();
+							}
+						});
+
 					}
-				});
+					else{
+						runOnUiThread(new Runnable() {
+							public void run() {
+								dlg.dismiss();
+								new AlertDialog.Builder(LoginActivity.this)
+								.setTitle("提示")
+								.setMessage("登录失败!密码错误")
+								.setPositiveButton("确定",null)
+								.show();
+							}
+						});
+
+					}
+				} catch (Exception e) {
+					runOnUiThread(new Runnable() {
+						public void run() {
+							dlg.dismiss();
+							new AlertDialog.Builder(LoginActivity.this)
+							.setTitle("登录失败!")
+							.setMessage("用户不存在或密码错误")
+							.setPositiveButton("确定",null)
+							.show();
+						}
+					});
+					e.printStackTrace();
+				}
 			}
 
 			@Override
