@@ -67,7 +67,7 @@
         <TextView 
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="搜索"/>
+            android:text="关注"/>
         </LinearLayout>
         <LinearLayout
         android:id="@+id/tab_me"
