@@ -2,7 +2,7 @@ package com.rotk.eggplantcars;
 
 import java.io.IOException;
 
-import com.rotk.eggplantcars.api.Server;
+
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
+import api.Server;
 import inputcells.PictureInputCellFragment;
 import okhttp3.Call;
 import okhttp3.Callback;

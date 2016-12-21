@@ -15,7 +15,6 @@ public class News implements Serializable {
 	
 	String title;
 	String text;
-
 	String authorName;
 	String authorAvatar;
 	String avatar;
@@ -34,6 +33,9 @@ public class News implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
+	
 	public Date getCreateDate() {
 		return createDate;
 	}

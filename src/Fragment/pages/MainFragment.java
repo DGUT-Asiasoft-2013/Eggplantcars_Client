@@ -7,6 +7,7 @@ import com.cloudage.membercenter.entity.Article;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rotk.eggplantcars.AvatarNewsView;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.NewsContentActivity;
 import com.rotk.eggplantcars.NewsUpLoading;
@@ -130,6 +131,7 @@ public class MainFragment extends Fragment {
 					final Page<News> data = new ObjectMapper().readValue(arg1.body().string(),
 							new TypeReference<Page<News>>() {
 							});
+					if(MainFragment.this.isVisible())
 					getActivity().runOnUiThread(new Runnable() {
 
 						@Override
@@ -140,6 +142,7 @@ public class MainFragment extends Fragment {
 						}
 					});
 				} catch (final Exception e) {
+					if(MainFragment.this.isVisible())
 					getActivity().runOnUiThread(new Runnable() {
 
 						@Override
@@ -154,6 +157,7 @@ public class MainFragment extends Fragment {
 
 			@Override
 			public void onFailure(Call arg0, final IOException arg1) {
+				if(MainFragment.this.isVisible())
 				getActivity().runOnUiThread(new Runnable() {
 
 					@Override
@@ -175,17 +179,32 @@ public class MainFragment extends Fragment {
 			View view = null;
 			if (convertView == null) {
 				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-				view = inflater.inflate(R.layout.fragment_showlistview, null);
+				view = inflater.inflate(R.layout.example_news_main, null);
 			} else {
 				view = convertView;
 			}
-			TextView textView = (TextView) view.findViewById(R.id.text_rua);
-			AvatarView imageView = (AvatarView) view.findViewById(R.id.image_bear);
+//			TextView textView = (TextView) view.findViewById(R.id.text_rua);
+//			AvatarView imageView = (AvatarView) view.findViewById(R.id.image_bear);
+//			News news = data.get(position);
+//			String dateStr = DateFormat.format("MM-dd hh:mm", news.getCreateDate()).toString();
+//			textView.setText(news.getTitle() + " " + dateStr);
+//			textView.setTextColor(Color.BLACK);
+//			imageView.load(Server.serverAddress + news.getAvatar());
+			AvatarNewsView avatarNewsView = (AvatarNewsView) view .findViewById(R.id.news_avatar);
+			AvatarView avatarAuthorView = (AvatarView) view.findViewById(R.id.news_author_avatar);
+			TextView newslaber = (TextView) view.findViewById(R.id.news_laber);
+			TextView newstext = (TextView) view.findViewById(R.id.news_text);
+			TextView newsAuthorName = (TextView) view.findViewById(R.id.new_author_name);
+			TextView newsTime = (TextView) view.findViewById(R.id.news_time);
+			
 			News news = data.get(position);
 			String dateStr = DateFormat.format("MM-dd hh:mm", news.getCreateDate()).toString();
-			textView.setText(news.getTitle() + " " + dateStr);
-			textView.setTextColor(Color.BLACK);
-			imageView.load(Server.serverAddress + news.getAuthorAvatar());
+			newslaber.setText(news.getTitle());
+			newstext.setText(news.getText());
+			newsAuthorName.setText(news.getAuthorName());
+			newsTime.setText(dateStr);
+			avatarAuthorView.load(Server.serverAddress + news.getAuthorAvatar());
+			avatarNewsView.load(Server.serverAddress+news.getAvatar());
 			return view;
 		}
 
