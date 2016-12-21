@@ -113,8 +113,10 @@ public class MainFragment extends Fragment {
 
 	void onItemClicked(int position) {
 		News news = data.get(position);	
+
 		Intent itent = new Intent(getActivity(), NewsContentActivity.class);	
 		itent.putExtra("news", news);
+
 		startActivity(itent);
 	}
 

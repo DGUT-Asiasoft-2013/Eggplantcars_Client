@@ -3,18 +3,31 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.rotk.eggplantcars.AvatarView;
-
 public class News implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Integer id;
 	Date createDate;
 	Date editDate;
+	
 	String title;
 	String text;
+
 	String authorName;
 	String authorAvatar;
 	String avatar;
+	Integer authorId;
+
+	
+	public Integer getAuthorId() {
+		return authorId;
+	}
+	public void setAuthorId(Integer authorId) {
+		this.authorId = authorId;
+	}
 	public Integer getId() {
 		return id;
 	}
