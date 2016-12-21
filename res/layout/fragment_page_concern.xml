@@ -2,73 +2,98 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:gravity="top"
-        android:padding="8dp"
-        android:text="我的关注" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    android:textColor="@android:color/background_dark"
+     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/search" />
+        android:background="@android:color/white"
+        android:orientation="vertical"
+         >
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:padding="8dp"
-            android:text="好友动态" />
+            android:textColor="@android:color/background_dark"
+            android:text="我关注的"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DCDCDC" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="2dp"
+        android:background="@android:color/white" >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/concern_my" />
+
+        <TextView
+            android:id="@+id/concern_frident"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textColor="@android:color/background_dark"
+            android:text="关注动态"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:background="#DCDCDC" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal" >
+        android:layout_height="60dp"
+        android:background="@android:color/white" >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/contacts" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/concern_deal" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/mycomment"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="好友动态" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textColor="@android:color/background_dark"
+            android:text="我的交易"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="#DCDCDC" />
+
+    <ListView
+        android:id="@+id/concern_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp" >
+    </ListView>
 
 </LinearLayout>

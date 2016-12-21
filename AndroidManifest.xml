@@ -51,6 +51,10 @@
             android:name="com.rotk.eggplantcars.NewsContentActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.DetailsActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>
