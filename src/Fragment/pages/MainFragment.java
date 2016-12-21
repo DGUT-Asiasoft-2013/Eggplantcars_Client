@@ -129,6 +129,7 @@ public class MainFragment extends Fragment {
 					final Page<News> data = new ObjectMapper().readValue(arg1.body().string(),
 							new TypeReference<Page<News>>() {
 							});
+					if(MainFragment.this.isVisible())
 					getActivity().runOnUiThread(new Runnable() {
 
 						@Override
@@ -139,6 +140,7 @@ public class MainFragment extends Fragment {
 						}
 					});
 				} catch (final Exception e) {
+					if(MainFragment.this.isVisible())
 					getActivity().runOnUiThread(new Runnable() {
 
 						@Override
@@ -153,6 +155,7 @@ public class MainFragment extends Fragment {
 
 			@Override
 			public void onFailure(Call arg0, final IOException arg1) {
+				if(MainFragment.this.isVisible())
 				getActivity().runOnUiThread(new Runnable() {
 
 					@Override

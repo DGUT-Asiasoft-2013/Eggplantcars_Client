@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.DetailsActivity;
 import com.rotk.eggplantcars.R;
-import com.rotk.eggplantcars.api.Server;
+import com.rotk.eggplantcars.SearchActivity;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -18,11 +18,14 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import api.Server;
 import android.widget.AdapterView.OnItemClickListener;
 import entity.Deal;
 import entity.Page;
@@ -39,6 +42,7 @@ public class ItemFragment extends Fragment{
 	int page=0;
 	View btnLoadMore;
 	TextView textLoadMore;
+	EditText edit;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class ItemFragment extends Fragment{
 			view=inflater.inflate(R.layout.fragment_page_item, null);
 			btnLoadMore=inflater.inflate(R.layout.loadmore,null);
 			textLoadMore=(TextView) btnLoadMore.findViewById(R.id.text);
+			edit=(EditText) view.findViewById(R.id.edit_btn);
 			
 			list=(ListView) view.findViewById(R.id.list);
 			list.setAdapter(listAdapter);
@@ -66,6 +71,18 @@ public class ItemFragment extends Fragment{
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					loadMore();
+				}
+			});
+			edit.setFocusable(false);
+			edit.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent itnt=new Intent(getActivity(),SearchActivity.class);
+					
+					startActivity(itnt);
+					
 				}
 			});
 		}
@@ -133,11 +150,11 @@ public class ItemFragment extends Fragment{
 	}
 	
 	void reload(){
-		Request request =com.rotk.eggplantcars.api.Server.requestBuilderWithApi("dealitems")
+		Request request =Server.requestBuilderWithApi("dealitems")
 				.get()
 				.build();
 
-		com.rotk.eggplantcars.api.Server.getsharedClient().newCall(request).enqueue(new Callback() {
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
@@ -145,7 +162,7 @@ public class ItemFragment extends Fragment{
 				try{
 					final Page<Deal> data=new ObjectMapper()
 							.readValue(arg1.body().string(),new TypeReference<Page<Deal>>() {} );
-					
+					if(ItemFragment.this.isVisible())
 					getActivity().runOnUiThread(new Runnable() {
 
 						@Override
@@ -157,7 +174,7 @@ public class ItemFragment extends Fragment{
 						}
 					});
 				}catch (final Exception e) {
-					// TODO: handle exception
+					if(ItemFragment.this.isVisible())
 					getActivity().runOnUiThread(new Runnable() {
 
 						@Override
@@ -203,14 +220,16 @@ public class ItemFragment extends Fragment{
 
 			TextView textTitle = (TextView) view.findViewById(R.id.title);
 			TextView textDate = (TextView) view.findViewById(R.id.date);
+			TextView textMoney=(TextView) view.findViewById(R.id.text);
 			AvatarView avatar=(AvatarView) view.findViewById(R.id.avatar);
-
+			
 			Deal deal =data.get(position);
 
 			avatar.load(Server.serverAddress+deal.getDealAvatar());
 			String dateStr=DateFormat.format("yyyy-mm-dd hh:mm", deal.getCreateDate()).toString();
 			textDate.setText(dateStr);
 			textTitle.setText(deal.getTitle());
+			textMoney.setText(deal.getPrice()+"гд");
 			
 
 			return view;

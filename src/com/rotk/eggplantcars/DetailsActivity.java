@@ -4,7 +4,7 @@ package com.rotk.eggplantcars;
 
 
 
-import com.rotk.eggplantcars.api.Server;
+
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import api.Server;
 import entity.Deal;
 
 public class DetailsActivity extends Activity{
