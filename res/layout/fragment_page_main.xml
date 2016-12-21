@@ -10,20 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_marginTop="10dp" />
-    <Button 
+    <TextView
         android:id="@+id/btn_loadNews"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="right"
-        android:text="lo"/>
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#F5F5F5"/>
 
     <ListView
         android:id="@+id/list_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
-        android:layout_marginTop="10dp" >
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="5dp" >
     </ListView>
 
 </LinearLayout>

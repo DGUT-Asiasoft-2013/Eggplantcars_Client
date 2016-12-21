@@ -73,7 +73,7 @@ public class AvatarNewsView extends View {
 			float scaleY = srcHeight/dstHeight;
 			
 			canvas.scale(1/scaleX, 1/scaleY);
-			RectF rect = new RectF(0, 0,200, 200);
+			RectF rect = new RectF(0, 0,250, 250);
 			canvas.drawRect(rect, paint);
 			canvas.restore();
 		}
