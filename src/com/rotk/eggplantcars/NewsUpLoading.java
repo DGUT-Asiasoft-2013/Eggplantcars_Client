@@ -55,7 +55,7 @@ public class NewsUpLoading extends Activity{
 				.addFormDataPart("title", title)
 				.addFormDataPart("text", text);
 		if(newsinputAvatar.getPngData()!=null){
-			body.addFormDataPart("avatar", "avatar", 
+			body.addFormDataPart("newsavatar", "newsavatar", 
 					RequestBody.create(MediaType.parse("image/png"), 
 							newsinputAvatar.getPngData()));
 		}
