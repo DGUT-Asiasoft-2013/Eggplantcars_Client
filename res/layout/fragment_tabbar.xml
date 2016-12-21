@@ -3,89 +3,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:background="@android:color/white"
-    android:weightSum="4">
+    android:orientation="horizontal"
+    android:weightSum="4" >
 
     <LinearLayout
         android:id="@+id/tab_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical" 
-        android:layout_weight="1">
+        android:orientation="vertical" >
 
-        <ImageView 
-            android:layout_height="wrap_content"
+        <ImageView
             android:layout_width="wrap_content"
-            android:background="@drawable/sellproperty"/>
-        <TextView 
             android:layout_height="wrap_content"
+            android:background="@drawable/sellproperty" />
+
+        <TextView
             android:layout_width="wrap_content"
-            android:text="首页"/>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:text="首页" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/tab_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical" 
-        android:layout_weight="1">
+        android:orientation="vertical" >
 
-        <ImageView 
-            android:layout_height="wrap_content"
+        <ImageView
             android:layout_width="wrap_content"
-        android:background="@drawable/donate"/>
-        <TextView 
             android:layout_height="wrap_content"
+            android:background="@drawable/donate" />
+
+        <TextView
             android:layout_width="wrap_content"
-            android:text="交易"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="交易" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_new"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="+" />
+    <Button
+        android:id="@+id/btn_new"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="+" />
 
-        <LinearLayout
+    <LinearLayout
         android:id="@+id/tab_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical" 
-        android:layout_weight="1">
+        android:orientation="vertical" >
 
-        <ImageView 
-            android:layout_height="wrap_content"
+        <ImageView
             android:layout_width="wrap_content"
-        android:background="@drawable/search"/>
-        <TextView 
             android:layout_height="wrap_content"
+            android:background="@drawable/search" />
+
+        <TextView
             android:layout_width="wrap_content"
-            android:text="关注"/>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:text="关注" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/tab_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/tab_background"
         android:gravity="center"
-        android:orientation="vertical" 
-        android:layout_weight="1">
+        android:orientation="vertical" >
 
-        <ImageView 
-            android:layout_height="wrap_content"
+        <ImageView
             android:layout_width="wrap_content"
-        android:background="@drawable/contacts"/>
-        <TextView 
             android:layout_height="wrap_content"
+            android:background="@drawable/contacts" />
+
+        <TextView
             android:layout_width="wrap_content"
-            android:text="我的"/>
-        </LinearLayout>
-        
+            android:layout_height="wrap_content"
+            android:text="我的" />
+    </LinearLayout>
+
 </LinearLayout>
