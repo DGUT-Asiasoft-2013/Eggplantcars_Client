@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="13dp"
         android:background="@android:color/white"
         android:gravity="start"
         android:orientation="horizontal" >
@@ -19,7 +19,7 @@
             android:layout_height="70dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:layout_marginStart="20dp" />
+            android:layout_marginStart="15dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,8 +61,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="25dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
         android:background="@android:color/white" >
 
         <ImageView
@@ -91,7 +91,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@android:color/white" >
 
         <ImageView
@@ -110,11 +110,35 @@
             android:text="查看私信"
             android:textSize="20sp" />
     </LinearLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="18dp"
+        android:background="@android:color/white" >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/me_money" />
+
+        <TextView
+            android:id="@+id/btn_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="钱包"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="23dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="18dp"
         android:background="@android:color/white" >
 
         <ImageView
@@ -136,8 +160,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="23dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="18dp"
         android:background="@android:color/white" >
 
         <ImageView
