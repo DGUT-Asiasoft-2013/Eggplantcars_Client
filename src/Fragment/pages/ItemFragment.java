@@ -181,18 +181,11 @@ public class ItemFragment extends Fragment{
 	
 	void onClick(int position){
 		Deal deal=data.get(position);
-		Intent intn=new Intent(getActivity(),DetailsActivity.class);
-		intn.putExtra("text", deal.getText()); 
-		intn.putExtra("title", deal.getTitle());
-		intn.putExtra("dealavatar", deal.getDealAvatar());
-		intn.putExtra("carModel", deal.getCarModel());
-		intn.putExtra("traveldistance", deal.getTravelDistance());
-		intn.putExtra("buydate", deal.getBuyDate());
-		intn.putExtra("price", deal.getPrice());
-		intn.putExtra("name",deal.getSellerName());
-		intn.putExtra("deal_id",deal.getId());
+		Intent itnt=new Intent(getActivity(),DetailsActivity.class);
+		itnt.putExtra("data",deal);
+		
+		startActivity(itnt);
 
-		startActivity(intn);
 	}
 	
 	BaseAdapter listAdapter=new BaseAdapter() {

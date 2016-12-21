@@ -24,6 +24,7 @@ public class Server {
 
 
 
+
 	// 通过 公开 getsharedClient类提供给其他类使用
 	public static OkHttpClient getsharedClient() {
 		return client;
