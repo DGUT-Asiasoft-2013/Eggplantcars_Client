@@ -183,7 +183,7 @@ public class MainFragment extends Fragment {
 			String dateStr = DateFormat.format("MM-dd hh:mm", news.getCreateDate()).toString();
 			textView.setText(news.getTitle() + " " + dateStr);
 			textView.setTextColor(Color.BLACK);
-			imageView.load(Server.serverAddress + news.getAuthorAvatar());
+			imageView.load(Server.serverAddress + news.getAvatar());
 			return view;
 		}
 

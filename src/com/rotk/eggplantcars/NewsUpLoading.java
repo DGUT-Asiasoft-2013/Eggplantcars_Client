@@ -11,10 +11,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import api.Server;
+import inputcells.PictureInputCellFragment;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NewsUpLoading extends Activity{
@@ -23,6 +26,7 @@ public class NewsUpLoading extends Activity{
 	Button button;
 	EditText editText;
 	EditText editTitle;
+	PictureInputCellFragment newsinputAvatar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class NewsUpLoading extends Activity{
 		button = (Button)findViewById(R.id.button1);
 		editText = (EditText) findViewById(R.id.edit1);
 		editTitle = (EditText) findViewById(R.id.edit_title);
+		newsinputAvatar=(PictureInputCellFragment) getFragmentManager().findFragmentById(R.id.input_news_avatar);
 		
 		button.setOnClickListener(new OnClickListener() {
 			@Override
@@ -46,12 +51,17 @@ public class NewsUpLoading extends Activity{
 	void sendContent(){
 		String text=editText.getText().toString();
 		String title=editTitle.getText().toString();
-		MultipartBody body = new MultipartBody.Builder()
+		MultipartBody.Builder body = new MultipartBody.Builder()
 				.addFormDataPart("title", title)
-				.addFormDataPart("text", text)
-				.build();
+				.addFormDataPart("text", text);
+		if(newsinputAvatar.getPngData()!=null){
+			body.addFormDataPart("avatar", "avatar", 
+					RequestBody.create(MediaType.parse("image/png"), 
+							newsinputAvatar.getPngData()));
+		}
+				
 		Request request = Server.requestBuilderWithApi("news")
-				.post(body)
+				.post(body.build())
 				.build();
 		
 		Server.getsharedClient().newCall(request).enqueue(new Callback() {

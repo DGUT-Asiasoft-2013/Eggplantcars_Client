@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
@@ -7,8 +8,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-       >
+        android:layout_height="50dp" >
 
         <Button
             android:id="@+id/button1"
@@ -17,26 +17,34 @@
             android:layout_gravity="right"
             android:text="Rua!"
             android:textColor="@android:color/black"
-            android:textSize="18sp"  />
+            android:textSize="18sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_gravity="bottom"
             android:background="@android:color/darker_gray" />
     </FrameLayout>
-    
-    <EditText 
+
+    <EditText
         android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:hint="输入标题"/>
+        android:hint="输入标题" />
 
     <EditText
         android:id="@+id/edit1"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="200dp"
         android:gravity="top"
         android:hint="ruarua" />
+
+    <fragment
+        android:id="@+id/input_news_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        class="inputcells.PictureInputCellFragment"
+        tools:layout="@layout/fragment_inputcell_picture" />
 
 </LinearLayout>
