@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -15,7 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import api.Server;
-import api.YeServer;
+
 import entity.News;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,6 +31,7 @@ public class NewsContentActivity extends Activity {
 	ListView listView;
 	Button btn_concern;
 	Button btn_good;
+	Button btn_comment;
 	private boolean isConcerned;//¹Ø×¢
 	private boolean isLiked;//µãÔÞ
 
@@ -42,6 +44,7 @@ public class NewsContentActivity extends Activity {
 
 		btn_good = (Button)findViewById(R.id.btn_good);
 		btn_concern = (Button)findViewById(R.id.btn_concern);
+		btn_comment = (Button)findViewById(R.id.btn_comment);
 		listView =(ListView)findViewById(R.id.list_comment);
 		//listView.setAdapter(listAdapter);
 
@@ -54,6 +57,14 @@ public class NewsContentActivity extends Activity {
 			}
 		});
 
+		btn_comment.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onComment();
+			}
+		});
 		btn_good.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -64,15 +75,22 @@ public class NewsContentActivity extends Activity {
 		});
 	}
 
+	void onComment() {
+		// TODO Auto-generated method stub
+		Intent itent = new Intent(NewsContentActivity.this, NewsCommentActivity.class);
+		itent.putExtra("news", news);
+		startActivity(itent);
+	}
+
 	private void onlike() {
 		MultipartBody body = new MultipartBody.Builder()
 				.addFormDataPart("likes", String.valueOf(!isLiked))
 				.build(); 
 
-		Request request = YeServer.requestBuilderWithApi("news/"+news.getId()+"/likes")
+		Request request = Server.requestBuilderWithApi("news/"+news.getId()+"/likes")
 				.post(body).build();
 
-		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
@@ -100,8 +118,8 @@ public class NewsContentActivity extends Activity {
 	}
 
 	private void checkLiked() {
-		Request request = YeServer.requestBuilderWithApi("news/"+news.getId()+"/isliked").get().build();
-		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+		Request request = Server.requestBuilderWithApi("news/"+news.getId()+"/isliked").get().build();
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
 				try{
@@ -144,10 +162,10 @@ public class NewsContentActivity extends Activity {
 	}
 
 	private void reloadLikes() {
-		Request request = YeServer.requestBuilderWithApi("news/"+news.getId()+"/likes")
+		Request request = Server.requestBuilderWithApi("news/"+news.getId()+"/likes")
 				.get().build();
 
-		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
@@ -199,10 +217,10 @@ public class NewsContentActivity extends Activity {
 				.addFormDataPart("Concern", String.valueOf(!isConcerned))
 				.build(); 
 
-		Request request = YeServer.requestBuilderWithApi(news.getAuthorId()+"/Concerns")
+		Request request = Server.requestBuilderWithApi(news.getAuthorId()+"/Concerns")
 				.post(body).build();
 
-		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
@@ -230,8 +248,8 @@ public class NewsContentActivity extends Activity {
 
 	private void checkConcerned() {
 		// TODO Auto-generated method stub
-		Request request = YeServer.requestBuilderWithApi(news.getAuthorId()+"/isConcerned").get().build();
-		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+		Request request = Server.requestBuilderWithApi(news.getAuthorId()+"/isConcerned").get().build();
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
 				try{
