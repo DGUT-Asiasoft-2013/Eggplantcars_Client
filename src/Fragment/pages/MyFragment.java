@@ -9,6 +9,7 @@ import org.w3c.dom.Text;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
+import com.rotk.eggplantcars.PasswordChangeActivity;
 import com.rotk.eggplantcars.PasswordRecoverActivity;
 import com.rotk.eggplantcars.R;
 
@@ -66,8 +67,7 @@ public class MyFragment extends Fragment{
 
 				@Override
 				public void onClick(View v) {
-					goRecoverPassword();
-					//onpasswordchange();
+					onpasswordchange();
 				}
 
 
@@ -119,8 +119,8 @@ public class MyFragment extends Fragment{
 
 	}
 	
-	void goRecoverPassword(){
-		Intent itnt = new Intent(this.getActivity(),PasswordRecoverActivity.class);
+	void onpasswordchange(){
+		Intent itnt = new Intent(this.getActivity(),PasswordChangeActivity.class);
 		startActivity(itnt);
 	}
 

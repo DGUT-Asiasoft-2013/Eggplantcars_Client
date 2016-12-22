@@ -43,12 +43,10 @@
             android:name="NewActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
-
-        <activity 
+        <activity
             android:name="com.rotk.eggplantcars.DetailsActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
-            </activity>
-
+        </activity>
         <activity
             android:name="NewsUpLoading"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
@@ -63,6 +61,10 @@
         </activity>
         <activity
             android:name="com.rotk.eggplantcars.SearchListActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.PasswordChangeActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
     </application>
