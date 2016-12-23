@@ -3,21 +3,29 @@ package com.rotk.eggplantcars;
 import java.io.IOException;
 import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import api.Server;
 import api.YeServer;
+import entity.Deal;
 import entity.News;
+import entity.NewsComment;
+import entity.Page;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MultipartBody;
@@ -34,6 +42,11 @@ public class NewsContentActivity extends Activity {
 	Button btn_comment;
 	private boolean isConcerned;//关注
 	private boolean isLiked;//点赞
+	
+	List<NewsComment> data;
+	int page=0;
+	View btnLoadMore;
+	TextView textLoadMore;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +55,17 @@ public class NewsContentActivity extends Activity {
 		setContentView(R.layout.activity_newscontent);
 		news = (News)getIntent().getSerializableExtra("news");
 
+		btnLoadMore = LayoutInflater.from(this).inflate(R.layout.loadmore, null);
+		textLoadMore=(TextView) btnLoadMore.findViewById(R.id.text);
+
 		btn_good = (Button)findViewById(R.id.btn_good);
 		btn_concern = (Button)findViewById(R.id.btn_concern);
 		btn_comment = (Button)findViewById(R.id.btn_comment);
 		listView =(ListView)findViewById(R.id.list_comment);
+		
+		listView.setAdapter(listAdapter);
+		listView.addFooterView(btnLoadMore);
+		listView.setAdapter(listAdapter);
 		//listView.setAdapter(listAdapter);
 
 		findViewById(R.id.btn_concern).setOnClickListener(new OnClickListener() {
@@ -73,6 +93,69 @@ public class NewsContentActivity extends Activity {
 				onlike();
 			}
 		});
+		btnLoadMore.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				loadMore();
+			}
+		});
+	}
+
+	void loadMore() {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				btnLoadMore.setEnabled(false);
+				textLoadMore.setText("载入中...");
+
+				Request request=Server.requestBuilderWithApi("News/"+news.getId()+"/comments/"+(page+1))
+						.get()
+						.build();
+				Server.getsharedClient().newCall(request).enqueue(new Callback() {
+
+					public void onResponse(Call arg0, Response arg1) throws IOException {
+						// TODO Auto-generated method stub
+						runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								btnLoadMore.setEnabled(true);
+								textLoadMore.setText("加载更多");
+							}
+						});
+						try{
+							Page<NewsComment> newsComment=new ObjectMapper().readValue(arg1.body().string(), new TypeReference<Page<NewsComment>>(){});
+							if(newsComment.getNumber()>page){
+								if(data==null){
+									data=newsComment.getContent();
+								}else{
+									data.addAll(newsComment.getContent());
+								}
+								page=newsComment.getNumber();
+
+								runOnUiThread(new Runnable() {
+
+									@Override
+									public void run() {
+										// TODO Auto-generated method stub
+										listAdapter.notifyDataSetInvalidated();
+									}
+								});
+							}
+						}catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+					}
+
+					@Override
+					public void onFailure(Call arg0, IOException arg1) {
+						// TODO Auto-generated method stub
+
+					}
+				});
 	}
 
 	void onComment() {
@@ -298,6 +381,7 @@ public class NewsContentActivity extends Activity {
 		super.onResume();
 		reloadlikes();
 		reloadconcern();
+		reloadlist();
 		//String authorId = getIntent().getStringExtra("authorId");
 
 		TextView text_authorid = (TextView)findViewById(R.id.text_authorid);
@@ -319,4 +403,99 @@ public class NewsContentActivity extends Activity {
 		avatar.load(Server.serverAddress+news.getAuthorAvatar());
 	}
 
+	private void reloadlist() {
+		// TODO Auto-generated method stub
+		Request request =Server.requestBuilderWithApi("News/"+news.getId()+"/comments")
+				.get()
+				.build();
+
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(Call arg0, Response arg1) throws IOException {
+				// TODO Auto-generated method stub
+				try{
+					final Page<NewsComment> data=new ObjectMapper()
+							.readValue(arg1.body().string(),new TypeReference<Page<NewsComment>>() {} );
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							NewsContentActivity.this.page=data.getNumber();
+							NewsContentActivity.this.data=data.getContent();
+							listAdapter.notifyDataSetInvalidated();
+						}
+					});
+				}catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							new AlertDialog.Builder(NewsContentActivity.this)
+							.setMessage(e.getMessage())
+							.show();
+						}
+					});
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+	}
+
+	BaseAdapter listAdapter=new BaseAdapter() {
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View view = null;
+
+			if(convertView==null){
+				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+				view = inflater.inflate(R.layout.listview_round, null);	
+			}else{
+				view = convertView;
+			}
+
+			
+			TextView textDate = (TextView) view.findViewById(R.id.date);
+			AvatarView avatar=(AvatarView) view.findViewById(R.id.avatar);
+			TextView text=(TextView) view.findViewById(R.id.text);
+			TextView name=(TextView) view.findViewById(R.id.name);
+
+			NewsComment newsComment =data.get(position);
+
+			avatar.load(Server.serverAddress+newsComment.getAuthor().getAvatar());
+			String dateStr=DateFormat.format("yyyy-mm-dd hh:mm", newsComment.getCreateDate()).toString();
+			textDate.setText(dateStr);
+			text.setText(newsComment.getText());
+			name.setText(newsComment.getAuthor().getName());
+			
+
+			return view;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return data.get(position);
+		}
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return data==null ? 0 : data.size();
+		}
+	};
 }
