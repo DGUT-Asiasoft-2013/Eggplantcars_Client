@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rotk.eggplantcars.AvatarNewsView;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.DetailsActivity;
 import com.rotk.eggplantcars.R;
@@ -221,7 +222,7 @@ public class ItemFragment extends Fragment{
 			TextView textTitle = (TextView) view.findViewById(R.id.title);
 			TextView textDate = (TextView) view.findViewById(R.id.date);
 			TextView textMoney=(TextView) view.findViewById(R.id.text);
-			AvatarView avatar=(AvatarView) view.findViewById(R.id.avatar);
+			AvatarNewsView avatar=(AvatarNewsView) view.findViewById(R.id.avatar);
 			
 			Deal deal =data.get(position);
 
