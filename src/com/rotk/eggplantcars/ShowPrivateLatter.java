@@ -63,12 +63,22 @@ public class ShowPrivateLatter extends Activity {
 		receiver = (User) getIntent().getSerializableExtra("receiver");
 		latterName.setText(receiver.getName());
 		
+		
+		//提交私信
 		latterBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				sendLatter();
 				latterInput.setText("");
+			}
+		});
+		//返回
+		findViewById(R.id.goback).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {			
+				finish();
 			}
 		});
 	}

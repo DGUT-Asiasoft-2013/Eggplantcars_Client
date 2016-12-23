@@ -134,6 +134,7 @@ public class LoginActivity extends Activity {
 										//finish();
 										Intent iten = new Intent(LoginActivity.this,HelloWorldActivity.class);
 										startActivity(iten);
+										finish();
 									}
 								})
 								.show();
