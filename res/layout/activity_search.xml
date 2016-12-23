@@ -8,13 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/white" >
-        <ImageButton 
+
+        <ImageButton
             android:id="@+id/btn_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/left"
             android:background="@android:color/white"
-            />
+            android:src="@drawable/left" />
 
         <EditText
             android:id="@+id/edit_search"
@@ -23,14 +23,13 @@
             android:layout_gravity="center"
             android:hint="搜索" />
 
-        <ImageButton 
+        <ImageButton
             android:id="@+id/btn_search"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="right"
-            android:src="@drawable/search"
             android:background="@android:color/white"
-            />
+            android:src="@drawable/search" />
     </FrameLayout>
 
     <View
@@ -52,6 +51,12 @@
             android:text="历史搜索记录"
             android:textSize="20sp" />
     </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@android:color/darker_gray" />
 
     <ListView
         android:id="@+id/list"

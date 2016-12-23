@@ -1,136 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
+    <fragment
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        class="Fragment.DealBarFragment"
+        tools:layout="@layout/fragment_deal_bar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/darker_gray" />
 
     <FrameLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="50dp" >
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="1111"
-            android:textSize="25sp" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="50dp" >
     </FrameLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp"
         android:background="@android:color/darker_gray" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="bottom" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:orientation="horizontal" >
-
-        <com.rotk.eggplantcars.AvatarView
-            android:id="@+id/avatar"
-            android:layout_width="130dp"
-            android:layout_height="130dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/sellername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="卖家："
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/carmodel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="车型："
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/traveldistance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="里程："
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/buydate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="使用年限："
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="价格："
-                android:textSize="20sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="bottom"
-        android:background="#CCCCCC" />
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.55"
-        android:text="    介绍："
-        android:textSize="20sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_gravity="bottom"
-        android:background="#CCCCCC" />
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="120dp" >
-    </ListView>
-
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal" >
+        android:layout_gravity="bottom" >
+
+        <FrameLayout
+            android:id="@+id/btn_letter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp" >
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="top|center"
+                android:background="@android:color/white"
+                android:src="@drawable/advertising" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="联系卖家"
+                android:textSize="12sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/btn_shoppingcar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="70dp" >
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="top|center"
+                android:background="@android:color/white"
+                android:src="@drawable/shopping" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="购物车"
+                android:textSize="12sp" />
+        </FrameLayout>
 
         <Button
             android:id="@+id/btn_take"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@android:color/holo_orange_light"
             android:text="加入购物车" />
+    </FrameLayout>
 
-        <Button
-            android:id="@+id/btn_letter"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="私信卖家" />
-
-        <Button
-            android:id="@+id/btn_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="评价商品" />
-    </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>

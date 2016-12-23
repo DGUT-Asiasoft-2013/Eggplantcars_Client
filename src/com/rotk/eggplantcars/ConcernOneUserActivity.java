@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import Fragment.pages.MainFragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,6 +25,7 @@ import api.Server;
 import api.YeServer;
 import entity.Concern;
 import entity.News;
+import entity.Page;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;

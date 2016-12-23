@@ -1,102 +1,87 @@
 package com.rotk.eggplantcars;
 
 
-
-
-
-
-
+import Fragment.DealBarFragment;
+import Fragment.DealBarFragment.OnDealSelectedListener;
+import Fragment.pages.DetailsFragment;
+import Fragment.pages.GoodsFragment;
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
-import api.Server;
-import entity.Deal;
 
 public class DetailsActivity extends Activity{
-	Deal deal;
-	TextView text;
-	TextView title;
-	TextView name;
-	TextView carmodel;
-	TextView price;
-	TextView buydate;
-	TextView traveldistance;
-	AvatarView dealavatar;
-	Button take;//加入购物车
-	Button letter;//私信卖家
-	Button comment;//评价
+	View btn_letter;
+	View btn_shoppingcar;
+	Button btn_take;
 
+	GoodsFragment goodspage=new GoodsFragment();
+	DetailsFragment detailspage=new DetailsFragment();
+	DealBarFragment tab;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details);
-		text=(TextView) findViewById(R.id.text);
-		title=(TextView) findViewById(R.id.title);
-		name=(TextView) findViewById(R.id.sellername);
-		carmodel=(TextView) findViewById(R.id.carmodel);
-		price=(TextView) findViewById(R.id.price);
-		buydate=(TextView) findViewById(R.id.buydate);
-		traveldistance=(TextView) findViewById(R.id.traveldistance);
-		take=(Button) findViewById(R.id.btn_take);
-		letter=(Button) findViewById(R.id.btn_letter);
-		comment=(Button) findViewById(R.id.btn_comment);
-		dealavatar=(AvatarView) findViewById(R.id.avatar);
+		btn_letter=findViewById(R.id.btn_letter);
+		btn_shoppingcar=findViewById(R.id.btn_shoppingcar);
+		btn_take=(Button) findViewById(R.id.btn_take);
 
-		deal=(Deal)getIntent().getSerializableExtra("data");
-
-		text.setText("   卖家介绍："+deal.getText());
-		title.setText(deal.getTitle());
-		name.setText("卖家："+deal.getSellerName());
-		carmodel.setText("二手车型号："+deal.getCarModel());
-		price.setText("售价："+deal.getPrice());
-		buydate.setText("商品被已使用："+deal.getBuyDate()+"年");
-		traveldistance.setText("行驶里程："+deal.getTravelDistance());
-		dealavatar.load(Server.serverAddress+deal.getDealAvatar());
-
-		take.setOnClickListener(new OnClickListener() {
-
+		btn_letter.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				takeOnClick();
+				
 			}
 		});
-		letter.setOnClickListener(new OnClickListener() {
-
+		btn_shoppingcar.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				letterOnClick();
+				
 			}
 		});
-		comment.setOnClickListener(new OnClickListener() {
-
+		btn_take.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				commentOnClick();
+				
+			}
+		});
+		tab=(DealBarFragment) getFragmentManager().findFragmentById(R.id.tab);
+		tab.OnDealSelectedListener(new OnDealSelectedListener(){
+
+			public void OnGoTabClicked(int index) {
+				// TODO Auto-generated method stub
+				onChange(index);
 			}
 		});
 
-	}
-
-	void commentOnClick() {
-		// TODO Auto-generated method stub
 
 	}
-
-	void letterOnClick() {
-		// TODO Auto-generated method stub
-
+	public void onResume(){
+		super.onResume();
+		if (tab.getDealSelectedIndex()<0){
+			tab.setDealSelectedItem(0);
+		}
 	}
-
-	void takeOnClick() {
+	void onChange(int index) {
 		// TODO Auto-generated method stub
-
-
+		Fragment newfrag=null;
+		switch (index) {
+		case 0:newfrag=goodspage; break;
+		case 1:newfrag=detailspage; break;
+		default:break;
+		}
+		if(newfrag==null)return;
+		getFragmentManager()
+		.beginTransaction()
+		.replace(R.id.content, newfrag)
+		.commit();
 	}
 }
