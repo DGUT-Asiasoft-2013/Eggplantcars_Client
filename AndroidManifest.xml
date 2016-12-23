@@ -65,6 +65,14 @@
             android:name="com.rotk.eggplantcars.SearchListActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.PriLatterUser"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.ShowPrivateLatter"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

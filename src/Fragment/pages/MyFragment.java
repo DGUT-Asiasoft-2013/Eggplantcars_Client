@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
 import com.rotk.eggplantcars.PasswordRecoverActivity;
+import com.rotk.eggplantcars.PriLatterUser;
 import com.rotk.eggplantcars.R;
 
 import android.app.AlertDialog;
@@ -85,12 +86,11 @@ public class MyFragment extends Fragment{
 				
 
 			personal.setOnClickListener(new OnClickListener() {
-
+				//Ë½ÐÅµã»÷¼áÍ¦
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
-
-					//onexit();
+					Intent itnt = new Intent(getActivity(),PriLatterUser.class);
+					startActivity(itnt);
 				}
 			});
 		}
