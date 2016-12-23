@@ -3,7 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Concern{
+public class Concern implements Serializable{
 
 
 

@@ -179,13 +179,7 @@ public class MainFragment extends Fragment {
 			} else {
 				view = convertView;
 			}
-//			TextView textView = (TextView) view.findViewById(R.id.text_rua);
-//			AvatarView imageView = (AvatarView) view.findViewById(R.id.image_bear);
-//			News news = data.get(position);
-//			String dateStr = DateFormat.format("MM-dd hh:mm", news.getCreateDate()).toString();
-//			textView.setText(news.getTitle() + " " + dateStr);
-//			textView.setTextColor(Color.BLACK);
-//			imageView.load(Server.serverAddress + news.getAvatar());
+			
 			AvatarNewsView avatarNewsView = (AvatarNewsView) view .findViewById(R.id.news_avatar);
 			AvatarView avatarAuthorView = (AvatarView) view.findViewById(R.id.news_author_avatar);
 			TextView newslaber = (TextView) view.findViewById(R.id.news_laber);

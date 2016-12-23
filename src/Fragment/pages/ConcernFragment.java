@@ -8,10 +8,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarNewsView;
 import com.rotk.eggplantcars.AvatarView;
+import com.rotk.eggplantcars.ConcernOneUserActivity;
+import com.rotk.eggplantcars.NewsContentActivity;
 import com.rotk.eggplantcars.R;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -50,11 +53,20 @@ public class ConcernFragment extends Fragment{
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					//onItemClicked(position);
+					onItemClicked(position);
 				}
 			});
 		}
 		return view;
+	}
+
+	void onItemClicked(int position) {
+
+		Concern concern = data.get(position);	
+		Intent itent = new Intent(getActivity(), ConcernOneUserActivity.class);	
+		itent.putExtra("concern", concern);
+
+		startActivity(itent);
 	}
 
 	BaseAdapter listAdapter = new BaseAdapter() {
@@ -65,7 +77,7 @@ public class ConcernFragment extends Fragment{
 			View view = null;
 			if (convertView == null) {
 				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-				view = inflater.inflate(R.layout.example_news_main, null);
+				view = inflater.inflate(R.layout.example_myconcernlist, null);
 			} else {
 				view = convertView;
 			}
@@ -75,8 +87,8 @@ public class ConcernFragment extends Fragment{
 			TextView concern_time = (TextView) view.findViewById(R.id.concern_time);
 			Concern concern = data.get(position);
 			String dateStr = DateFormat.format("MM-dd hh:mm", concern.getCreateDate()).toString();
-			news_author_name.setText(concern.getIdKey().getNews_author().getName());
-			concern_time.setText(dateStr);
+			news_author_name.setText("êÇ³Æ£º"+concern.getIdKey().getNews_author().getName());
+			concern_time.setText("¹Ø×¢Ê±¼ä£º"+dateStr);
 			avatarAuthorView.load(Server.serverAddress+concern.getIdKey().getNews_author().getAvatar());
 			return view;
 		}
