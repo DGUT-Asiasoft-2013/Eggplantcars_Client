@@ -13,6 +13,7 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import api.Server;
@@ -29,7 +30,7 @@ public class NewsContentActivity extends Activity {
 	News news;
 	//List<News> data;
 	ListView listView;
-	Button btn_concern;
+	ImageButton btn_concern;
 	Button btn_good;
 	Button btn_comment;
 	private boolean isConcerned;//关注
@@ -43,7 +44,7 @@ public class NewsContentActivity extends Activity {
 		news = (News)getIntent().getSerializableExtra("news");
 
 		btn_good = (Button)findViewById(R.id.btn_good);
-		btn_concern = (Button)findViewById(R.id.btn_concern);
+		btn_concern = (ImageButton)findViewById(R.id.btn_concern);
 		btn_comment = (Button)findViewById(R.id.btn_comment);
 		listView =(ListView)findViewById(R.id.list_comment);
 		//listView.setAdapter(listAdapter);
@@ -58,7 +59,7 @@ public class NewsContentActivity extends Activity {
 		});
 
 		btn_comment.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -288,8 +289,12 @@ public class NewsContentActivity extends Activity {
 
 	private void onCheckConcernedResult(Boolean result) {
 		isConcerned = result;
-		btn_concern.setTextColor(result ? Color.BLUE : Color.BLACK);
-		btn_concern.setText(result ? "已关注" : "未关注");
+		if(result){
+			btn_concern.setImageResource(R.drawable.like);
+		}
+		else{
+			btn_concern.setImageResource(R.drawable.unlike);
+		}
 	}
 
 	@Override
@@ -299,9 +304,6 @@ public class NewsContentActivity extends Activity {
 		reloadlikes();
 		reloadconcern();
 		//String authorId = getIntent().getStringExtra("authorId");
-
-		TextView text_authorid = (TextView)findViewById(R.id.text_authorid);
-		text_authorid.setText(news.getAuthorId().toString());
 
 		TextView text_title = (TextView)findViewById(R.id.text_title);
 		text_title.setText(news.getTitle());
