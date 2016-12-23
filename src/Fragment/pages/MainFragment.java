@@ -3,8 +3,6 @@ package Fragment.pages;
 import java.io.IOException;
 import java.util.List;
 
-import com.cloudage.membercenter.entity.Article;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarNewsView;
@@ -17,8 +15,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -183,13 +179,7 @@ public class MainFragment extends Fragment {
 			} else {
 				view = convertView;
 			}
-//			TextView textView = (TextView) view.findViewById(R.id.text_rua);
-//			AvatarView imageView = (AvatarView) view.findViewById(R.id.image_bear);
-//			News news = data.get(position);
-//			String dateStr = DateFormat.format("MM-dd hh:mm", news.getCreateDate()).toString();
-//			textView.setText(news.getTitle() + " " + dateStr);
-//			textView.setTextColor(Color.BLACK);
-//			imageView.load(Server.serverAddress + news.getAvatar());
+			
 			AvatarNewsView avatarNewsView = (AvatarNewsView) view .findViewById(R.id.news_avatar);
 			AvatarView avatarAuthorView = (AvatarView) view.findViewById(R.id.news_author_avatar);
 			TextView newslaber = (TextView) view.findViewById(R.id.news_laber);

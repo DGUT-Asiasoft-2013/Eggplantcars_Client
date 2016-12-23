@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -30,6 +31,7 @@ public class NewsContentActivity extends Activity {
 	ListView listView;
 	Button btn_concern;
 	Button btn_good;
+	Button btn_comment;
 	private boolean isConcerned;//¹Ø×¢
 	private boolean isLiked;//µãÔÞ
 
@@ -42,6 +44,7 @@ public class NewsContentActivity extends Activity {
 
 		btn_good = (Button)findViewById(R.id.btn_good);
 		btn_concern = (Button)findViewById(R.id.btn_concern);
+		btn_comment = (Button)findViewById(R.id.btn_comment);
 		listView =(ListView)findViewById(R.id.list_comment);
 		//listView.setAdapter(listAdapter);
 
@@ -54,6 +57,14 @@ public class NewsContentActivity extends Activity {
 			}
 		});
 
+		btn_comment.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onComment();
+			}
+		});
 		btn_good.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -62,6 +73,13 @@ public class NewsContentActivity extends Activity {
 				onlike();
 			}
 		});
+	}
+
+	void onComment() {
+		// TODO Auto-generated method stub
+		Intent itent = new Intent(NewsContentActivity.this, NewsCommentActivity.class);
+		itent.putExtra("news", news);
+		startActivity(itent);
 	}
 
 	private void onlike() {
