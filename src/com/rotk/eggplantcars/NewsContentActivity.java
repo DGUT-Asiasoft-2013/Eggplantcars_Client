@@ -118,8 +118,8 @@ public class NewsContentActivity extends Activity {
 	}
 
 	private void checkLiked() {
-		Request request = Server.requestBuilderWithApi("news/"+news.getId()+"/isliked").get().build();
-		Server.getsharedClient().newCall(request).enqueue(new Callback() {
+		Request request = YeServer.requestBuilderWithApi("news/"+news.getId()+"/isliked").get().build();
+		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
 				try{
