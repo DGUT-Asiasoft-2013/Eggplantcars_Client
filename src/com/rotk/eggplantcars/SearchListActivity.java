@@ -6,7 +6,6 @@ import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import Fragment.pages.ItemFragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -150,7 +149,7 @@ public class SearchListActivity extends Activity{
 
 			TextView textTitle = (TextView) view.findViewById(R.id.title);
 			TextView textDate = (TextView) view.findViewById(R.id.date);
-			AvatarView avatar=(AvatarView) view.findViewById(R.id.avatar);
+			AvatarNewsView avatar=(AvatarNewsView) view.findViewById(R.id.avatar);
 			TextView textMoney=(TextView) view.findViewById(R.id.text);
 
 			Deal deal =data.get(position);

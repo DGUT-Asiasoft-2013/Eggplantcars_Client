@@ -18,14 +18,9 @@ public class Server {
 		client = new OkHttpClient.Builder().cookieJar(new JavaNetCookieJar(cookieManager)).build();
 	}
 
-//17
 
 
-	public static String serverAddress = "http://172.27.15.13:8080/membercenter/";
-
-
-
-
+	public static String serverAddress = "http://172.27.0.40:8080/membercenter/";
 
 
 
