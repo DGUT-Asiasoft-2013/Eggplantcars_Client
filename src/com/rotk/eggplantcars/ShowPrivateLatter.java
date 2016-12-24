@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -83,13 +84,45 @@ public class ShowPrivateLatter extends Activity {
 		});
 	}
 	
+	Handler handler = new Handler();
+	boolean isVisible = false;
+	
+	
 	
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		refresh();
+		isVisible = true;
+		dorefresh();
 	}
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		isVisible = false;
+	}
+	
+	
+	//刷新信息
+	void dorefresh(){
+		
+		refresh();
+		if (isVisible) {
+			handler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					dorefresh();
+				}
+			}, 3000);
+		}
+	}
+	
+	
+	
 
 	//发送私信
 	void sendLatter() {
