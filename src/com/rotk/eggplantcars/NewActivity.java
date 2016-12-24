@@ -122,7 +122,7 @@ public class NewActivity extends Activity{
 	protected void onResponse(Call arg0, String response) {
 		// TODO Auto-generated method stub
 		new AlertDialog.Builder(NewActivity.this)
-		.setMessage(response)
+		.setMessage("已成功发布交易")
 		.setPositiveButton("确认",new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {

@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.w3c.dom.Text;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rotk.eggplantcars.AllCommentActivity;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
 import com.rotk.eggplantcars.PasswordChangeActivity;
@@ -90,6 +91,15 @@ public class MyFragment extends Fragment{
 				@Override
 				public void onClick(View v) {
 					Intent itnt = new Intent(getActivity(),PriLatterUser.class);
+					startActivity(itnt);
+				}
+			});
+			comment.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent itnt = new Intent(getActivity(),AllCommentActivity.class);
 					startActivity(itnt);
 				}
 			});
