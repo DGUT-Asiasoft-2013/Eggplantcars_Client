@@ -166,8 +166,8 @@ public class RegisterActivity extends Activity {
 
 	void onResponse(Call arg0, String responseBody){
 		new AlertDialog.Builder(this)
-		.setTitle("×¢²á³É¹¦")
-		.setMessage(responseBody)
+		
+		.setMessage("×¢²á³É¹¦")
 		.setPositiveButton("ºÃ", new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -180,8 +180,8 @@ public class RegisterActivity extends Activity {
 
 	void onFailure(Call arg0, Exception arg1) {
 		new AlertDialog.Builder(this)
-		.setTitle("×¢²áÊ§°Ü")
-		.setMessage(arg1.getLocalizedMessage())
+		
+		.setMessage("×¢²áÊ§°Ü")
 		.setNegativeButton("ºÃ", null)
 		.show();
 	}

@@ -103,7 +103,7 @@ public class NewsCommentActivity extends Activity{
 	protected void onResponse(Call arg0, String response) {
 		// TODO Auto-generated method stub
 		new AlertDialog.Builder(NewsCommentActivity.this)
-		.setMessage(response)
+		.setMessage("发表成功")
 		.setPositiveButton("确认",new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
