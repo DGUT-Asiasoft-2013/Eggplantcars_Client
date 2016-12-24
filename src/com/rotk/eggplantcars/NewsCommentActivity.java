@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import api.Server;
 import entity.News;
@@ -25,13 +26,13 @@ public class NewsCommentActivity extends Activity{
 
 	News news;
 	EditText edit1;
-	Button button1;
+	ImageButton button1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_comment);
-		button1=(Button) findViewById(R.id.button1);
+		button1=(ImageButton) findViewById(R.id.button1);
 		edit1=(EditText) findViewById(R.id.edit1);
 		news = (News)getIntent().getSerializableExtra("news");
 
