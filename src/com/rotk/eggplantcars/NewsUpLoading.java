@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +43,6 @@ public class NewsUpLoading extends Activity{
 			@Override
 			public void onClick(View v) {
 				sendContent();
-				finish();
 			}
 		});
 	}
@@ -95,8 +95,16 @@ public class NewsUpLoading extends Activity{
 	 void onSucceed(String responseBody) {
 		 new AlertDialog.Builder(NewsUpLoading.this)
 			.setTitle("上传成功RUA!")
-			.setMessage(responseBody)
-			.setPositiveButton("Rua!",null)
+			.setMessage("   OK  ")
+			.setPositiveButton("Rua!",new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					finish();
+					overridePendingTransition(0, R.anim.slide_out_bottom);
+				}
+			})
 			.show();
 		
 	}
