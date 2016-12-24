@@ -20,7 +20,14 @@ public class Server {
 
 
 
-	public static String serverAddress = "http://172.27.15.24:8080/membercenter/";
+
+	public static String serverAddress = "http://172.27.15.31:8080/membercenter/";
+
+
+
+
+
+
 
 
 
