@@ -95,7 +95,7 @@ public class NewsUpLoading extends Activity{
 	 void onSucceed(String responseBody) {
 		 new AlertDialog.Builder(NewsUpLoading.this)
 			.setTitle("上传成功RUA!")
-			.setMessage(responseBody)
+			.setMessage("OK")
 			.setPositiveButton("Rua!",null)
 			.show();
 		
