@@ -200,11 +200,12 @@ public class ItemFragment extends Fragment{
 	void onClick(int position){
 		Deal deal=data.get(position);
 		Intent itnt=new Intent(getActivity(),DetailsActivity.class);
-		itnt.putExtra("data",deal);
-		
+		itnt.putExtra("data",deal);	
 		startActivity(itnt);
 
 	}
+	
+	
 	
 	BaseAdapter listAdapter=new BaseAdapter() {
 
