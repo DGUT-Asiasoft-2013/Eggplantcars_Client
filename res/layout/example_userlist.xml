@@ -7,15 +7,17 @@
     
     <com.rotk.eggplantcars.AvatarNewsView 
         android:id="@+id/user_img"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="7dp"
         />
     
     <TextView 
         android:id="@+id/user_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginLeft="5dp"
         android:gravity="center_vertical"
         android:text="名字dgasdfgg"
         android:layout_marginRight="7dp"

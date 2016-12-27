@@ -36,7 +36,7 @@ import okhttp3.Callback;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.Response;
-
+//聊天窗口
 public class ShowPrivateLatter extends Activity {
 
 	ImageButton latterBtn;//提交消息按钮
@@ -165,7 +165,7 @@ public class ShowPrivateLatter extends Activity {
 	
 	
 	public void refresh(){
-		
+		//获取私信
 		Request request = Server.requestBuilderWithApi("getprivateLatter/"+receiver.getId()+"")
 				.get().build();
 		Server.getsharedClient().newCall(request).enqueue(new Callback() {
