@@ -68,7 +68,7 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
         <activity
-              android:name="com.rotk.eggplantcars.ShowPrivateLatter"
+            android:name="com.rotk.eggplantcars.ShowPrivateLatter"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
         <activity
@@ -87,6 +87,16 @@
             android:name="com.rotk.eggplantcars.PriLatterUser"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.ShowDealsLatter"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.MyMoneyActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity android:name="com.rotk.eggplantcars.DepositActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

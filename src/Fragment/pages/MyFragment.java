@@ -3,23 +3,18 @@ package Fragment.pages;
 
 
 import java.io.IOException;
-
-import org.w3c.dom.Text;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AllCommentActivity;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.LoginActivity;
+import com.rotk.eggplantcars.MyMoneyActivity;
 import com.rotk.eggplantcars.PasswordChangeActivity;
-import com.rotk.eggplantcars.PasswordRecoverActivity;
 import com.rotk.eggplantcars.PriLatterUser;
 import com.rotk.eggplantcars.R;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
-
-import android.content.DialogInterface.OnCancelListener;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -28,7 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import api.Server;
@@ -46,11 +41,12 @@ public class MyFragment extends Fragment{
 	TextView personal;//私信
 	TextView comment;
 	User u;
-
+	LinearLayout btn_money;
 	TextView textView;
 	TextView nicheng;
 	ProgressBar progress;
 	AvatarView avatar;
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +60,7 @@ public class MyFragment extends Fragment{
 			zhuxiao = (TextView) view.findViewById(R.id.btn_zhuxiao);
 			personal = (TextView) view.findViewById(R.id.personal);
 			comment =(TextView) view .findViewById(R.id.mycomment);
+			btn_money = (LinearLayout)view.findViewById(R.id.btn_money);
 
 			passwordchange.setOnClickListener(new OnClickListener() {
 
@@ -103,12 +100,27 @@ public class MyFragment extends Fragment{
 					startActivity(itnt);
 				}
 			});
+			//我的钱包触摸事件
+			btn_money.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					goMyMoney();
+				}
+			});
 		}
 
 		return view;
 	}
-
-
+	
+	//我的钱包事件触发
+	private void goMyMoney() {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(getActivity(),MyMoneyActivity.class);
+		intent.putExtra("user",u);
+		startActivity(intent);
+	}
 
 	private void onzhuxiao() {
 		// TODO Auto-generated method stub

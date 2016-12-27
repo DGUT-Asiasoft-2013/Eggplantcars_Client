@@ -14,7 +14,10 @@ public class Deal implements Serializable{
     String travelDistance;
     String buyDate;
     String price;
+    Integer SellerId;
     String SellerName;
+    String SellerAccount;
+    String SellerAvatar;
     
     Date createDate;
 	Date editDate;
@@ -67,11 +70,30 @@ public class Deal implements Serializable{
 	public void setPrice(String price) {
 		this.price = price;
 	}
+	public Integer getSellerId() {
+		return SellerId;
+	}
+	public void setSellerId(Integer sellerId) {
+		SellerId = sellerId;
+	}
 	public String getSellerName() {
 		return SellerName;
 	}
 	public void setSellerName(String sellerName) {
 		SellerName = sellerName;
+	}
+	public String getSellerAccount() {
+		return SellerAccount;
+	}
+	public void setSellerAccount(String sellerAccount) {
+		SellerAccount = sellerAccount;
+	}
+	
+	public String getSellerAvatar() {
+		return SellerAvatar;
+	}
+	public void setSellerAvatar(String sellerAvatar) {
+		SellerAvatar = sellerAvatar;
 	}
 	public Date getCreateDate() {
 		return createDate;

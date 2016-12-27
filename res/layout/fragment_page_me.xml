@@ -110,9 +110,9 @@
             android:text="查看私信"
             android:textSize="20sp" />
     </LinearLayout>
-    
-    
+
     <LinearLayout
+        android:id="@+id/btn_money"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="18dp"
@@ -126,7 +126,6 @@
             android:src="@drawable/me_money" />
 
         <TextView
-            android:id="@+id/btn_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

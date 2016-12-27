@@ -7,15 +7,18 @@ import Fragment.pages.DetailsFragment;
 import Fragment.pages.GoodsFragment;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import entity.Deal;
 
 public class DetailsActivity extends Activity{
 	View btn_letter;
 	View btn_shoppingcar;
 	Button btn_take;
+	Deal deal;
 
 	GoodsFragment goodspage=new GoodsFragment();
 	DetailsFragment detailspage=new DetailsFragment();
@@ -28,12 +31,16 @@ public class DetailsActivity extends Activity{
 		btn_letter=findViewById(R.id.btn_letter);
 		btn_shoppingcar=findViewById(R.id.btn_shoppingcar);
 		btn_take=(Button) findViewById(R.id.btn_take);
-
+		deal=(Deal) getIntent().getSerializableExtra("data");
+		
 		btn_letter.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				//к╫пе
+				Intent intent = new Intent(DetailsActivity.this,ShowDealsLatter.class);
+				intent.putExtra("deal", deal);
+				startActivity(intent);
 				
 			}
 		});
