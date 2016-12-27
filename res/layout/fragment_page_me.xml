@@ -22,40 +22,27 @@
             android:layout_marginStart="15dp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:orientation="vertical" >
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp" >
-
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
-                    android:gravity="center"
-                    android:text="账户名："
-                    android:textSize="16sp" />
-
-                <ProgressBar
-                    android:id="@+id/my_progress"
-                    style="@android:style/Widget.ProgressBar.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center" />
-            </FrameLayout>
-
             <TextView
                 android:id="@+id/nicheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="账户名："
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:gravity="bottom"
-                android:text="昵称：" />
+                android:text="账号名" />
         </LinearLayout>
     </LinearLayout>
 
@@ -110,8 +97,7 @@
             android:text="查看私信"
             android:textSize="20sp" />
     </LinearLayout>
-    
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

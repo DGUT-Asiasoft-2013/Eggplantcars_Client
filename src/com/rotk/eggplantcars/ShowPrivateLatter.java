@@ -1,3 +1,4 @@
+
 package com.rotk.eggplantcars;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ import okhttp3.Callback;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.Response;
-//聊天窗口
+
 public class ShowPrivateLatter extends Activity {
 
 	ImageButton latterBtn;//提交消息按钮
@@ -63,7 +64,6 @@ public class ShowPrivateLatter extends Activity {
 		latterList.setAdapter(latterAdapter);
 		receiver = (User) getIntent().getSerializableExtra("receiver");
 		latterName.setText(receiver.getName());
-		
 		
 		//提交私信
 		latterBtn.setOnClickListener(new OnClickListener() {
@@ -165,7 +165,7 @@ public class ShowPrivateLatter extends Activity {
 	
 	
 	public void refresh(){
-		//获取私信
+		
 		Request request = Server.requestBuilderWithApi("getprivateLatter/"+receiver.getId()+"")
 				.get().build();
 		Server.getsharedClient().newCall(request).enqueue(new Callback() {
@@ -183,7 +183,6 @@ public class ShowPrivateLatter extends Activity {
 							ShowPrivateLatter.this.page = latterdata.getNumber();
 							ShowPrivateLatter.this.data = latterdata.getContent();
 							latterAdapter.notifyDataSetInvalidated();
-							
 						}
 					});
 				} catch (final Exception e) {
