@@ -9,8 +9,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AvatarNewsView;
 import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.ConcernOneUserActivity;
+import com.rotk.eggplantcars.DetailsActivity;
 import com.rotk.eggplantcars.NewsContentActivity;
 import com.rotk.eggplantcars.R;
+import com.rotk.eggplantcars.ShoppingCarActivity;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -19,6 +22,7 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -38,6 +42,7 @@ import okhttp3.Response;
 public class ConcernFragment extends Fragment{
 	View view;
 
+	TextView btn_shoppingCar;
 	ListView myconcern;
 	List<Concern> data;
 
@@ -47,7 +52,18 @@ public class ConcernFragment extends Fragment{
 		if(view ==null){
 			view = inflater.inflate(R.layout.fragment_page_concern, null);
 			myconcern = (ListView)view.findViewById(R.id.concern_list);
+			btn_shoppingCar=(TextView) view.findViewById(R.id.mycomment);
 
+			btn_shoppingCar.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent itnt=new Intent(getActivity(),ShoppingCarActivity.class);
+					startActivity(itnt);
+				}
+			});
+		
 			myconcern.setAdapter(listAdapter);
 			myconcern.setOnItemClickListener(new OnItemClickListener() {
 
