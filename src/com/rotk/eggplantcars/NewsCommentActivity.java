@@ -23,7 +23,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NewsCommentActivity extends Activity{
-
+	//新闻评论页面
 	News news;
 	EditText edit1;
 	ImageButton button1;

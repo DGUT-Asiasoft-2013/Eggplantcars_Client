@@ -32,7 +32,7 @@ import okhttp3.Callback;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.Response;
-
+//新闻详细页面
 public class NewsContentActivity extends Activity {
 
 	News news;
@@ -245,6 +245,7 @@ public class NewsContentActivity extends Activity {
 		btn_good.setTextColor(result ? Color.BLUE : Color.BLACK);
 	}
 
+	//获取有多少个赞
 	private void reloadLikes() {
 		Request request = YeServer.requestBuilderWithApi("news/"+news.getId()+"/likes")
 				.get().build();

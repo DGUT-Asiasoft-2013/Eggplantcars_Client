@@ -44,7 +44,7 @@ public class MyFragment extends Fragment{
 	LinearLayout btn_money;
 	TextView textView;
 	TextView nicheng;
-	ProgressBar progress;
+
 	AvatarView avatar;
 
 
@@ -54,7 +54,6 @@ public class MyFragment extends Fragment{
 			view = inflater.inflate(R.layout.fragment_page_me, null);
 			textView = (TextView) view.findViewById(R.id.text);
 			nicheng = (TextView) view.findViewById(R.id.nicheng);
-			progress = (ProgressBar) view.findViewById(R.id.my_progress);
 			avatar = (AvatarView) view.findViewById(R.id.my_avatar);
 			passwordchange = (TextView) view.findViewById(R.id.btn_passwordchange);
 			zhuxiao = (TextView) view.findViewById(R.id.btn_zhuxiao);
@@ -151,8 +150,6 @@ public class MyFragment extends Fragment{
 	public void onResume() {
 		super.onResume();
 
-		textView.setVisibility(View.GONE);
-		progress.setVisibility(View.VISIBLE);
 
 		OkHttpClient client = Server.getsharedClient();
 		Request request = Server.requestBuilderWithApi("me")
@@ -192,16 +189,16 @@ public class MyFragment extends Fragment{
 	}
 
 	protected void onResponse(Call arg0, User user) {
-		progress.setVisibility(View.GONE);
+		
 		avatar.load(user);
 		textView.setVisibility(View.VISIBLE);
-		textView.setTextColor(Color.BLUE);
+		nicheng.setTextColor(Color.BLUE);
 		textView.setText("”√ªß√˚£∫"+user.getAccount());
-		nicheng.setText("Í«≥∆£∫"+user.getName());
+		nicheng.setText(user.getName());
 	}
 
 	void onFailuer(Call call, Exception ex){
-		progress.setVisibility(View.GONE);
+
 		textView.setVisibility(View.VISIBLE);
 		textView.setTextColor(Color.RED);
 		textView.setText(ex.getMessage());

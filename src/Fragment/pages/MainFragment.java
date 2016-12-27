@@ -45,8 +45,8 @@ public class MainFragment extends Fragment {
 	View view;
 	int page = 0;
 	List<News> data;
-	public static int[] res = { R.drawable.item1, R.drawable.item2, R.drawable.item3, R.drawable.item4,
-			R.drawable.item5, R.drawable.item6 };
+	public static int[] res = { R.drawable.item5, R.drawable.item2, R.drawable.item3, R.drawable.item4,
+			R.drawable.item1, R.drawable.item6 };
 	private ImageAdapter adapter;
 	private Gallery gallery;
 	private ListView newsList;

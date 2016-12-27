@@ -1,3 +1,4 @@
+
 package com.rotk.eggplantcars;
 
 import java.io.IOException;
@@ -63,7 +64,6 @@ public class ShowPrivateLatter extends Activity {
 		latterList.setAdapter(latterAdapter);
 		receiver = (User) getIntent().getSerializableExtra("receiver");
 		latterName.setText(receiver.getName());
-		
 		
 		//Ã·ΩªÀΩ–≈
 		latterBtn.setOnClickListener(new OnClickListener() {
@@ -183,7 +183,6 @@ public class ShowPrivateLatter extends Activity {
 							ShowPrivateLatter.this.page = latterdata.getNumber();
 							ShowPrivateLatter.this.data = latterdata.getContent();
 							latterAdapter.notifyDataSetInvalidated();
-							
 						}
 					});
 				} catch (final Exception e) {
