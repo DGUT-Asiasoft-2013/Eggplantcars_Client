@@ -8,8 +8,10 @@
     <Gallery
         android:id="@+id/img_gallery"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginTop="10dp" />
+        android:layout_height="145dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
     <TextView
         android:id="@+id/btn_loadNews"
         android:layout_width="match_parent"
@@ -23,6 +25,8 @@
         android:id="@+id/list_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:transcriptMode="disabled"
+        android:scrollbars="none"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="5dp" >
