@@ -34,6 +34,8 @@
                 class="inputcells.SimpleTextInputCellFragment"
                 tools:layout="@layout/fragment_inputcell_simpletext" />
 
+          
+
             <fragment
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
