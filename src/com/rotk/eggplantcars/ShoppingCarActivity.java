@@ -1,5 +1,6 @@
 package com.rotk.eggplantcars;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class ShoppingCarActivity extends Activity{
 	ImageButton back;
 	Button buy;
 	Button delect;
-
+	
 	ListView list;
 	List<ShoppingCar> data;
 	int page=0;
@@ -77,8 +78,21 @@ public class ShoppingCarActivity extends Activity{
 				onDelectClick(selected);
 			}
 		});
+		buy.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onbuy();
+			}
+		});
 	}
-
+	
+	//实现金额交易
+	private void onbuy() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 	@Override
@@ -246,7 +260,7 @@ public class ShoppingCarActivity extends Activity{
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
+							// TODO Auto-generated method stub		
 							finish();
 							Intent itnt=new Intent(ShoppingCarActivity.this,ShoppingCarActivity.class);
 							startActivity(itnt);
