@@ -25,8 +25,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import api.Server;
+import api.YeServer;
+import entity.Money;
 import entity.Page;
 import entity.ShoppingCar;
 import inputcells.AvatarNewsView;
@@ -45,7 +48,7 @@ public class ShoppingCarActivity extends Activity{
 	ListView list;
 	List<ShoppingCar> data;
 	int page=0;
-	private List<ShoppingCar> selected = new ArrayList<ShoppingCar>(); 
+	private ArrayList<ShoppingCar> selected = new ArrayList<ShoppingCar>(); 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -79,6 +82,14 @@ public class ShoppingCarActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				onDelectClick(selected);
+			}
+		});
+		buy.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onBuyClick(selected);
 			}
 		});
 		buy.setOnClickListener(new OnClickListener() {
@@ -257,6 +268,21 @@ public class ShoppingCarActivity extends Activity{
 		}
 	}
 
+	void onBuyClick(ArrayList<ShoppingCar> selected) {
+		// TODO Auto-generated method stub
+		if(selected.size()==0){
+			new AlertDialog.Builder(ShoppingCarActivity.this)
+			.setMessage("您还没有选中商品")
+			.setPositiveButton("确定",null)
+			.show();
+		}else{
+			Intent itnt=new Intent(ShoppingCarActivity.this,CountActivity.class);
+			itnt.putExtra("data", selected);
+			startActivity(itnt);
+		}
+	}
+	
+
 	void onDelect(Integer deal_id){
 		OkHttpClient client=Server.getsharedClient();
 
@@ -274,8 +300,8 @@ public class ShoppingCarActivity extends Activity{
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub		
-							finish();
+							// TODO Auto-generated method stub
+							ShoppingCarActivity.this.finish();
 							Intent itnt=new Intent(ShoppingCarActivity.this,ShoppingCarActivity.class);
 							startActivity(itnt);
 						}
