@@ -139,9 +139,9 @@ public class MyAddress extends Activity{
 			Button btnDel = (Button) view.findViewById(R.id.btn_del);
 			
 			Address adrs = data.get(position);
-			name.setText(adrs.getName());
-			phoneNum.setText(adrs.getPhoneNumber());
-			address.setText(adrs.getText());
+			name.setText("收货人："+adrs.getName());
+			phoneNum.setText("电话/手机："+adrs.getPhoneNumber());
+			address.setText("地址："+adrs.getText());
 			
 			//btn.setOnc!!!!
 			

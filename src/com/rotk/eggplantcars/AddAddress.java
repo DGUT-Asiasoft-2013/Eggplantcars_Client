@@ -47,6 +47,7 @@ public class AddAddress extends Activity {
 				// TODO Auto-generated method stub
 				setAddress();
 				finish();
+				overridePendingTransition(0, R.anim.slide_out_bottom);
 			}
 		});
 		
