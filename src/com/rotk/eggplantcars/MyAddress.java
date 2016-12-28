@@ -15,6 +15,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +82,8 @@ public class MyAddress extends Activity{
 		super.onResume();
 		loadAddress();
 	}
+	
+
 
 	private void loadAddress() {
 		Request request = Server.requestBuilderWithApi("getaddress")

@@ -42,7 +42,7 @@
     <TextView
         android:id="@+id/address"
         android:layout_width="wrap_content"
-        android:layout_height="27dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:text="我的老家啊，就住在这个屯里啊"
         android:textSize="20sp" />
