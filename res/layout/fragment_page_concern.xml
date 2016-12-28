@@ -24,47 +24,16 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="#DCDCDC" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/concern_myconcern"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="2dp"
-        android:background="@android:color/white" >
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/concern_my" />
-
-        <TextView
-            android:id="@+id/concern_frident"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:text="关注动态"
-            android:textColor="@android:color/background_dark"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="10dp"
-        android:background="#DCDCDC" />
-    
 
     <LinearLayout
         android:id="@+id/concern_mydeal"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginTop="2dp"
         android:background="@android:color/white" >
 
         <ImageView
@@ -94,9 +63,8 @@
         android:id="@+id/concern_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp" 
         android:layout_marginBottom="2dp"
-        >
+        android:layout_marginTop="20dp" >
     </ListView>
 
 </LinearLayout>

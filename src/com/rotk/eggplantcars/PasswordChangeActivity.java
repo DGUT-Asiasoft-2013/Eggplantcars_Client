@@ -51,7 +51,7 @@ public class PasswordChangeActivity extends Activity {
 			else {
 				new AlertDialog.Builder(this)
 				.setTitle("错误提示")
-				.setMessage("两次面膜输入不一致")
+				.setMessage("两次密码输入不一致")
 				.setPositiveButton("返回", null)
 				.show();
 			}

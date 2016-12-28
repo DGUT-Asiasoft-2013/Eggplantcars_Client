@@ -1,5 +1,6 @@
 package com.rotk.eggplantcars;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -77,8 +80,32 @@ public class ShoppingCarActivity extends Activity{
 				onDelectClick(selected);
 			}
 		});
+		buy.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				onbuy();
+			}
+		});
 	}
 
+	//实现金额交易
+	private void onbuy() {
+
+//		new AlertDialog.Builder(ShoppingCarActivity.this).setTitle("请输入")
+//		.setIcon(android.R.drawable.ic_dialog_info)
+//		.setView(new EditText(this))
+//		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//				
+//			}
+//		})
+//		.setNegativeButton("取消", null)
+//		.show();
+	}
 
 
 	@Override
@@ -228,7 +255,7 @@ public class ShoppingCarActivity extends Activity{
 			onDelect(deal_id);
 		}
 	}
-	
+
 	void onDelect(Integer deal_id){
 		OkHttpClient client=Server.getsharedClient();
 
@@ -246,7 +273,7 @@ public class ShoppingCarActivity extends Activity{
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
+							// TODO Auto-generated method stub		
 							finish();
 							Intent itnt=new Intent(ShoppingCarActivity.this,ShoppingCarActivity.class);
 							startActivity(itnt);
