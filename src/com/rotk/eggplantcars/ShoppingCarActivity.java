@@ -97,27 +97,11 @@ public class ShoppingCarActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				onbuy();
+				onBuyClick(selected);
 			}
 		});
 	}
 
-	//实现金额交易
-	private void onbuy() {
-
-//		new AlertDialog.Builder(ShoppingCarActivity.this).setTitle("请输入")
-//		.setIcon(android.R.drawable.ic_dialog_info)
-//		.setView(new EditText(this))
-//		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(DialogInterface dialog, int which) {
-//				
-//			}
-//		})
-//		.setNegativeButton("取消", null)
-//		.show();
-	}
 
 
 	@Override
