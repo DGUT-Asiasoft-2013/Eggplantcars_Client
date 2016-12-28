@@ -32,6 +32,7 @@ import api.Server;
 import entity.Page;
 import entity.PrivateLatter;
 import entity.User;
+import inputcells.AvatarNewsView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MultipartBody;

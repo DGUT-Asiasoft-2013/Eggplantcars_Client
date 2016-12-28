@@ -28,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import api.Server;
 import entity.Page;
 import entity.User;
+import inputcells.AvatarNewsView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;

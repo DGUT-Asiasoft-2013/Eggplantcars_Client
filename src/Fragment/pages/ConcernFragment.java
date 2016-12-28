@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rotk.eggplantcars.AvatarNewsView;
-import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.ConcernOneUserActivity;
 import com.rotk.eggplantcars.DetailsActivity;
 import com.rotk.eggplantcars.NewsContentActivity;
@@ -34,6 +32,8 @@ import api.YeServer;
 import entity.Concern;
 import entity.News;
 import entity.Page;
+import inputcells.AvatarNewsView;
+import inputcells.AvatarView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;

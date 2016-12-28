@@ -5,7 +5,7 @@
     android:background="@drawable/list_selector"
     android:orientation="horizontal" >
     
-    <com.rotk.eggplantcars.AvatarNewsView
+    <inputcells.AvatarNewsView
         android:id="@+id/news_avatar"
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -42,7 +42,7 @@
             android:layout_height="23dp"
             android:orientation="horizontal">
             
-            <com.rotk.eggplantcars.AvatarView 
+            <inputcells.AvatarView 
                 android:id="@+id/news_author_avatar"
                 android:layout_width="22dp"
                 android:layout_height="22dp"

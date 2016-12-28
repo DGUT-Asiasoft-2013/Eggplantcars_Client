@@ -6,8 +6,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rotk.eggplantcars.AvatarNewsView;
-import com.rotk.eggplantcars.AvatarView;
 import com.rotk.eggplantcars.DetailsActivity;
 import com.rotk.eggplantcars.R;
 import com.rotk.eggplantcars.SearchActivity;
@@ -30,6 +28,8 @@ import api.Server;
 import android.widget.AdapterView.OnItemClickListener;
 import entity.Deal;
 import entity.Page;
+import inputcells.AvatarNewsView;
+import inputcells.AvatarView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;

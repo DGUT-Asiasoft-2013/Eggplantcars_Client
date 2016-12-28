@@ -8,7 +8,7 @@
         android:id="@+id/show_latter_top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@android:color/black"
+        android:background="#333333"
         android:orientation="horizontal" >
 
         <ImageButton

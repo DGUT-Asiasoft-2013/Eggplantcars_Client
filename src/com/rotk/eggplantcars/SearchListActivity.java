@@ -22,6 +22,7 @@ import api.Server;
 import android.widget.AdapterView.OnItemClickListener;
 import entity.Deal;
 import entity.Page;
+import inputcells.AvatarNewsView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;

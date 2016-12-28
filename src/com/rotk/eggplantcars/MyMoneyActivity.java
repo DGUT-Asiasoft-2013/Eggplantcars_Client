@@ -23,9 +23,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MyMoneyActivity extends Activity {
-
+	//钱包页面
 	TextView name;
 	TextView mycash;
+	LinearLayout address; //我的收货地址
 	Money money;
 	User user;
 	LinearLayout deposit;
@@ -40,6 +41,7 @@ public class MyMoneyActivity extends Activity {
 		name = (TextView)findViewById(R.id.money_name);
 		mycash = (TextView)findViewById(R.id.mycash);
 		deposit = (LinearLayout)findViewById(R.id.deposit);
+		address = (LinearLayout) findViewById(R.id.address);
 		
 		user = (User)getIntent().getSerializableExtra("user");
 		
@@ -49,6 +51,17 @@ public class MyMoneyActivity extends Activity {
 			public void onClick(View v) {
 				//充值
 				godeposit();
+			}
+		});
+		
+		address.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyMoneyActivity.this,MyAddress.class);
+				intent.putExtra("user", user);
+				startActivity(intent);
+				
 			}
 		});
 	}
