@@ -32,6 +32,7 @@ import api.YeServer;
 import entity.Money;
 import entity.Page;
 import entity.ShoppingCar;
+import inputcells.AvatarNewsView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

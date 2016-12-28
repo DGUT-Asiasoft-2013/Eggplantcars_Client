@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import api.Server;
 import entity.ShoppingCar;
+import inputcells.AvatarNewsView;
 
 public class CountActivity extends Activity{
 	ImageButton back;

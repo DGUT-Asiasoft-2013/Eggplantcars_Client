@@ -26,7 +26,7 @@
         android:gravity="center"
         android:orientation="horizontal" >
 
-        <com.rotk.eggplantcars.AvatarView
+        <inputcells.AvatarView
             android:id="@+id/news_avatar"
             android:layout_width="25dp"
             android:layout_height="25dp"

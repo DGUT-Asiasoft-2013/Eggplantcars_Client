@@ -1,6 +1,5 @@
 package Fragment.pages;
 
-import com.rotk.eggplantcars.AvatarNewsView;
 import com.rotk.eggplantcars.R;
 
 import android.app.Fragment;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import api.Server;
 import entity.Deal;
+import inputcells.AvatarNewsView;
 
 public class GoodsFragment extends Fragment{
 	Deal deal;

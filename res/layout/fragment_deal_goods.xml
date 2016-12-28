@@ -9,7 +9,7 @@
         android:layout_height="300dp"
         android:background="@android:color/white" >
 
-        <com.rotk.eggplantcars.AvatarNewsView
+        <inputcells.AvatarNewsView
             android:id="@+id/avatarNewsView1"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

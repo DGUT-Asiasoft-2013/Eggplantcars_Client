@@ -21,6 +21,7 @@ import android.widget.TextView;
 import api.Server;
 import entity.NewsComment;
 import entity.Page;
+import inputcells.AvatarView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;

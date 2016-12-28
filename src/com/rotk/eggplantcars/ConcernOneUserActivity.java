@@ -26,6 +26,8 @@ import api.YeServer;
 import entity.Concern;
 import entity.News;
 import entity.Page;
+import inputcells.AvatarNewsView;
+import inputcells.AvatarView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;

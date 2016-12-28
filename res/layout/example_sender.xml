@@ -30,7 +30,7 @@
             android:gravity="center_vertical|right"
             android:background="@android:color/white"
             android:text="123456789"/>
-         <com.rotk.eggplantcars.AvatarNewsView 
+         <inputcells.AvatarNewsView 
             android:id="@+id/author_img"
             android:layout_width="45dp"
             android:layout_height="45dp"

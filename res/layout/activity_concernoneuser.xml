@@ -13,7 +13,7 @@
         android:gravity="start"
         android:orientation="horizontal" >
 
-        <com.rotk.eggplantcars.AvatarView
+        <inputcells.AvatarView
             android:id="@+id/concern_user_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
