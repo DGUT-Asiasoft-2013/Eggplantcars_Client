@@ -143,25 +143,11 @@ public class CountActivity extends Activity{
 			new AlertDialog.Builder(this)
 			.setTitle("余额不足！")
 			.setMessage("请及时充值")
-			.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					runOnUiThread(new Runnable() {
-						public void run() {
-							CountActivity.this.finish();
-							Intent intent = new Intent(CountActivity.this,DepositActivity.class);
-							intent.putExtra("money", money);
-							startActivity(intent);
-						}
-					});
-				}
-			})
+			.setPositiveButton("确定", null)
 			.show();
 		}
 		else{
-			
+
 			//传任意类型的方法String.valueOf(参数)
 			MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
 					.addFormDataPart("cash", String.valueOf(cash))
