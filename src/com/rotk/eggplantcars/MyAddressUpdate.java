@@ -9,24 +9,24 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 import api.Server;
-import entity.User;
+import entity.Address;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AddAddress extends Activity {
-	EditText name;
-	EditText phoneNum;
-	EditText city;
-	EditText addressDetail;
-	Button btnAddress;
-	User user;
+public class MyAddressUpdate extends Activity{
 
+	EditText name;		//÷ÿ…Ë√˚◊÷
+	EditText phoneNum;	//reset
+	EditText city;		//reset
+	EditText addressDetail;	//reset
+	Button btnAddress;	//reset
+	Address address;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -37,18 +37,12 @@ public class AddAddress extends Activity {
 		city = (EditText) findViewById(R.id.edit_city);
 		addressDetail = (EditText) findViewById(R.id.edit_address);
 		btnAddress = (Button) findViewById(R.id.btn_address_submit);
-
-		user = (User) getIntent().getSerializableExtra("user");
-
-		btnAddress.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setAddress();
-				overridePendingTransition(0, R.anim.slide_out_bottom);
-			}
-		});
+		
+		address = (Address) getIntent().getSerializableExtra("address");
+		name.setText(address.getName());
+		phoneNum.setText(address.getPhoneNumber());
+		
+		
 		
 		findViewById(R.id.goback).setOnClickListener(new OnClickListener() {	
 			@Override
@@ -56,9 +50,19 @@ public class AddAddress extends Activity {
 				finish();
 			}
 		});
+		
+		btnAddress.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				updateAddress();
+				overridePendingTransition(0, R.anim.slide_out_bottom);
+			}
+		});
 	}
 
-	protected void setAddress() {
+	protected void updateAddress() {
 		// TODO Auto-generated method stub
 		String nameText = (name.getText() + "").toString();
 		if (nameText.length() == 0) {
@@ -81,31 +85,31 @@ public class AddAddress extends Activity {
 			return;
 		}
 		
-		
-		
-		MultipartBody body = new MultipartBody.Builder()
+		MultipartBody body  = new MultipartBody.Builder()
 				.addFormDataPart("name", nameText)
 				.addFormDataPart("phoneNumber", phoneNumText)
 				.addFormDataPart("text", cityText+" "+addressDetailText)
+				.addFormDataPart("addressIdString", address.getId()+"")
 				.build();
-		Request request = Server.requestBuilderWithApi("setaddress")
+		Request request = Server.requestBuilderWithApi("address/update")
 				.post(body)
 				.build();
-		
 		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 			
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
-				final String responseBody = arg1.body().string();
-				Log.d("ak47", responseBody);
+				// TODO Auto-generated method stub
+				final String rString = arg1.body().string();
+				Log.d("AddUpdate", rString);
 				finish();
 			}
 			
 			@Override
 			public void onFailure(Call arg0, IOException arg1) {
 				// TODO Auto-generated method stub
-				Log.d("ak48", arg1.getMessage());
+				Log.d("updateworng", arg1.getMessage());
 			}
 		});
+				
 	}
 }
