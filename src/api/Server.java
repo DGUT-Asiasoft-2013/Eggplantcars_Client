@@ -2,7 +2,6 @@ package api;
 
 import java.net.CookiePolicy;
 
-import android.webkit.CookieManager;
 import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
