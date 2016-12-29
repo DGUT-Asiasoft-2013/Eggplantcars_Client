@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,8 @@ public class CountActivity extends Activity{
 		// TODO Auto-generated method stub
 		final EditText et = new EditText(this);
 		et.setBackgroundColor(Color.WHITE);
+		//在Activity中设置passowrd
+		et.setTransformationMethod(PasswordTransformationMethod.getInstance());
 		new AlertDialog.Builder(this).setTitle("请输入密码")
 		.setIcon(android.R.drawable.ic_dialog_info)
 		.setView(et)
@@ -135,7 +138,7 @@ public class CountActivity extends Activity{
 	private void gochangemoney(String password) {
 		// TODO Auto-generated method stub
 		int cash =  money.getCash() - count;
-		
+
 		if(cash<0){
 			new AlertDialog.Builder(this)
 			.setTitle("余额不足！")
@@ -145,69 +148,76 @@ public class CountActivity extends Activity{
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					CountActivity.this.finish();
-					Intent intent = new Intent(CountActivity.this,DepositActivity.class);
-					startActivity(intent);
+					runOnUiThread(new Runnable() {
+						public void run() {
+							CountActivity.this.finish();
+							Intent intent = new Intent(CountActivity.this,DepositActivity.class);
+							intent.putExtra("money", money);
+							startActivity(intent);
+						}
+					});
 				}
 			})
 			.show();
 		}
+		else{
+			
+			//传任意类型的方法String.valueOf(参数)
+			MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
+					.addFormDataPart("cash", String.valueOf(cash))
+					.addFormDataPart("password", password);
 
-		//传任意类型的方法String.valueOf(参数)
-		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
-				.addFormDataPart("cash", String.valueOf(cash))
-				.addFormDataPart("password", password);
+			Request request = YeServer.requestBuilderWithApi("CashDeposit")
+					.method("post", null)
+					.post(requestBodyBuilder.build())
+					.build();
+			YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
 
-		Request request = YeServer.requestBuilderWithApi("CashDeposit")
-				.method("post", null)
-				.post(requestBodyBuilder.build())
-				.build();
-		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+				@Override
+				public void onResponse(Call arg0, final Response arg1) throws IOException {
 
-			@Override
-			public void onResponse(Call arg0, final Response arg1) throws IOException {
+					final boolean result = new ObjectMapper().readValue(arg1.body().string(), Boolean.class);
+					runOnUiThread(new Runnable() {
 
-				final boolean result = new ObjectMapper().readValue(arg1.body().string(), Boolean.class);
-				runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
 
-					@Override
-					public void run() {
+							if(result){
+								new AlertDialog.Builder(CountActivity.this)
+								.setTitle("提示")
+								.setMessage("购买成功")
+								.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
-						if(result){
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										finish();
+										overridePendingTransition(0, R.anim.slide_out_bottom);
+									}
+								})
+								.show();
+							}
+							else {
+								Toast.makeText(CountActivity.this,"购买失败,密码错误!", Toast.LENGTH_LONG).show();
+							}
+						}
+					});				
+				}
+
+				@Override
+				public void onFailure(Call arg0, final IOException arg1) {
+					// TODO Auto-generated method stub
+
+					runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
 							new AlertDialog.Builder(CountActivity.this)
-							.setTitle("提示")
-							.setMessage("购买成功")
-							.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									finish();
-									overridePendingTransition(0, R.anim.slide_out_bottom);
-								}
-							})
+							.setMessage(arg1.getMessage())
 							.show();
 						}
-						else {
-							Toast.makeText(CountActivity.this,"购买失败,密码错误!", Toast.LENGTH_LONG).show();
-						}
-					}
-				});				
-			}
-
-			@Override
-			public void onFailure(Call arg0, final IOException arg1) {
-				// TODO Auto-generated method stub
-
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						new AlertDialog.Builder(CountActivity.this)
-						.setMessage(arg1.getMessage())
-						.show();
-					}
-				});				
-			}
-		});	
+					});				
+				}
+			});	
+		}
 	}
 
 
