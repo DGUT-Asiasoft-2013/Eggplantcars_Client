@@ -15,6 +15,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +82,8 @@ public class MyAddress extends Activity{
 		super.onResume();
 		loadAddress();
 	}
+	
+
 
 	private void loadAddress() {
 		Request request = Server.requestBuilderWithApi("getaddress")
@@ -139,9 +143,9 @@ public class MyAddress extends Activity{
 			Button btnDel = (Button) view.findViewById(R.id.btn_del);
 			
 			Address adrs = data.get(position);
-			name.setText(adrs.getName());
-			phoneNum.setText(adrs.getPhoneNumber());
-			address.setText(adrs.getText());
+			name.setText("收货人："+adrs.getName());
+			phoneNum.setText("电话/手机："+adrs.getPhoneNumber());
+			address.setText("地址："+adrs.getText());
 			
 			//btn.setOnc!!!!
 			
