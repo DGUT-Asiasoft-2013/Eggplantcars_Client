@@ -46,7 +46,6 @@ public class AddAddress extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				setAddress();
-				finish();
 				overridePendingTransition(0, R.anim.slide_out_bottom);
 			}
 		});
@@ -82,6 +81,8 @@ public class AddAddress extends Activity {
 			return;
 		}
 		
+		
+		
 		MultipartBody body = new MultipartBody.Builder()
 				.addFormDataPart("name", nameText)
 				.addFormDataPart("phoneNumber", phoneNumText)
@@ -97,7 +98,7 @@ public class AddAddress extends Activity {
 			public void onResponse(Call arg0, Response arg1) throws IOException {
 				final String responseBody = arg1.body().string();
 				Log.d("ak47", responseBody);
-				
+				finish();
 			}
 			
 			@Override
