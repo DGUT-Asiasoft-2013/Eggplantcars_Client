@@ -119,6 +119,10 @@
             android:name="com.rotk.eggplantcars.MyAddressUpdate"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.SelectAddressActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>
