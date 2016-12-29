@@ -24,18 +24,29 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@android:color/black" />
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="我的收货地址"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:textSize="17sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:gravity="right" >
 
             <ImageButton
                 android:id="@+id/add_Address"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="6dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:background="#00000000"
-                android:src="@drawable/arrow_info" />
+                android:src="@drawable/item_pus" />
         </LinearLayout>
     </LinearLayout>
 
