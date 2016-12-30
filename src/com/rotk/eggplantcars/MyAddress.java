@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,9 +45,8 @@ public class MyAddress extends Activity{
 	ImageButton addAddress;
 	ListView addressList;
 	User user;
-	
 	List<Address> data;
-	int page = 0;
+	int page;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class MyAddress extends Activity{
 	}
 	
 
-
+	//加载收货地址
 	private void loadAddress() {
 		Request request = Server.requestBuilderWithApi("getaddress")
 				.get().build();
@@ -135,16 +135,7 @@ public class MyAddress extends Activity{
 			
 			@Override
 			public void onResponse(Call arg0, final Response arg1) throws IOException {
-				try {
-					final Page<Address> dataDel = new ObjectMapper().readValue(arg1.body().string(), 
-							new TypeReference<Page<Address>>() {
-							});
-					MyAddress.this.page = dataDel.getNumber();
-					MyAddress.this.data = dataDel.getContent();
-					addressAdapter.notifyDataSetInvalidated();
-				} catch (Exception e) {
-					Log.d("delADD", e.getMessage());
-				}
+				loadAddress();
 			}
 			
 			@Override

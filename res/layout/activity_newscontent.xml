@@ -90,14 +90,18 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="赞" />
+            android:text="赞"
+            android:background="@drawable/shape_1"
+            android:layout_marginRight="2dp" />
 
         <Button
             android:id="@+id/btn_comment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="评论" />
+            android:text="评论" 
+            android:background="@drawable/shape_1"
+            android:layout_marginLeft="2dp"/>
     </LinearLayout>
 
     <ListView

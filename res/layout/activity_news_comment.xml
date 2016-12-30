@@ -10,12 +10,14 @@
         android:layout_height="50dp"
        >
 
-        <ImageButton
+        <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
-            android:src="@drawable/comment"/>
+            android:text="发表"
+            android:background="@drawable/shape_1"
+            />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
