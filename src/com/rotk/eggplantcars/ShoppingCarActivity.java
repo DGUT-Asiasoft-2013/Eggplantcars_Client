@@ -85,14 +85,6 @@ public class ShoppingCarActivity extends Activity{
 			}
 		});
 		buy.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				onBuyClick(selected);
-			}
-		});
-		buy.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -266,7 +258,7 @@ public class ShoppingCarActivity extends Activity{
 			startActivity(itnt);
 		}
 	}
-	
+
 
 	void onDelect(Integer deal_id){
 		OkHttpClient client=Server.getsharedClient();

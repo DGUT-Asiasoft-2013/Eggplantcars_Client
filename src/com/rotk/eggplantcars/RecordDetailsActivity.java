@@ -44,7 +44,7 @@ public class RecordDetailsActivity extends Activity {
 
 		//交易金额
 		TextView record_cash = (TextView)findViewById(R.id.record_cash);
-		record_cash.setText(String.valueOf(record.getRecord_cash()));
+		record_cash.setText(String.valueOf(record.getRecord_cash())+".00 元");
 
 		//交易时间
 		TextView record_date = (TextView)findViewById(R.id.record_date);
@@ -52,7 +52,7 @@ public class RecordDetailsActivity extends Activity {
 
 		//余额
 		TextView my_cash = (TextView)findViewById(R.id.my_cash);
-		my_cash.setText(String.valueOf(record.getMy_cash()));
+		my_cash.setText(String.valueOf(record.getMy_cash())+".00 元");
 		
 		//备注
 		TextView text = (TextView)findViewById(R.id.text);

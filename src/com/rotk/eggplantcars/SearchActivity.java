@@ -139,9 +139,10 @@ public class SearchActivity extends Activity{
 
 
 	public void refresh() {
-		finish();
-		Intent itnt=new Intent(SearchActivity.this,SearchActivity.class);
-		startActivity(itnt);
+		reload();
+//		finish();
+//		Intent itnt=new Intent(SearchActivity.this,SearchActivity.class);
+//		startActivity(itnt);
 	}
 	
 	public void onResume(){
