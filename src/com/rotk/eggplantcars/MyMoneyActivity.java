@@ -137,6 +137,7 @@ public class MyMoneyActivity extends Activity {
 
 										//创建用户钱包
 										MyMoneyActivity.this.createMyMoneyAccount();
+										checkMoneyExsists();
 									}
 								})
 								.show();
