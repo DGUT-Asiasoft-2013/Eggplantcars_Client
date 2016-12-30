@@ -260,6 +260,7 @@ public class ShoppingCarActivity extends Activity{
 			.setPositiveButton("È·¶¨",null)
 			.show();
 		}else{
+			finish();
 			Intent itnt=new Intent(ShoppingCarActivity.this,CountActivity.class);
 			itnt.putExtra("data", selected);
 			startActivity(itnt);

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -51,7 +52,7 @@ public class CountActivity extends Activity{
 	User user;
 	Address a;
 	Button buy;
-	
+
 	String name;
 	String adrs;
 	String phone;
@@ -179,18 +180,7 @@ public class CountActivity extends Activity{
 						public void run() {
 
 							if(result){
-								new AlertDialog.Builder(CountActivity.this)
-								.setTitle("提示")
-								.setMessage("购买成功")
-								.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										finish();
-										overridePendingTransition(0, R.anim.slide_out_bottom);
-									}
-								})
-								.show();
+								order();
 							}
 							else {
 								Toast.makeText(CountActivity.this,"购买失败,密码错误!", Toast.LENGTH_LONG).show();
@@ -216,6 +206,197 @@ public class CountActivity extends Activity{
 		}
 	}
 
+
+	void order(){
+		ProgressDialog dlg = new ProgressDialog(this);
+		dlg.setCancelable(false);
+		dlg.setCanceledOnTouchOutside(false);
+		dlg.setMessage("正在为您下单，请稍候...");
+		dlg.show();
+
+		for (int i = 0; i < data.size(); i++) { 
+			Integer deal_id=data.get(i).getId().getDeal().getId();
+			delectShoppingCar(deal_id);
+			delectDeal(deal_id);
+			addOrder(data,i);
+		}
+
+		dlg.dismiss();
+		new AlertDialog.Builder(CountActivity.this)
+		.setTitle("提示")
+		.setMessage("下单成功")
+		.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				order();
+				finish();
+				overridePendingTransition(0, R.anim.slide_out_bottom);
+			}
+		})
+		.show();
+	}
+
+	void delectShoppingCar(Integer deal_id) {
+		// TODO Auto-generated method stub
+		OkHttpClient client=Server.getsharedClient();
+
+		Request Request=Server.requestBuilderWithApi("myshoppingcar/"+deal_id+"/delect")
+				.get()
+				.build();
+		client.newCall(Request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(final Call arg0, Response arg1) throws IOException {
+				// TODO Auto-generated method stub
+				try{
+
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+
+						}
+					});
+				}catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							new AlertDialog.Builder(CountActivity.this)
+							.setMessage(e.getMessage())
+							.show();
+						}
+					});
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+				// TODO Auto-generated method stub
+				new AlertDialog.Builder(CountActivity.this)
+				.setMessage("链接失败，请检查您的网络")
+				.show();
+			}
+		});
+	}
+
+	void delectDeal(Integer deal_id) {
+		// TODO Auto-generated method stub
+		OkHttpClient client=Server.getsharedClient();
+
+		Request Request=Server.requestBuilderWithApi("deal/"+deal_id+"/delect")
+				.get()
+				.build();
+		client.newCall(Request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(final Call arg0, Response arg1) throws IOException {
+				// TODO Auto-generated method stub
+				try{
+
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+
+						}
+					});
+				}catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							new AlertDialog.Builder(CountActivity.this)
+							.setMessage(e.getMessage())
+							.show();
+						}
+					});
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+				// TODO Auto-generated method stub
+				new AlertDialog.Builder(CountActivity.this)
+				.setMessage("链接失败，请检查您的网络")
+				.show();
+			}
+		});
+	}
+
+	void addOrder(ArrayList<ShoppingCar> data, int i) {
+		// TODO Auto-generated method stub
+		String putaddress=(String) buyer_address.getText();
+		String putname=(String) buyer_name.getText();
+		String putphone=(String) buyer_phone.getText();
+
+		String title=data.get(i).getId().getDeal().getTitle();
+		String carmodel=data.get(i).getId().getDeal().getCarModel();
+		String buydate=data.get(i).getId().getDeal().getBuyDate();
+		String traveldistance=data.get(i).getId().getDeal().getTravelDistance();
+		String price=data.get(i).getId().getDeal().getPrice();
+		String text=data.get(i).getId().getDeal().getText();
+		String orderAvatar=data.get(i).getId().getDeal().getDealAvatar();
+
+		OkHttpClient client=Server.getsharedClient();
+
+		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
+				.addFormDataPart("buyerAddress", putaddress)
+				.addFormDataPart("buyerName", putname)
+				.addFormDataPart("buyerPhone", putphone)
+				.addFormDataPart("orderTitle", title)
+				.addFormDataPart("orderCarModel", carmodel)
+				.addFormDataPart("orderBuyDate", buydate)
+				.addFormDataPart("orderTravelDistance", traveldistance)
+				.addFormDataPart("orderPrice", price)
+				.addFormDataPart("orderText", text)
+		        .addFormDataPart("orderAvatar",orderAvatar);
+		
+		okhttp3.Request Request=Server.requestBuilderWithApi("order")
+				.method("post",null)
+				.post(requestBodyBuilder.build())
+				.build();
+		
+		client.newCall(Request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(final Call arg0, final Response arg1) throws IOException {
+				// TODO Auto-generated method stub
+				try{
+					final String arg = arg1.body().string();
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						}
+					});
+				}catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+
+			}
+
+			@Override
+			public void onFailure(Call arg0, final IOException arg1) {
+				// TODO Auto-generated method stub
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						Toast.makeText(CountActivity.this, arg1.getLocalizedMessage() , Toast.LENGTH_LONG).show();
+					}
+				});
+			}
+		});
+	}
 
 	//得到我的余额
 	private void getmymoney() {
@@ -272,9 +453,9 @@ public class CountActivity extends Activity{
 			buyer_name.setText(name);
 			buyer_phone.setText(phone);
 		}
-		
 
-		
+
+
 		getUser();//得到当前用户
 
 	}
