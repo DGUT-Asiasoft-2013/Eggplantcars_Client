@@ -26,13 +26,13 @@ public class NewsCommentActivity extends Activity{
 	//新闻评论页面
 	News news;
 	EditText edit1;
-	ImageButton button1;
+	Button button1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_comment);
-		button1=(ImageButton) findViewById(R.id.button1);
+		button1=(Button) findViewById(R.id.button1);
 		edit1=(EditText) findViewById(R.id.edit1);
 		news = (News)getIntent().getSerializableExtra("news");
 

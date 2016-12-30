@@ -68,7 +68,7 @@ public class LoginActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 
-		fragAccount.setLabelText("账户名");
+		fragAccount.setLabelText("账户");
 		fragAccount.setHintText("请输入账户名");
 		fragPassword.setLabelText("密码");
 		fragPassword.setHintText("请输入密码");
