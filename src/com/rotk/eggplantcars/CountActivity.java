@@ -180,6 +180,7 @@ public class CountActivity extends Activity{
 						public void run() {
 
 							if(result){
+								saverecord();//保存消费记录
 								order();
 							}
 							else {
@@ -204,6 +205,54 @@ public class CountActivity extends Activity{
 				}
 			});	
 		}
+	}
+
+	//保存消费记录
+	private void saverecord() {
+		// TODO Auto-generated method stub
+		String record_type = "转账";
+		String text = "购买汽车";
+		int my_cash = money.getCash() - count;
+		int record_cash = count;
+		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
+				.addFormDataPart("record_type", record_type)
+				.addFormDataPart("text", text)
+				.addFormDataPart("my_cash", String.valueOf(my_cash))
+				.addFormDataPart("record_cash", String.valueOf(record_cash));
+
+		Request request = YeServer.requestBuilderWithApi("recordsave")
+				.method("post", null)
+				.post(requestBodyBuilder.build())
+				.build();
+		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(Call arg0, final Response arg1) throws IOException {
+
+
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+
+					}
+				});				
+			}
+
+			@Override
+			public void onFailure(Call arg0, final IOException arg1) {
+				// TODO Auto-generated method stub
+
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						new AlertDialog.Builder(CountActivity.this)
+						.setMessage(arg1.getMessage())
+						.show();
+					}
+				});				
+			}
+		});	
 	}
 
 
@@ -355,13 +404,13 @@ public class CountActivity extends Activity{
 				.addFormDataPart("orderTravelDistance", traveldistance)
 				.addFormDataPart("orderPrice", price)
 				.addFormDataPart("orderText", text)
-		        .addFormDataPart("orderAvatar",orderAvatar);
-		
+				.addFormDataPart("orderAvatar",orderAvatar);
+
 		okhttp3.Request Request=Server.requestBuilderWithApi("order")
 				.method("post",null)
 				.post(requestBodyBuilder.build())
 				.build();
-		
+
 		client.newCall(Request).enqueue(new Callback() {
 
 			@Override
