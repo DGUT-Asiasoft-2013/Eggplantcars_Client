@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import Fragment.pages.MyFragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,7 +19,6 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -45,6 +43,7 @@ public class CountActivity extends Activity{
 	ImageButton address;
 	TextView buyer_name;
 	TextView buyer_address;
+	TextView buyer_phone;
 	TextView countprice;
 	ListView list;
 
@@ -52,6 +51,10 @@ public class CountActivity extends Activity{
 	User user;
 	Address a;
 	Button buy;
+	
+	String name;
+	String adrs;
+	String phone;
 	int count = 0;  
 
 	ArrayList<ShoppingCar> data = new ArrayList<ShoppingCar>();
@@ -60,12 +63,18 @@ public class CountActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_count);
+		//取得数据
 		data=(ArrayList<ShoppingCar>) getIntent().getSerializableExtra("data");
+		name=(String) getIntent().getExtras().get("name");
+		adrs=(String) getIntent().getExtras().get("address");
+		phone=(String) getIntent().getExtras().get("phone");
+		//获取控件
 		countprice=(TextView) findViewById(R.id.count);
 		back=(ImageButton) findViewById(R.id.back);
 		address=(ImageButton) findViewById(R.id.select_address);
 		buyer_name=(TextView) findViewById(R.id.buyer_name);
 		buyer_address=(TextView) findViewById(R.id.buyer_address);
+		buyer_phone=(TextView) findViewById(R.id.buyer_phone);
 		buy=(Button) findViewById(R.id.buy);
 
 		list=(ListView)findViewById(R.id.list);
@@ -85,6 +94,7 @@ public class CountActivity extends Activity{
 				// TODO Auto-generated method stub
 				finish();
 				Intent itnt=new Intent(CountActivity.this,SelectAddressActivity.class);
+				itnt.putExtra("data", data);
 				startActivity(itnt);
 			}
 		});
@@ -254,7 +264,17 @@ public class CountActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onResume();
 		doSum(data);//计算总价
-		getAddress();//获取最晚地址
+
+		if(adrs==null&&name==null&&phone==null){//判断地址是否为空
+			getAddress();//获取最晚地址
+		}else{
+			buyer_address.setText(adrs);
+			buyer_name.setText(name);
+			buyer_phone.setText(phone);
+		}
+		
+
+		
 		getUser();//得到当前用户
 
 	}
@@ -343,8 +363,9 @@ public class CountActivity extends Activity{
 
 	private void setAddress(Call arg0, Address address) {
 		// TODO Auto-generated method stub
-		buyer_address.setText("收货地址："+address.getText());
-		buyer_name.setText("收件人："+address.getName());
+		buyer_address.setText(address.getText());
+		buyer_name.setText(address.getName());
+		buyer_phone.setText(address.getPhoneNumber());
 	}
 
 	void doSum(List<ShoppingCar> data) {

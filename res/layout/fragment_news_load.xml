@@ -17,7 +17,8 @@
             android:layout_gravity="right"
             android:text="Rua!"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:background="@drawable/shape_1" />
 
         <View
             android:layout_width="match_parent"
