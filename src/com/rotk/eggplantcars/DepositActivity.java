@@ -147,15 +147,64 @@ public class DepositActivity extends Activity {
 
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
+									saverecord();
 									finish();
 									overridePendingTransition(0, R.anim.slide_out_bottom);
-								}
+								}							
 							})
 							.show();
 						}
 						else {
 							Toast.makeText(DepositActivity.this,"≥‰÷µ ß∞‹,√‹¬Î¥ÌŒÛ!", Toast.LENGTH_LONG).show();
 						}
+					}
+				});				
+			}
+
+			@Override
+			public void onFailure(Call arg0, final IOException arg1) {
+				// TODO Auto-generated method stub
+
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						new AlertDialog.Builder(DepositActivity.this)
+						.setMessage(arg1.getMessage())
+						.show();
+					}
+				});				
+			}
+		});	
+	}
+	
+	//±£¥Ê≥‰÷µº«¬º
+	private void saverecord() {
+		// TODO Auto-generated method stub
+		String record_type = "≥‰÷µ";
+		String text = "’Àªß≥‰÷µ";
+		int my_cash = Integer.valueOf(edit.getText().toString()).intValue() + money.getCash();
+		int record_cash = Integer.valueOf(edit.getText().toString()).intValue();
+		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
+				.addFormDataPart("record_type", record_type)
+				.addFormDataPart("text", text)
+				.addFormDataPart("my_cash", String.valueOf(my_cash))
+				.addFormDataPart("record_cash", String.valueOf(record_cash));
+
+		Request request = YeServer.requestBuilderWithApi("recordsave")
+				.method("post", null)
+				.post(requestBodyBuilder.build())
+				.build();
+		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(Call arg0, final Response arg1) throws IOException {
+
+				
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+
 					}
 				});				
 			}

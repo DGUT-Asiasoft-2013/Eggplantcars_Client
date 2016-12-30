@@ -1,6 +1,8 @@
 package com.rotk.eggplantcars;
 
 import java.io.IOException;
+
+import com.cloudage.membercenter.entity.Record;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
@@ -30,6 +32,7 @@ public class MyMoneyActivity extends Activity {
 	Money money;
 	User user;
 	LinearLayout deposit;
+	LinearLayout record;
 	int cash = 0;
 	int change = 0;
 	@Override
@@ -42,6 +45,7 @@ public class MyMoneyActivity extends Activity {
 		mycash = (TextView)findViewById(R.id.mycash);
 		deposit = (LinearLayout)findViewById(R.id.deposit);
 		address = (LinearLayout) findViewById(R.id.address);
+		record = (LinearLayout)findViewById(R.id.record);
 		
 		user = (User)getIntent().getSerializableExtra("user");
 		
@@ -62,6 +66,16 @@ public class MyMoneyActivity extends Activity {
 				intent.putExtra("user", user);
 				startActivity(intent);
 				
+			}
+		});
+		
+		record.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyMoneyActivity.this,RecordActivity.class);
+				intent.putExtra("user", user);
+				startActivity(intent);
 			}
 		});
 	}
