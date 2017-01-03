@@ -129,6 +129,18 @@
             android:name="com.rotk.eggplantcars.RecordDetailsActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.ChangeActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.ChangeEmailActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.ChangeNameActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

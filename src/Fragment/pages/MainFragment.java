@@ -44,20 +44,17 @@ public class MainFragment extends Fragment {
 	View view;
 	int page = 0;
 	List<News> data;
-	public static int[] res = { R.drawable.item5, R.drawable.item2, R.drawable.item3, R.drawable.item4,
-			R.drawable.item1, R.drawable.item6 };
-	private ImageAdapter adapter;
-	private Gallery gallery;
+	
 	private ListView newsList;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (view == null) {
 			view = inflater.inflate(R.layout.fragment_page_main, null);
-			gallery = (Gallery) view.findViewById(R.id.img_gallery);
-			adapter = new ImageAdapter(res, getActivity());
-			gallery.setAdapter(adapter);
+			View listViewHeader = inflater.inflate(R.layout.fragment_show_viewpager, null);
+			
 			newsList = (ListView) view.findViewById(R.id.list_news);
+			newsList.addHeaderView(listViewHeader);
 			newsList.setAdapter(listAdapter);
 			newsList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -79,27 +76,13 @@ public class MainFragment extends Fragment {
 			});
 
 			
-			gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-				@Override
-				public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-					// TODO Auto-generated method stub
-					String sInfo = ("索引：" + position % adapter.getResLength());
-					Toast.makeText(getActivity(), sInfo, Toast.LENGTH_SHORT).show();
-				}
-
-				@Override
-				public void onNothingSelected(AdapterView<?> parent) {
-					// TODO Auto-generated method stub
-
-				}
-			});
-			/// ---------
+			
 
 		}
 		return view;
 	}
 
+	
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
@@ -107,6 +90,8 @@ public class MainFragment extends Fragment {
 		loadApi();
 	}
 
+	
+	//新闻点击
 	void onItemClicked(int position) {
 		News news = data.get(position);	
 
@@ -116,6 +101,8 @@ public class MainFragment extends Fragment {
 		startActivity(itent);
 	}
 
+	
+	//加载新闻
 	void loadApi() {
 		Request request = Server.requestBuilderWithApi("shownews").get().build();
 		Server.getsharedClient().newCall(request).enqueue(new Callback() {
@@ -166,6 +153,7 @@ public class MainFragment extends Fragment {
 		});
 	}
 
+	//新闻设配器
 	BaseAdapter listAdapter = new BaseAdapter() {
 
 		@SuppressLint("InflateParams")
