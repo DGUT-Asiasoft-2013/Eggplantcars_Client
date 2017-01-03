@@ -12,9 +12,13 @@ import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -43,7 +47,6 @@ public class PriLatterUser extends Activity{
 	int page = 0;
 	List<User> data;
 	ListView userList;
-	private BadgeView counterUnreadBadge;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -182,7 +185,6 @@ public class PriLatterUser extends Activity{
 			}
 		});
 	}
-
 
 
 	
