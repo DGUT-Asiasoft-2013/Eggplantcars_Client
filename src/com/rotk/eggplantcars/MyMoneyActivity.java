@@ -32,6 +32,8 @@ public class MyMoneyActivity extends Activity {
 	User user;
 	LinearLayout deposit;
 	LinearLayout record;
+	LinearLayout mysale;
+
 	LinearLayout orders;
 	int cash = 0;
 	int change = 0;
@@ -46,6 +48,10 @@ public class MyMoneyActivity extends Activity {
 		deposit = (LinearLayout)findViewById(R.id.deposit);
 		address = (LinearLayout) findViewById(R.id.address);
 		record = (LinearLayout)findViewById(R.id.record);
+
+		mysale=(LinearLayout) findViewById(R.id.mysale);
+		
+
 		orders = (LinearLayout)findViewById(R.id.orders);
 
 		user = (User)getIntent().getSerializableExtra("user");
@@ -85,6 +91,17 @@ public class MyMoneyActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MyMoneyActivity.this,MyOrdersActivity.class);
+				intent.putExtra("user", user);
+				startActivity(intent);
+			}
+		});
+		
+		mysale.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(MyMoneyActivity.this,MySaleActivity.class);
 				intent.putExtra("user", user);
 				startActivity(intent);
 			}

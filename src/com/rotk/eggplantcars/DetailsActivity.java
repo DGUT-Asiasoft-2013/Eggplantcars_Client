@@ -146,7 +146,7 @@ public class DetailsActivity extends Activity{
 		Fragment newfrag=null;
 		switch (index) {
 		case 0:newfrag=goodspage; break;
-		case 1:newfrag=detailspage; break;
+		case 1:newfrag=goodspage; break;
 		default:break;
 		}
 		if(newfrag==null)return;

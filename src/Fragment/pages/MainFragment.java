@@ -15,6 +15,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -95,6 +96,7 @@ public class MainFragment extends Fragment {
 				public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
 					// TODO Auto-generated method stub
 					super.onLoadMore(pullToRefreshLayout);
+					loadMore();
 					pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
 				}
 				
@@ -107,6 +109,46 @@ public class MainFragment extends Fragment {
 	}
 
 	
+	protected void loadMore() {
+		// TODO Auto-generated method stub
+		Request request = Server.requestBuilderWithApi("shownews/"+(page+1))
+				.get().build();
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
+			
+			@Override
+			public void onResponse(Call arg0, Response arg1) throws IOException {
+				try {
+					final Page<News> moredata = new ObjectMapper().readValue(arg1.body().string(),
+							new TypeReference<Page<News>>() {
+							});
+					if (moredata.getNumber() > page) {
+						getActivity().runOnUiThread(new Runnable() {	
+							@Override
+							public void run() {
+								if (data == null) {
+									data = moredata.getContent();
+								} else {
+									data.addAll(moredata.getContent());
+								}
+								page = moredata.getNumber();
+								listAdapter.notifyDataSetChanged();
+							}
+						});
+					}
+				} catch (Exception e) {
+					Log.d("car", e.getMessage());
+				}
+			}
+			
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+				// TODO Auto-generated method stub
+				Log.d("car", arg1.getMessage());
+			}
+		});
+	}
+
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
