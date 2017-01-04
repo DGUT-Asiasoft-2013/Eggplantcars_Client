@@ -79,11 +79,20 @@ public class MainActivity extends Activity {
 					@Override
 					public void run() {
 						try {
-							Toast.makeText(MainActivity.this,"获取到内容："+ arg1.body().string(), Toast.LENGTH_LONG).show();// 别忘了吧吐司show出来						
+							//Toast.makeText(MainActivity.this,"获取到内容："+ arg1.body().string(), Toast.LENGTH_LONG).show();// 别忘了吧吐司show出来						
 						} catch (Exception e) {
 							e.printStackTrace();
 						}						
-						startLoginActivity();
+						Handler handler=new Handler();
+						 handler.postDelayed(new Runnable() {
+						
+						 public void run() {
+						 //内部类中访问外部对象
+						 //MainActivity.this.------
+						 startLoginActivity();
+						 }
+						 }, 1500);
+						
 					}
 				});
 
