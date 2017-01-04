@@ -212,60 +212,13 @@ public class MyOrdersActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onResume();
 		text.setText("Âò¼Ò¶©µ¥");
-		i = 1;
-		Request request = YeServer.requestBuilderWithApi(String.valueOf(user.getId())+"/buyergetorder").get().build();
-		YeServer.getsharedClient().newCall(request).enqueue(new Callback() {
-
-			@Override
-			public void onResponse(Call arg0, final Response arg1) throws IOException {
-				try {
-					String a = arg1.body().string();
-					final List<OrderForm> data = new ObjectMapper().readValue(a,
-							new TypeReference<List<OrderForm>>() {
-					});
-					MyOrdersActivity.this.runOnUiThread(new Runnable() {
-
-						@Override
-						public void run() {
-							//							try {
-							//								//new AlertDialog.Builder(MyOrdersActivity.this).setMessage(arg1.body().string()).show();
-							//							} catch (IOException e) {
-							//								// TODO Auto-generated catch block
-							//								e.printStackTrace();
-							//							}
-
-							MyOrdersActivity.this.data = data;
-							listAdapter.notifyDataSetInvalidated();
-						}
-					});
-				} catch (final Exception e) {
-
-					MyOrdersActivity.this.runOnUiThread(new Runnable() {
-
-						@Override
-						public void run() {
-							new AlertDialog.Builder(MyOrdersActivity.this).setMessage(e.getMessage()).show();
-
-						}
-					});
-				}
-
-			}
-
-			@Override
-			public void onFailure(Call arg0, final IOException arg1) {
-
-				runOnUiThread(new Runnable() {
-
-					@Override
-					public void run() {
-						new AlertDialog.Builder(MyOrdersActivity.this).setMessage(arg1.getMessage()).show();
-
-					}
-				});
-
-			}
-		});
+		
+		if(i == 1){
+			buyer();
+		}
+		if(i == 2){
+			seller();
+		}
 	}
 
 	private void onNewsItemClicked(int position) {

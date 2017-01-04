@@ -391,7 +391,9 @@ public class OrderDetailsActivity extends Activity {
 					@Override
 					public void run() {
 						getorderbyid();//得到订单更新信息
+						dealpull(order.getDeal().getId());//商品下架
 					}
+
 				});				
 			}
 
@@ -411,6 +413,54 @@ public class OrderDetailsActivity extends Activity {
 		});	
 	}
 
+	//商品下架
+	private void dealpull(int deal_id) {
+		// TODO Auto-generated method stub
+		MultipartBody body = new MultipartBody.Builder()
+				.addFormDataPart("deal_id",String.valueOf(deal_id))
+				.build();
+		
+		Request request = Server.requestBuilderWithApi("deal/"+deal_id+"/pullmysale")
+				.post(body)
+				.build();
+
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(Call arg0, Response arg1) throws IOException {
+				final String responseString = arg1.body().string();
+				final Boolean result = new ObjectMapper().readValue(responseString, Boolean.class);
+				if(result){
+					runOnUiThread( new Runnable() {
+						public void run() {
+							
+						}
+					});
+
+				}
+				else{
+					runOnUiThread( new Runnable() {
+						public void run() {
+						
+						}
+					});
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+				// TODO Auto-generated method stub
+				runOnUiThread(new Runnable() {
+					public void run() {
+						new AlertDialog.Builder(OrderDetailsActivity.this)
+						.setMessage("下架失败！连接错误")
+						.setNegativeButton("返回",null)
+						.show();
+					}
+				});
+			}
+		});
+	}
 
 	//得到卖家的余额
 	private void getselletmoney() {
