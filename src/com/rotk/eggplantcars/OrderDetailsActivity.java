@@ -68,22 +68,33 @@ public class OrderDetailsActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
+				String mess = null;
+				if(order.getType().equals("买家已下单")){
+					mess = "是否申请退款";
+				}
+				if(order.getType().equals("买家申请退款")){
+					mess = "是否取消退单";
+				}
 				new AlertDialog.Builder(OrderDetailsActivity.this)
 				.setTitle("提示")
-				.setMessage("是否申请退款")
+				.setMessage(mess)
 				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						rejectedtype("买家申请退款");
+						if(order.getType().equals("买家申请退款")){
+							rejectedtype("买家已下单");
+						}
+						if(order.getType().equals("买家已下单")){
+							rejectedtype("买家申请退款");
+						}
 					}
 
 				})
 				.setNegativeButton("返回", null)
 				.show();
-				
+
 			}
 		});
 
@@ -109,7 +120,7 @@ public class OrderDetailsActivity extends Activity {
 		});
 	}
 
-	private void rejectedtype(String type) {
+	private void rejectedtype(final String type) {
 		// TODO Auto-generated method stub
 		int orderid = order.getId();
 		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
@@ -132,7 +143,13 @@ public class OrderDetailsActivity extends Activity {
 					public void run() {
 						if(result){
 							getorderbyid();//得到订单更新信息
-							Toast.makeText(OrderDetailsActivity.this,"申请退款成功，等待卖家取消订单", Toast.LENGTH_LONG).show();
+							if(type.equals("买家已下单")){
+								Toast.makeText(OrderDetailsActivity.this,"取消退单成功，等待卖家接收订单", Toast.LENGTH_LONG).show();
+							}
+							if(type.equals("买家申请退款")){
+								Toast.makeText(OrderDetailsActivity.this,"申请退款成功，等待卖家取消订单", Toast.LENGTH_LONG).show();
+							}
+							
 						}
 						else{
 							new AlertDialog.Builder(OrderDetailsActivity.this)
@@ -159,7 +176,7 @@ public class OrderDetailsActivity extends Activity {
 			}
 		});	
 	}
-	
+
 	//收货方法
 	private void recipient() {
 
@@ -349,16 +366,17 @@ public class OrderDetailsActivity extends Activity {
 	private void saverecord() {
 		// TODO Auto-generated method stub
 		String record_type = "收账";
-		String text = "购买汽车";
+		String text = "订单交易完成";
 		int my_cash = sellermoney.getCash() + Integer.valueOf(order.getDeal().getPrice());
 		int record_cash =Integer.valueOf(order.getDeal().getPrice());
 		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
 				.addFormDataPart("record_type", record_type)
 				.addFormDataPart("text", text)
 				.addFormDataPart("my_cash", String.valueOf(my_cash))
-				.addFormDataPart("record_cash", String.valueOf(record_cash));
+				.addFormDataPart("record_cash", String.valueOf(record_cash))
+				.addFormDataPart("sellerid", order.getSeller().getId());
 
-		Request request = YeServer.requestBuilderWithApi("recordsave")
+		Request request = YeServer.requestBuilderWithApi("sellerrecordsave")
 				.method("post", null)
 				.post(requestBodyBuilder.build())
 				.build();
@@ -462,6 +480,8 @@ public class OrderDetailsActivity extends Activity {
 		if(order.getType().equals("已受理")){
 			btn_get.setVisibility(View.VISIBLE);
 			btn_get.setClickable(true);
+			btn_rejected.setVisibility(View.INVISIBLE);
+			btn_rejected.setClickable(false);
 			buyer_type.setText("卖家已受理，请等待卖家联系");
 		}
 		if(order.getType().equals("订单完成")){
@@ -474,9 +494,18 @@ public class OrderDetailsActivity extends Activity {
 		if(order.getType().equals("买家申请退款")){
 			btn_get.setVisibility(View.INVISIBLE);
 			btn_get.setClickable(false);
-			btn_rejected.setVisibility(View.INVISIBLE);
-			btn_rejected.setClickable(false);
+			btn_rejected.setVisibility(View.VISIBLE);
+			btn_rejected.setClickable(true);
+			btn_rejected.setText("取消退单");
 			buyer_type.setText("已申请退款，等待卖家取消订单");
+		}
+		if(order.getType().equals("买家已下单")){
+			btn_get.setVisibility(View.INVISIBLE);
+			btn_get.setClickable(false);
+			btn_rejected.setVisibility(View.VISIBLE);
+			btn_rejected.setClickable(true);
+			btn_rejected.setText("申请退款");
+			buyer_type.setText("已下单——等待卖家联系");
 		}
 		if(order.getType().equals("订单已取消")){
 			btn_get.setVisibility(View.INVISIBLE);
