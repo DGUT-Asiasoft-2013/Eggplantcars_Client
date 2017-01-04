@@ -33,6 +33,9 @@ import android.widget.Toast;
 import inputcells.AvatarNewsView;
 import inputcells.AvatarView;
 import inputcells.ImageAdapter;
+import inputcells.utils.MyListener;
+import inputcells.utils.PullToRefreshLayout;
+import inputcells.utils.PullableListView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;
@@ -45,7 +48,8 @@ public class MainFragment extends Fragment {
 	int page = 0;
 	List<News> data;
 	
-	private ListView newsList;
+	private PullableListView newsList;
+	private PullToRefreshLayout ptrl;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,14 +57,15 @@ public class MainFragment extends Fragment {
 			view = inflater.inflate(R.layout.fragment_page_main, null);
 			View listViewHeader = inflater.inflate(R.layout.fragment_show_viewpager, null);
 			
-			newsList = (ListView) view.findViewById(R.id.list_news);
+			ptrl = (PullToRefreshLayout) view.findViewById(R.id.main_view);
+			newsList = (PullableListView) view.findViewById(R.id.list_news);
 			newsList.addHeaderView(listViewHeader);
 			newsList.setAdapter(listAdapter);
 			newsList.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					onItemClicked(position);
+					onItemClicked(position-1);
 				}
 			});
 			/// ----------
@@ -75,6 +80,25 @@ public class MainFragment extends Fragment {
 				}
 			});
 
+			
+			ptrl.setOnRefreshListener(new MyListener(){
+
+				@Override
+				public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+					// TODO Auto-generated method stub
+					super.onRefresh(pullToRefreshLayout);
+					loadApi();
+					pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+				}
+
+				@Override
+				public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+					// TODO Auto-generated method stub
+					super.onLoadMore(pullToRefreshLayout);
+					pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+				}
+				
+			});
 			
 			
 
