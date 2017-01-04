@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="top"
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
+            android:src="@drawable/left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="个人信息" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <FrameLayout
+        android:id="@+id/btn_change"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="13dp"
+        android:background="@android:color/white"
+        android:gravity="start"
+        android:orientation="horizontal" >
+
+        <inputcells.AvatarView
+            android:id="@+id/my_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="15dp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white" >
+
+        <TextView
+            android:id="@+id/account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="账户"
+            android:textSize="20sp" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:background="#DCDCDC" />
+
+    <FrameLayout
+        android:id="@+id/btn_changename"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white" >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="昵称"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical|right"
+            android:src="@drawable/right" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:background="#DCDCDC" />
+
+    <FrameLayout
+        android:id="@+id/btn_changeemail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white" >
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="邮箱"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical|right"
+            android:src="@drawable/right" />
+    </FrameLayout>
+
+</LinearLayout>
