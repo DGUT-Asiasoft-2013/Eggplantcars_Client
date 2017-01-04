@@ -130,15 +130,27 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
         <activity
-            android:name="com.rotk.eggplantcars.ChangeActivity"
+            android:name="com.rotk.eggplantcars.MyOrdersActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.OrderDetailsActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.SellerActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
         <activity
             android:name="com.rotk.eggplantcars.ChangeEmailActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
+        <activity android:name="com.rotk.eggplantcars.ChangeNameActivity" >
+        </activity>
+        <activity android:name="com.rotk.eggplantcars.ChangeActivity" >
+        </activity>
         <activity
-            android:name="com.rotk.eggplantcars.ChangeNameActivity"
+            android:name="com.rotk.eggplantcars.MySaleActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
         <activity

@@ -157,8 +157,14 @@ public class RecordActivity extends Activity {
 				cashchange.setText("+"+String.valueOf(record.getRecord_cash()));
 
 			}
-			else{
+			else if(record.getRecord_type().equals("×ªÕË")){
 				cashchange.setText("-"+String.valueOf(record.getRecord_cash()));
+			}
+			else if(record.getRecord_type().equals("ÊÕÕË")){
+				cashchange.setText("+"+String.valueOf(record.getRecord_cash()));
+			}
+			else if(record.getRecord_type().equals("ÍË¿î")){
+				cashchange.setText("+"+String.valueOf(record.getRecord_cash()));
 			}
 			String dateStr = DateFormat.format("yyyy-MM-dd", record.getCreateDate()).toString();
 			my_cash.setText("Óà¶î£º"+String.valueOf(record.getMy_cash()));

@@ -18,6 +18,12 @@ public class GoodsFragment extends Fragment{
 	AvatarNewsView avatarNewsView1;
 	TextView title;
 	TextView price;
+	TextView seller;
+	TextView carmodel;
+	TextView traveldistance;
+	TextView buydate;
+	TextView text;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -27,10 +33,20 @@ public class GoodsFragment extends Fragment{
 			avatarNewsView1=(AvatarNewsView) view.findViewById(R.id.avatarNewsView1);
 			title=(TextView) view.findViewById(R.id.title);
 			price=(TextView) view.findViewById(R.id.price);
+			carmodel=(TextView) view.findViewById(R.id.carmodel);
+			seller=(TextView) view.findViewById(R.id.seller);
+			traveldistance=(TextView) view.findViewById(R.id.traveldistance);
+			buydate=(TextView) view.findViewById(R.id.buydate);
+			text=(TextView) view.findViewById(R.id.text);
 			
 			avatarNewsView1.load(Server.serverAddress +deal.getDealAvatar());
 			title.setText(deal.getTitle());
 			price.setText("￥"+deal.getPrice());
+			seller.setText("卖家："+deal.getSellerName());
+			carmodel.setText("汽车类型："+deal.getCarModel());
+			traveldistance.setText("已行驶里程："+deal.getTravelDistance());
+			buydate.setText("已被使用："+deal.getBuyDate()+"年");
+			text.setText("卖家介绍："+deal.getText());
 		}
 		return view;
 	}

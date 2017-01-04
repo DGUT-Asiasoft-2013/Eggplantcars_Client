@@ -15,12 +15,20 @@
             android:layout_height="50dp"
             android:background="@android:color/white" >
 
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/white"
+                android:src="@drawable/left" />
+
             <TextView
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="查看评论"
+                android:textColor="@android:color/black"
+                android:text="我的订单"
                 android:textSize="20sp" />
         </FrameLayout>
 
@@ -31,7 +39,8 @@
             android:background="@android:color/darker_gray" />
 
         <ListView
-            android:id="@+id/list"
+            android:id="@+id/list_orders"
+            android:layout_margin="2dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -39,22 +48,23 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@android:color/white"
-        android:layout_gravity="bottom" >
+        android:layout_gravity="bottom"
+        android:background="#F5F5F5" >
 
-        <Button 
-            android:id="@+id/btn_comment"
+        <Button
+            android:id="@+id/btn_buyer"
             android:layout_width="160dp"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_orange_light"
-            android:text="评论我的"/>
-        <Button 
-            android:id="@+id/btn_mycomment"
+            android:background="@drawable/button"
+            android:text="我购买的" />
+
+        <Button
+            android:id="@+id/btn_seller"
             android:layout_width="160dp"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_orange_dark"
-            android:text="我的评论"
-            android:layout_gravity="right"/>
+            android:layout_gravity="right"
+            android:background="@drawable/button"
+            android:text="我卖出的" />
     </FrameLayout>
 
 </FrameLayout>

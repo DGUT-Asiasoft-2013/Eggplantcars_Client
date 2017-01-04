@@ -5,79 +5,88 @@
     android:orientation="vertical" >
 
     <FrameLayout
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/white" >
-        <TextView 
+
+        <TextView
             android:id="@+id/seller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
             android:layout_gravity="center|left"
+            android:layout_marginLeft="50dp"
+            android:text="111111"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="111111"/>
+            android:textStyle="bold" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/white" >
-        <TextView 
+
+        <TextView
             android:id="@+id/carmodel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
             android:layout_gravity="center|left"
+            android:layout_marginLeft="50dp"
+            android:text="111111"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="111111"/>
+            android:textStyle="bold" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/white" >
-        <TextView 
+
+        <TextView
             android:id="@+id/buydate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
             android:layout_gravity="center|left"
+            android:layout_marginLeft="50dp"
+            android:text="111111"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="111111"/>
+            android:textStyle="bold" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/white" >
-        <TextView 
+
+        <TextView
             android:id="@+id/traveldistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
             android:layout_gravity="center|left"
+            android:layout_marginLeft="50dp"
+            android:text="111111"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="111111"/>
+            android:textStyle="bold" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/white" >
-        <TextView 
+
+        <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
             android:layout_gravity="center|left"
+            android:layout_marginLeft="50dp"
+            android:text="111111"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:text="111111"/>
+            android:textStyle="bold" />
     </FrameLayout>
 
 </LinearLayout>

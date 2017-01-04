@@ -15,6 +15,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +34,9 @@ import android.widget.Toast;
 import inputcells.AvatarNewsView;
 import inputcells.AvatarView;
 import inputcells.ImageAdapter;
+import inputcells.utils.MyListener;
+import inputcells.utils.PullToRefreshLayout;
+import inputcells.utils.PullableListView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Request;
@@ -45,7 +49,8 @@ public class MainFragment extends Fragment {
 	int page = 0;
 	List<News> data;
 	
-	private ListView newsList;
+	private PullableListView newsList;
+	private PullToRefreshLayout ptrl;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,14 +58,15 @@ public class MainFragment extends Fragment {
 			view = inflater.inflate(R.layout.fragment_page_main, null);
 			View listViewHeader = inflater.inflate(R.layout.fragment_show_viewpager, null);
 			
-			newsList = (ListView) view.findViewById(R.id.list_news);
+			ptrl = (PullToRefreshLayout) view.findViewById(R.id.main_view);
+			newsList = (PullableListView) view.findViewById(R.id.list_news);
 			newsList.addHeaderView(listViewHeader);
 			newsList.setAdapter(listAdapter);
 			newsList.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					onItemClicked(position);
+					onItemClicked(position-1);
 				}
 			});
 			/// ----------
@@ -76,6 +82,26 @@ public class MainFragment extends Fragment {
 			});
 
 			
+			ptrl.setOnRefreshListener(new MyListener(){
+
+				@Override
+				public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+					// TODO Auto-generated method stub
+					super.onRefresh(pullToRefreshLayout);
+					loadApi();
+					pullToRefreshLayout.refreshFinish(PullToRefreshLayout.SUCCEED);
+				}
+
+				@Override
+				public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+					// TODO Auto-generated method stub
+					super.onLoadMore(pullToRefreshLayout);
+					loadMore();
+					pullToRefreshLayout.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+				}
+				
+			});
+			
 			
 
 		}
@@ -83,6 +109,46 @@ public class MainFragment extends Fragment {
 	}
 
 	
+	protected void loadMore() {
+		// TODO Auto-generated method stub
+		Request request = Server.requestBuilderWithApi("shownews/"+(page+1))
+				.get().build();
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
+			
+			@Override
+			public void onResponse(Call arg0, Response arg1) throws IOException {
+				try {
+					final Page<News> moredata = new ObjectMapper().readValue(arg1.body().string(),
+							new TypeReference<Page<News>>() {
+							});
+					if (moredata.getNumber() > page) {
+						getActivity().runOnUiThread(new Runnable() {	
+							@Override
+							public void run() {
+								if (data == null) {
+									data = moredata.getContent();
+								} else {
+									data.addAll(moredata.getContent());
+								}
+								page = moredata.getNumber();
+								listAdapter.notifyDataSetChanged();
+							}
+						});
+					}
+				} catch (Exception e) {
+					Log.d("car", e.getMessage());
+				}
+			}
+			
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+				// TODO Auto-generated method stub
+				Log.d("car", arg1.getMessage());
+			}
+		});
+	}
+
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
