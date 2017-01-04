@@ -28,6 +28,7 @@ import android.widget.Toast;
 import api.Server;
 import api.YeServer;
 import entity.Address;
+import entity.Deal;
 import entity.Money;
 import entity.ShoppingCar;
 import entity.User;
@@ -118,7 +119,7 @@ public class CountActivity extends Activity{
 
 	//金额交易变化
 	private void changeMoney() {
-		// TODO Auto-generated method stub
+
 		final EditText et = new EditText(this);
 		et.setBackgroundColor(Color.WHITE);
 		//在Activity中设置passowrd
@@ -266,7 +267,6 @@ public class CountActivity extends Activity{
 		for (int i = 0; i < data.size(); i++) { 
 			Integer deal_id=data.get(i).getId().getDeal().getId();
 			delectShoppingCar(deal_id);
-			delectDeal(deal_id);
 			addOrder(data,i);
 		}
 
@@ -278,7 +278,6 @@ public class CountActivity extends Activity{
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				order();
 				finish();
 				overridePendingTransition(0, R.anim.slide_out_bottom);
 			}
@@ -378,35 +377,23 @@ public class CountActivity extends Activity{
 		});
 	}
 
+	//保存订单
 	void addOrder(ArrayList<ShoppingCar> data, int i) {
 		// TODO Auto-generated method stub
-		String putaddress=(String) buyer_address.getText();
-		String putname=(String) buyer_name.getText();
-		String putphone=(String) buyer_phone.getText();
-
-		String title=data.get(i).getId().getDeal().getTitle();
-		String carmodel=data.get(i).getId().getDeal().getCarModel();
-		String buydate=data.get(i).getId().getDeal().getBuyDate();
-		String traveldistance=data.get(i).getId().getDeal().getTravelDistance();
-		String price=data.get(i).getId().getDeal().getPrice();
-		String text=data.get(i).getId().getDeal().getText();
-		String orderAvatar=data.get(i).getId().getDeal().getDealAvatar();
-
-		OkHttpClient client=Server.getsharedClient();
+		
+		int deal_id = data.get(i).getId().getDeal().getId();
+		int seller_id = data.get(i).getId().getDeal().getSellerId();
+		String type = "买家已下单";
+		
+		OkHttpClient client = YeServer.getsharedClient();
 
 		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
-				.addFormDataPart("buyerAddress", putaddress)
-				.addFormDataPart("buyerName", putname)
-				.addFormDataPart("buyerPhone", putphone)
-				.addFormDataPart("orderTitle", title)
-				.addFormDataPart("orderCarModel", carmodel)
-				.addFormDataPart("orderBuyDate", buydate)
-				.addFormDataPart("orderTravelDistance", traveldistance)
-				.addFormDataPart("orderPrice", price)
-				.addFormDataPart("orderText", text)
-				.addFormDataPart("orderAvatar",orderAvatar);
+				.addFormDataPart("address_id",String.valueOf(a.getId()))
+				.addFormDataPart("seller_id",String.valueOf(seller_id))
+				.addFormDataPart("deal_id",String.valueOf(deal_id))
+				.addFormDataPart("type",String.valueOf(type));
 
-		okhttp3.Request Request=Server.requestBuilderWithApi("order")
+		okhttp3.Request Request = YeServer.requestBuilderWithApi("orderdsave")
 				.method("post",null)
 				.post(requestBodyBuilder.build())
 				.build();
@@ -417,7 +404,7 @@ public class CountActivity extends Activity{
 			public void onResponse(final Call arg0, final Response arg1) throws IOException {
 				// TODO Auto-generated method stub
 				try{
-					final String arg = arg1.body().string();
+					//final String arg = arg1.body().string();
 					runOnUiThread(new Runnable() {
 
 						@Override

@@ -33,6 +33,7 @@ public class MyMoneyActivity extends Activity {
 	User user;
 	LinearLayout deposit;
 	LinearLayout record;
+	LinearLayout orders;
 	int cash = 0;
 	int change = 0;
 	@Override
@@ -46,34 +47,45 @@ public class MyMoneyActivity extends Activity {
 		deposit = (LinearLayout)findViewById(R.id.deposit);
 		address = (LinearLayout) findViewById(R.id.address);
 		record = (LinearLayout)findViewById(R.id.record);
-		
+		orders = (LinearLayout)findViewById(R.id.orders);
+
 		user = (User)getIntent().getSerializableExtra("user");
-		
+
 		deposit.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				//≥‰÷µ
 				godeposit();
 			}
 		});
-		
+
 		address.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MyMoneyActivity.this,MyAddress.class);
 				intent.putExtra("user", user);
 				startActivity(intent);
-				
+
 			}
 		});
-		
+
 		record.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MyMoneyActivity.this,RecordActivity.class);
+				intent.putExtra("user", user);
+				startActivity(intent);
+			}
+		});
+
+		orders.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MyMoneyActivity.this,MyOrdersActivity.class);
 				intent.putExtra("user", user);
 				startActivity(intent);
 			}
