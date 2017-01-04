@@ -2,7 +2,6 @@ package com.rotk.eggplantcars;
 
 import java.io.IOException;
 
-import com.cloudage.membercenter.entity.Record;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;

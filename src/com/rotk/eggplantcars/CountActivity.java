@@ -350,7 +350,6 @@ public class CountActivity extends Activity{
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-
 						}
 					});
 				}catch (final Exception e) {

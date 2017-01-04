@@ -5,6 +5,7 @@ package Fragment.pages;
 import java.io.IOException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.AllCommentActivity;
+import com.rotk.eggplantcars.ChangeActivity;
 import com.rotk.eggplantcars.LoginActivity;
 import com.rotk.eggplantcars.MyMoneyActivity;
 import com.rotk.eggplantcars.PasswordChangeActivity;
@@ -42,6 +43,7 @@ public class MyFragment extends Fragment{
 	TextView comment;
 	User u;
 	LinearLayout btn_money;
+	LinearLayout btn_change;
 	TextView textView;
 	TextView nicheng;
 
@@ -60,6 +62,7 @@ public class MyFragment extends Fragment{
 			personal = (TextView) view.findViewById(R.id.personal);
 			comment =(TextView) view .findViewById(R.id.mycomment);
 			btn_money = (LinearLayout)view.findViewById(R.id.btn_money);
+			btn_change=(LinearLayout) view.findViewById(R.id.btn_change);
 
 			passwordchange.setOnClickListener(new OnClickListener() {
 
@@ -109,10 +112,26 @@ public class MyFragment extends Fragment{
 				}
 			});
 		}
+		btn_change.setOnClickListener(new OnClickListener() {
+			//修改用户信息
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				goChange();
+			}
+		});
 
 		return view;
 	}
 	
+	//修改用户信息
+	void goChange() {
+		// TODO Auto-generated method stub
+		 Intent intent = new Intent(getActivity(),ChangeActivity.class);
+			intent.putExtra("user",u);
+			startActivity(intent);
+	}
+
 	//我的钱包事件触发
 	private void goMyMoney() {
 		// TODO Auto-generated method stub

@@ -137,9 +137,17 @@
             android:name="com.rotk.eggplantcars.OrderDetailsActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
-         <activity
+        <activity
             android:name="com.rotk.eggplantcars.SellerActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.ChangeEmailActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity android:name="com.rotk.eggplantcars.ChangeNameActivity" >
+        </activity>
+        <activity android:name="com.rotk.eggplantcars.ChangeActivity" >
         </activity>
     </application>
 
