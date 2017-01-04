@@ -20,13 +20,7 @@ public class Server {
 
 
 
-
-	public static String serverAddress = "http://172.27.15.35:8080/membercenter/";
-
-
-
-
-
+	public static String serverAddress = "http://172.27.15.47:8080/membercenter/";
 
 
 	// 通过 公开 getsharedClient类提供给其他类使用

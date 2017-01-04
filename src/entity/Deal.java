@@ -18,8 +18,15 @@ public class Deal implements Serializable{
     String SellerName;
     String SellerAccount;
     String SellerAvatar;
+    Integer stock;
     
-    Date createDate;
+    public Integer getStock() {
+		return stock;
+	}
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+	Date createDate;
 	Date editDate;
 	
     public Integer getId() {

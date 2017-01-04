@@ -55,9 +55,9 @@ public class ItemFragment extends Fragment{
 			edit=(EditText) view.findViewById(R.id.edit_btn);
 			
 			list=(ListView) view.findViewById(R.id.list);
-			list.setAdapter(listAdapter);
 			list.addFooterView(btnLoadMore);
 			list.setAdapter(listAdapter);
+			
 			list.setOnItemClickListener(new OnItemClickListener() {
 
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -232,7 +232,7 @@ public class ItemFragment extends Fragment{
 			textDate.setText(dateStr);
 			textTitle.setText(deal.getTitle());
 			textMoney.setText(deal.getPrice()+"гд");
-			
+		
 
 			return view;
 		}
@@ -253,6 +253,7 @@ public class ItemFragment extends Fragment{
 		public int getCount() {
 			// TODO Auto-generated method stub
 			return data==null ? 0 : data.size();
+			
 		}
 	};
 }
