@@ -28,9 +28,9 @@
                     android:layout_width="65dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
+                    android:background="@drawable/shape_2"
                     android:text="确认"
-                    android:textColor="@android:color/black" 
-                    android:background="@drawable/shape_2"/>
+                    android:textColor="@android:color/black" />
             </FrameLayout>
 
             <View
@@ -43,7 +43,8 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="标题" />
+                android:hint="标题"
+                android:gravity="center|bottom" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,14 +54,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
                     android:text="二手车型号:"
-                    android:textSize="18sp" 
-                    android:layout_gravity="bottom"/>
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/carmodel"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp" />
+                    android:layout_height="50dp" 
+                    android:gravity="center|bottom"/>
             </LinearLayout>
 
             <LinearLayout
@@ -71,21 +73,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="已使用时间:"
-                    android:textSize="18sp"
-                    android:layout_gravity="bottom" />
+                    android:layout_gravity="bottom"
+                    android:text="已使用时间(年):"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/buydate"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" 
+                    android:gravity="center|bottom"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="年"
-                    android:textSize="18sp"
-                    android:layout_gravity="bottom" />
+                
             </LinearLayout>
 
             <LinearLayout
@@ -96,28 +94,37 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="行驶里程:"
-                    android:textSize="18sp" 
-                    android:layout_gravity="bottom"/>
+                    android:layout_gravity="bottom"
+                    android:text="行驶里程(公里):"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/traveldistance"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"/>
+                    android:layout_width="81dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="0.05" 
+                    android:gravity="center|bottom"/>
+            </LinearLayout>
 
-                <TextView
+              <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal" >
+                
+                   <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="售价:"
-                    android:textSize="18sp" 
-                    android:layout_gravity="bottom"/>
+                    android:layout_gravity="bottom"
+                    android:text="售价(￥):"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/price"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"/>
-            </LinearLayout>
-
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" 
+                    android:gravity="center|bottom"/>
+                </LinearLayout>
+                
             <fragment
                 android:id="@+id/dealavatar"
                 android:layout_width="match_parent"
@@ -130,7 +137,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="对商品的描述"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                 />
         </LinearLayout>
     </ScrollView>
 
