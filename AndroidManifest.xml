@@ -149,6 +149,10 @@
         </activity>
         <activity android:name="com.rotk.eggplantcars.ChangeActivity" >
         </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.MySaleActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>
