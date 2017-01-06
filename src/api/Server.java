@@ -23,6 +23,7 @@ public class Server {
 	public static String serverAddress = "http://172.27.15.35:8080/membercenter/";
 
 
+
 	// 通过 公开 getsharedClient类提供给其他类使用
 	public static OkHttpClient getsharedClient() {
 		return client;

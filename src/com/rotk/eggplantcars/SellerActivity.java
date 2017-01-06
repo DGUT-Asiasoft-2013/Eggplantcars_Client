@@ -284,16 +284,17 @@ public class SellerActivity extends Activity {
 	private void saverejectedrecord() {
 		 
 		String record_type = "退款";
-		String text = "购买汽车";
+		String text = "订单取消，返还金额";
 		int my_cash = buyermoney.getCash() + Integer.valueOf(order.getDeal().getPrice());
 		int record_cash =Integer.valueOf(order.getDeal().getPrice());
 		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
 				.addFormDataPart("record_type", record_type)
 				.addFormDataPart("text", text)
 				.addFormDataPart("my_cash", String.valueOf(my_cash))
-				.addFormDataPart("record_cash", String.valueOf(record_cash));
+				.addFormDataPart("record_cash", String.valueOf(record_cash))
+				.addFormDataPart("buyerid", order.getBuyer().getId());
 
-		Request request = YeServer.requestBuilderWithApi("recordsave")
+		Request request = YeServer.requestBuilderWithApi("buyerrecordsave")
 				.method("post", null)
 				.post(requestBodyBuilder.build())
 				.build();

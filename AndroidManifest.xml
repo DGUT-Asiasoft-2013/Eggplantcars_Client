@@ -153,6 +153,10 @@
             android:name="com.rotk.eggplantcars.MySaleActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
+        <activity
+            android:name="com.rotk.eggplantcars.SexActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

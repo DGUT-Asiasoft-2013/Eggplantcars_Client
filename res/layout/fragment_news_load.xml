@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp" >
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:text="Rua!"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:background="@drawable/shape_1" />
-
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:background="@android:color/darker_gray" />
-    </FrameLayout>
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/edit_title"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:hint="输入标题" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp" >
 
-    <EditText
-        android:id="@+id/edit1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:gravity="top"
-        android:hint="ruarua" />
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="@drawable/shape_1"
+                    android:text="Rua!"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
 
-    <fragment
-        android:id="@+id/input_news_avatar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        class="inputcells.PictureInputCellFragment"
-        tools:layout="@layout/fragment_inputcell_picture" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="bottom"
+                    android:background="@android:color/darker_gray" />
+            </FrameLayout>
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/edit_title"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:hint="输入标题" />
+
+            <EditText
+                android:id="@+id/edit1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:gravity="top"
+                android:hint="ruarua" />
+
+            <fragment
+                android:id="@+id/input_news_avatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.PictureInputCellFragment"
+                tools:layout="@layout/fragment_inputcell_picture" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
