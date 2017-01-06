@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -17,7 +16,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import api.Server;
@@ -37,7 +35,7 @@ public class OrderDetailsActivity extends Activity {
 	ImageButton btn_back;
 	Button btn_get;
 	Button btn_rejected;
-	LinearLayout deald;
+
 	Money buyermoney;
 	Money sellermoney;
 	@Override
@@ -49,7 +47,6 @@ public class OrderDetailsActivity extends Activity {
 
 		order = (OrderForm)getIntent().getSerializableExtra("order");
 		btn_back = (ImageButton)findViewById(R.id.btn_back);
-		deald = (LinearLayout)findViewById(R.id.deald);
 		btn_get = (Button)findViewById(R.id.btn_get);
 		btn_rejected = (Button)findViewById(R.id.btn_rejected);//ÍË¿î
 
@@ -108,16 +105,7 @@ public class OrderDetailsActivity extends Activity {
 			}
 		});
 
-		deald.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-
-				Intent intent = new Intent(OrderDetailsActivity.this,DetailsActivity.class);
-				intent.putExtra("data", order.getDeal());
-				startActivity(intent);
-			}
-		});
 	}
 
 	private void rejectedtype(final String type) {
