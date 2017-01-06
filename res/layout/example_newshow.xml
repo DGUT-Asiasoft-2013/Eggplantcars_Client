@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white" >
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="7dp"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        
+        <inputcells.AvatarView
+            android:id="@+id/user_img" 
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="7dp"
+            android:layout_gravity="center_vertical"/>
+        
+        
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            
+            <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:textSize="15sp"
+            android:text="yournamess"/>
+            
+            <TextView 
+                android:id="@+id/user_sendtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:textSize="10sp"
+                android:text="2001.2.2.6658"/>
+            
+        </LinearLayout>
+    </LinearLayout>
+    
+    
+    
+    <TextView 
+        android:id="@+id/user_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginRight="10dp"
+        android:text="4dfa65sdf465asdf1as3d2f1as35df4a65sd4f6a5sd4f56a4sd65f4a65sd4f"
+        android:textSize="22sp"/>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+</LinearLayout>

@@ -1,95 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical" >
+    android:background="#F5F5F5">
 
-    <TextView
-        android:id="@+id/text_title"
+    <ListView
+        android:id="@+id/list_comment"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="标题"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="25sp" />
-
+        android:layout_height="match_parent"
+		android:fadingEdge="none"
+		android:scrollbars="none"
+        android:background="#F5F5F5"
+        android:layout_above="@+id/newslinner">
+    </ListView>
+    
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <inputcells.AvatarView
-            android:id="@+id/news_avatar"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="44dp" />
-
-        <TextView
-            android:id="@+id/text_authorname"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="作者"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-        <ImageButton
-            android:id="@+id/btn_concern"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="end"
-            android:background="@android:color/white"
-            android:src="@drawable/unlike" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/text_creatDate"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:gravity="center"
-        android:text="创建时间"
-        android:textColor="@android:color/black"
-        android:textSize="10sp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" >
-
-        <TextView
-            android:id="@+id/text_authorwrite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" 内容"
-            android:textColor="@android:color/black"
-            android:textSize="22sp" />
-    </ScrollView>
-
-    <LinearLayout
+        android:id="@+id/newslinner"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp" >
+        android:orientation="horizontal"
+        android:background="#F5F5F5"
+        android:layout_marginTop="7dp" 
+        android:layout_alignParentBottom="true">
+        
+        <Button 
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/left"/>
 
         <Button
             android:id="@+id/btn_good"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_marginLeft="130dp"
             android:text="赞"
             android:background="@drawable/shape_1"
             android:layout_marginRight="2dp" />
@@ -98,18 +42,9 @@
             android:id="@+id/btn_comment"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
             android:text="评论" 
-            android:background="@drawable/shape_1"
-            android:layout_marginLeft="2dp"/>
+            android:background="@drawable/shape_1"/>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_comment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" >
-    </ListView>
-
-</LinearLayout>
+</RelativeLayout>
