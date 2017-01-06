@@ -562,7 +562,7 @@ public class CountActivity extends Activity{
 						public void run() {
 							// TODO Auto-generated method stub
 							new AlertDialog.Builder(CountActivity.this)
-							.setMessage(e.getMessage())
+							.setMessage("请添加收货地址")
 							.show();
 						}
 					});
