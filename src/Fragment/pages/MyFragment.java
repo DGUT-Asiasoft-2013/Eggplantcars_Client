@@ -14,9 +14,11 @@ import com.rotk.eggplantcars.R;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,6 +50,8 @@ public class MyFragment extends Fragment{
 	TextView nicheng;
 
 	AvatarView avatar;
+	
+	SharedPreferences sp;
 
 
 	@Override
@@ -63,6 +67,7 @@ public class MyFragment extends Fragment{
 			comment =(TextView) view .findViewById(R.id.mycomment);
 			btn_money = (LinearLayout)view.findViewById(R.id.btn_money);
 			btn_change=(LinearLayout) view.findViewById(R.id.btn_change);
+			sp = getActivity().getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
 
 			passwordchange.setOnClickListener(new OnClickListener() {
 
@@ -79,6 +84,7 @@ public class MyFragment extends Fragment{
 				public void onClick(View v) {
 
 					// TODO Auto-generated method stub
+					 sp.edit().putBoolean("AUTO_ISCHECK", false).commit(); 
 					onzhuxiao();
 				}
 			});
