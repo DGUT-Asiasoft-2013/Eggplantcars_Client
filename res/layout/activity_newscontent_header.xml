@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@android:color/white">
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:background="#F5F5F5">
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="新闻资讯"
+            android:gravity="center"
+            android:layout_marginLeft="7dp"/>
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="标题"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <inputcells.AvatarView
+            android:id="@+id/news_avatar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="44dp" />
+
+        <TextView
+            android:id="@+id/text_authorname"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="作者"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/btn_concern"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:background="@android:color/white"
+            android:src="@drawable/unlike" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_creatDate"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:gravity="center"
+        android:text="创建时间"
+        android:textColor="@android:color/black"
+        android:textSize="10sp" />
+
+
+
+        <TextView
+            android:id="@+id/text_authorwrite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" 内容"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="18sp" />
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:background="@android:color/white"/>
+        
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#F5F5F5"/>
+   
+
+    
+    
+    
+</LinearLayout>

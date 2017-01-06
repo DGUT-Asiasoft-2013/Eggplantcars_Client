@@ -39,15 +39,17 @@ public class NewsContentActivity extends Activity {
 	News news;
 	//List<News> data;
 	ListView listView;
-	ImageButton btn_concern;
-	Button btn_good;
-	Button btn_comment;
+	ImageButton btn_concern;     //关注
+	Button btn_good;             //赞
+	Button btn_comment; // 评论
+	Button btn_goback;
 	private boolean isConcerned;//关注
 	private boolean isLiked;//点赞
 	
 	List<NewsComment> data;
 	int page=0;
 	View btnLoadMore;
+	View headerView;
 	TextView textLoadMore;
 
 	@Override
@@ -60,17 +62,31 @@ public class NewsContentActivity extends Activity {
 		btnLoadMore = LayoutInflater.from(this).inflate(R.layout.loadmore, null);
 		textLoadMore=(TextView) btnLoadMore.findViewById(R.id.text);
 
+		headerView = LayoutInflater.from(NewsContentActivity.this).inflate(R.layout.activity_newscontent_header, null);
+		
+		btn_goback = (Button) findViewById(R.id.btn_back);
 		btn_good = (Button)findViewById(R.id.btn_good);
-		btn_concern = (ImageButton)findViewById(R.id.btn_concern);
+		btn_concern = (ImageButton)headerView.findViewById(R.id.btn_concern);
 		btn_comment = (Button)findViewById(R.id.btn_comment);
 		listView =(ListView)findViewById(R.id.list_comment);
 		
-		listView.setAdapter(listAdapter);
+		listView.setDividerHeight(0);
+		listView.addHeaderView(headerView);
 		listView.addFooterView(btnLoadMore);
 		listView.setAdapter(listAdapter);
 		//listView.setAdapter(listAdapter);
 
-		findViewById(R.id.btn_concern).setOnClickListener(new OnClickListener() {
+		btn_goback.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+		
+		
+		btn_concern.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -142,7 +158,7 @@ public class NewsContentActivity extends Activity {
 									@Override
 									public void run() {
 										// TODO Auto-generated method stub
-										listAdapter.notifyDataSetInvalidated();
+										listAdapter.notifyDataSetChanged();
 									}
 								});
 							}
@@ -391,19 +407,19 @@ public class NewsContentActivity extends Activity {
 		reloadlist();
 		//String authorId = getIntent().getStringExtra("authorId");
 
-		TextView text_title = (TextView)findViewById(R.id.text_title);
+		TextView text_title = (TextView)headerView.findViewById(R.id.text_title);
 		text_title.setText(news.getTitle());
 
-		TextView text_authorname = (TextView)findViewById(R.id.text_authorname);
+		TextView text_authorname = (TextView)headerView.findViewById(R.id.text_authorname);
 		text_authorname.setText(news.getAuthorName());
 
-		TextView text_creatDate = (TextView)findViewById(R.id.text_creatDate);
+		TextView text_creatDate = (TextView)headerView.findViewById(R.id.text_creatDate);
 		text_creatDate.setText(DateFormat.format("yyyy-MM-dd hh:mm", news.getCreateDate()).toString());
 
-		TextView text_authorwrite = (TextView)findViewById(R.id.text_authorwrite);
+		TextView text_authorwrite = (TextView)headerView.findViewById(R.id.text_authorwrite);
 		text_authorwrite.setText(news.getText());
 
-		AvatarView avatar = (AvatarView)findViewById(R.id.news_avatar);
+		AvatarView avatar = (AvatarView)headerView.findViewById(R.id.news_avatar);
 		avatar.load(Server.serverAddress+news.getAuthorAvatar());
 	}
 
@@ -461,21 +477,21 @@ public class NewsContentActivity extends Activity {
 
 			if(convertView==null){
 				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-				view = inflater.inflate(R.layout.listview_round, null);	
+				view = inflater.inflate(R.layout.example_newshow, null);	
 			}else{
 				view = convertView;
 			}
 
 			
-			TextView textDate = (TextView) view.findViewById(R.id.date);
-			AvatarView avatar=(AvatarView) view.findViewById(R.id.avatar);
-			TextView text=(TextView) view.findViewById(R.id.text);
-			TextView name=(TextView) view.findViewById(R.id.name);
+			TextView textDate = (TextView) view.findViewById(R.id.user_sendtime);
+			AvatarView avatar=(AvatarView) view.findViewById(R.id.user_img);
+			TextView text=(TextView) view.findViewById(R.id.user_text);
+			TextView name=(TextView) view.findViewById(R.id.user_name);
 
 			NewsComment newsComment =data.get(position);
 
 			avatar.load(Server.serverAddress+newsComment.getAuthor().getAvatar());
-			String dateStr=DateFormat.format("yyyy-mm-dd hh:mm", newsComment.getCreateDate()).toString();
+			String dateStr=DateFormat.format("mm-dd hh:mm", newsComment.getCreateDate()).toString();
 			textDate.setText(dateStr);
 			text.setText(newsComment.getText());
 			name.setText(newsComment.getAuthor().getName());
