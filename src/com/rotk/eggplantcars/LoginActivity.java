@@ -15,6 +15,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
@@ -30,6 +33,39 @@ import okhttp3.Response;
 
 public class LoginActivity extends Activity {
 	SimpleTextInputCellFragment fragAccount,fragPassword;
+	
+	private static boolean isExit = false;
+
+	Handler mHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			isExit = false;
+		}
+	};
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			exit();
+			return false;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void exit() {
+		if (!isExit) {
+			isExit = true;
+			Toast.makeText(getApplicationContext(), "再按一次退出程序",
+					Toast.LENGTH_SHORT).show();
+			// 利用handler延迟发送更改状态信息
+			mHandler.sendEmptyMessageDelayed(0, 3000);
+		} else {
+			finish();
+			System.exit(0);
+		}
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
