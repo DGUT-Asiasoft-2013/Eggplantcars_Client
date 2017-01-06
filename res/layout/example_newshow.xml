@@ -54,11 +54,10 @@
         android:id="@+id/user_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginLeft="54dp"
         android:layout_marginRight="10dp"
         android:text="4dfa65sdf465asdf1as3d2f1as35df4a65sd4f6a5sd4f56a4sd65f4a65sd4f"
-        android:textSize="22sp"/>
+        android:textSize="20sp"/>
     
     <View 
         android:layout_width="match_parent"

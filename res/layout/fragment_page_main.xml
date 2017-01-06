@@ -16,12 +16,13 @@
 
         <include layout="@layout/refresh_head" />
         <!-- 支持所有实现Pullable接口的View -->
-
+<!-- .setDividerHeight(0); -->
         <inputcells.utils.PullableListView
             android:id="@+id/list_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
+            android:divider="#00000000"
             android:transcriptMode="disabled" />
 
         <include layout="@layout/load_more" />
