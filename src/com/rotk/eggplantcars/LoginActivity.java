@@ -1,21 +1,33 @@
 package com.rotk.eggplantcars;
 
 import java.io.IOException;
-import java.util.List;
-
 import entity.User;
+import inputcells.AvatarNewsView;
 import inputcells.SimpleTextInputCellFragment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import api.Server;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
 import okhttp3.Call;
@@ -29,12 +41,65 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class LoginActivity extends Activity {
-	SimpleTextInputCellFragment fragAccount,fragPassword;
+
+	SimpleTextInputCellFragment fragPassword;
+	EditText account;
+	User u;
+	AvatarNewsView avatar;
+	ImageView no_avatar;
+	CheckBox remember;
+	CheckBox selflogin;
+	SharedPreferences sp; 
+	
+	
+	private static boolean isExit = false;
+
+	Handler mHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			isExit = false;
+		}
+	};
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			exit();
+			return false;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	private void exit() {
+		if (!isExit) {
+			isExit = true;
+			Toast.makeText(getApplicationContext(), "再按一次退出程序",
+					Toast.LENGTH_SHORT).show();
+			// 利用handler延迟发送更改状态信息
+			mHandler.sendEmptyMessageDelayed(0, 3000);
+		} else {
+			finish();
+			System.exit(0);
+		}
+	}
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		account=(EditText) findViewById(R.id.account);
+		avatar=(AvatarNewsView) findViewById(R.id.my_avatar);
+		no_avatar=(ImageView) findViewById(R.id.no_avatar);
+		avatar.setVisibility(View.GONE);
+		no_avatar.setVisibility(View.VISIBLE);
+		remember=(CheckBox) findViewById(R.id.remember);
+		selflogin=(CheckBox) findViewById(R.id.selflogin);
+		sp = this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE); 
+		
+		
 
 		findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
 
@@ -59,17 +124,118 @@ public class LoginActivity extends Activity {
 				goRecoverPassword();
 			}
 		});
+		
+		account.setOnFocusChangeListener(new OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				// TODO Auto-generated method stub
+				if(account.hasFocus()==false){
+					if(account.getText().toString()!=null && !account.getText().toString().isEmpty()){
+						getAvatar();
+					}else{
+						return;
+					}
+				}
+			}
+		});
 
-		fragAccount = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_account);
 		fragPassword = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_password);
+		
+		if(sp.getBoolean("ISCHECK", true))  
+        {  
+          //设置默认是记录密码状态  
+          remember.setChecked(true);  
+          account.setText(sp.getString("USER_NAME", ""));  
+          fragPassword.setText(sp.getString("PASSWORD", ""));
+          //判断自动登陆多选框状态  
+          if(sp.getBoolean("AUTO_ISCHECK", true))  
+          {  
+                 //设置默认是自动登录状态  
+                 selflogin.setChecked(true);  
+                //跳转界面  
+                goLogin();
+                  
+          }  
+        }  
+		
+		 remember.setOnCheckedChangeListener(new OnCheckedChangeListener() {  
+	            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {  
+	                if (remember.isChecked()) {  
+	                      
+	                    System.out.println("记住密码已选中");  
+	                    sp.edit().putBoolean("ISCHECK", true).commit();  
+	                      
+	                }else {  
+	                      
+	                    System.out.println("记住密码没有选中");  
+	                    sp.edit().putBoolean("ISCHECK", false).commit();  
+	                      
+	                }  
+	  
+	            }  
+	        });  
+	          
+	        //监听自动登录多选框事件  
+	        selflogin.setOnCheckedChangeListener(new OnCheckedChangeListener() {  
+	            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {  
+	                if (selflogin.isChecked()) {  
+	                    System.out.println("自动登录已选中");  
+	                    sp.edit().putBoolean("AUTO_ISCHECK", true).commit();  
+	  
+	                } else {  
+	                    System.out.println("自动登录没有选中");  
+	                    sp.edit().putBoolean("AUTO_ISCHECK", false).commit();  
+	                }  
+	            }  
+	        });
+	}
+
+	void getAvatar() {
+		// TODO Auto-generated method stub
+		
+		OkHttpClient client = Server.getsharedClient();
+		Request request = Server.requestBuilderWithApi("user/"+account.getText().toString()+"/getavatar")
+				.method("get", null)
+				.build();
+
+		client.newCall(request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(final Call arg0, Response arg1) throws IOException {
+				try {
+					final User user = new ObjectMapper().readValue(arg1.body().bytes(), User.class);
+					runOnUiThread(new Runnable() {
+						public void run() {
+							u = user;
+							no_avatar.setVisibility(View.GONE);
+							avatar.setVisibility(View.VISIBLE);
+							avatar.load(Server.serverAddress+u.getAvatar());
+						}
+					});					
+				} catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+						public void run() {
+						}
+					});
+				}
+			}
+
+			@Override
+			public void onFailure(final Call arg0, final IOException arg1) {
+				runOnUiThread(new Runnable() {
+					public void run() {
+					}
+				});
+			}
+		});
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-		fragAccount.setLabelText("账户");
-		fragAccount.setHintText("请输入账户名");
+		getAvatar();
 		fragPassword.setLabelText("密码");
 		fragPassword.setHintText("请输入密码");
 		fragPassword.setIsPassword(true);
@@ -83,7 +249,7 @@ public class LoginActivity extends Activity {
 	void goLogin(){
 		OkHttpClient client = Server.getsharedClient();
 		
-		String account = fragAccount.getText();
+		final String account = LoginActivity.this.account.getText().toString();
 		final String password = MD5.getMD5(fragPassword.getText());
 		
 		if(account.length() == 0 || password.length() == 0){
@@ -96,7 +262,7 @@ public class LoginActivity extends Activity {
 }
 		
 		MultipartBody requestBody = new MultipartBody.Builder()
-				.addFormDataPart("account", fragAccount.getText())
+				.addFormDataPart("account", account)
 				.addFormDataPart("passwordHash", password)
 				.build();
 
@@ -124,6 +290,14 @@ public class LoginActivity extends Activity {
 						runOnUiThread(new Runnable() {
 							public void run() {
 								dlg.dismiss();
+								if(remember.isChecked())  
+			                    {  
+			                     //记住用户名、密码、  
+			                      Editor editor = sp.edit();  
+			                      editor.putString("USER_NAME", account);  
+			                      editor.putString("PASSWORD",fragPassword.getText());  
+			                      editor.commit();  
+			                    }  
 								new AlertDialog.Builder(LoginActivity.this)
 								.setTitle("登录成功")
 								.setMessage("欢迎用户："+user.getAccount())

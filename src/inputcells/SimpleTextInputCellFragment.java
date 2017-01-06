@@ -46,4 +46,9 @@ public class SimpleTextInputCellFragment extends BaseInputCellFragment {
 			edit.setInputType(EditorInfo.TYPE_CLASS_TEXT);
 		}
 	}
+
+	public void setText(String string) {
+		// TODO Auto-generated method stub
+		 edit.setText(string);
+	}
 }
