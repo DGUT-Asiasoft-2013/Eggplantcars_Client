@@ -164,8 +164,7 @@ public class MyMoneyActivity extends Activity {
 									public void onClick(DialogInterface dialog, int which) {
 
 										//创建用户钱包
-										MyMoneyActivity.this.createMyMoneyAccount();
-										checkMoneyExsists();
+										createMyMoneyAccount();
 									}
 								})
 								.show();
@@ -272,6 +271,7 @@ public class MyMoneyActivity extends Activity {
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
+						checkMoneyExsists();
 						Toast.makeText(MyMoneyActivity.this,"开通成功", Toast.LENGTH_LONG).show();
 					}
 				});				
