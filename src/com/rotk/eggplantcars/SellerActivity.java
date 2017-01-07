@@ -36,7 +36,6 @@ public class SellerActivity extends Activity {
 	ImageButton btn_back;
 	Button btn_delivery;
 	Button btn_rejected;
-	LinearLayout deald;
 	Money buyermoney;
 
 	@Override
@@ -49,7 +48,6 @@ public class SellerActivity extends Activity {
 
 		btn_back = (ImageButton)findViewById(R.id.btn_back);
 		btn_delivery =(Button)findViewById(R.id.btn_delivery);
-		deald = (LinearLayout)findViewById(R.id.deald);
 		btn_rejected = (Button)findViewById(R.id.btn_rejected);
 
 
@@ -70,17 +68,6 @@ public class SellerActivity extends Activity {
 			public void onClick(View v) {
 				 
 				delivery();//·¢»õ
-			}
-		});
-
-		deald.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				 
-				Intent intent = new Intent(SellerActivity.this,DetailsActivity.class);
-				intent.putExtra("data", order.getDeal());
-				startActivity(intent);
 			}
 		});
 
