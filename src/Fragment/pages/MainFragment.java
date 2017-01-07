@@ -8,12 +8,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rotk.eggplantcars.NewsContentActivity;
 import com.rotk.eggplantcars.NewsUpLoading;
 import com.rotk.eggplantcars.R;
+import com.rotk.eggplantcars.ShowPrivateLatter;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import api.Server;
 import entity.News;
 import entity.Page;
+import entity.PrivateLatter;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ListView;
@@ -34,6 +37,7 @@ import android.widget.Toast;
 import inputcells.AvatarNewsView;
 import inputcells.AvatarView;
 import inputcells.ImageAdapter;
+import inputcells.utils.AddPicNews;
 import inputcells.utils.MyListener;
 import inputcells.utils.PullToRefreshLayout;
 import inputcells.utils.PullableListView;
@@ -75,7 +79,7 @@ public class MainFragment extends Fragment {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Intent intent = new Intent(getActivity(), NewsUpLoading.class);
+					Intent intent = new Intent(getActivity(), AddPicNews.class);
 					startActivity(intent);
 
 				}
@@ -219,36 +223,180 @@ public class MainFragment extends Fragment {
 		});
 	}
 
+	static class NewsHolder{
+		TextView newslaber = null;
+		TextView newstext = null;
+		TextView newsauthorname = null;
+		TextView newstime = null;
+		AvatarView newsauthoravatar = null;
+		AvatarNewsView newsAvatar = null;
+	}
+	static class NewsPicHolder{
+		TextView picnewslaber = null;
+		TextView picnewsauthorname = null;
+		TextView picnewstime = null;
+		AvatarNewsView img1,img2,img3;
+	}
+	
+	
 	//新闻设配器
 	BaseAdapter listAdapter = new BaseAdapter() {
-
+		private final int TYPE_ONE=0,TYPE_TWO=1; 
 		@SuppressLint("InflateParams")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			View view = null;
+			
+			View view;
+			News news =MainFragment.this.data.get(position);
+			int type = getItemViewType(position);
+			NewsHolder newsHolder = null;
+			NewsPicHolder newsPicHolder = null;
+			
 			if (convertView == null) {
-				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-				view = inflater.inflate(R.layout.example_news_main, null);
+				switch (type) {
+				case TYPE_ONE:
+					convertView = LayoutInflater.from(parent.getContext())
+					.inflate(R.layout.example_news_main, null);  //布置布局
+					newsHolder = new NewsHolder();
+					newsHolder.newslaber = (TextView) convertView.findViewById(R.id.news_laber);
+					newsHolder.newstext = (TextView) convertView.findViewById(R.id.news_text);
+					newsHolder.newstime = (TextView) convertView.findViewById(R.id.news_time);
+					newsHolder.newsauthorname = (TextView) convertView.findViewById(R.id.new_author_name);
+					newsHolder.newsauthoravatar = (AvatarView) convertView.findViewById(R.id.news_author_avatar);
+					newsHolder.newsAvatar = (AvatarNewsView) convertView.findViewById(R.id.news_avatar);
+					//以上定义，以下赋值
+					newsHolder.newslaber.setText(news.getTitle());
+					newsHolder.newstext.setText(news.getText());
+					String dateStr = DateFormat.format("MMdd hh:mm", news.getCreateDate()).toString();
+					newsHolder.newstime.setText(dateStr);
+					newsHolder.newsauthoravatar.load(Server.serverAddress+news.getAuthorAvatar());
+					newsHolder.newsauthorname.setText(news.getAuthorName());
+					final String[] newsImg = news.getAvatar().split("\\|");  //按  |  分隔
+					newsHolder.newsAvatar.load(Server.serverAddress+newsImg[0]);
+					
+					convertView.setTag(newsHolder);
+					break;
+
+				case TYPE_TWO:
+					//下午继续搞第二种布局
+					convertView = LayoutInflater.from(parent.getContext())
+					.inflate(R.layout.example_news_pic, null);
+					newsPicHolder = new NewsPicHolder();
+					newsPicHolder.picnewslaber = (TextView) convertView.findViewById(R.id.picnews_laber);
+					newsPicHolder.picnewsauthorname = (TextView) convertView.findViewById(R.id.author_name);
+					newsPicHolder.picnewstime = (TextView) convertView.findViewById(R.id.picnewstime);
+					newsPicHolder.img1 = (AvatarNewsView) convertView.findViewById(R.id.img1);
+					newsPicHolder.img2 = (AvatarNewsView) convertView.findViewById(R.id.img2);
+					newsPicHolder.img3 = (AvatarNewsView) convertView.findViewById(R.id.img3);
+					
+					
+					newsPicHolder.picnewslaber.setText(news.getTitle());
+					newsPicHolder.picnewsauthorname.setText(news.getAuthorName());
+					String dateStr1 = DateFormat.format("MMdd hh:mm", news.getCreateDate()).toString();
+					newsPicHolder.picnewstime.setText(dateStr1);
+					
+					
+					
+					//处理图片
+					final String[] newsImg1 = news.getAvatar().split("\\|");  //按  |  分隔
+					if (newsImg1.length == 3) {
+						for (int i = 0; i < newsImg1.length; i++) {
+							AvatarNewsView[] imgs = new AvatarNewsView[]{newsPicHolder.img1,newsPicHolder.img2,newsPicHolder.img3};
+							imgs[i].load(Server.serverAddress+newsImg1[i]);
+						}
+						//等等图片点击效果
+					}else if (newsImg1.length == 2) {
+						newsPicHolder.img3.setVisibility(AvatarNewsView.GONE);
+						for (int i = 0; i < newsImg1.length; i++) {
+							AvatarNewsView[] imgs = new AvatarNewsView[]{newsPicHolder.img1,newsPicHolder.img2};
+							imgs[i].load(Server.serverAddress+newsImg1[i]);
+						}
+					}
+	
+					convertView.setTag(newsPicHolder);
+					break;
+				}
 			} else {
-				view = convertView;
+				switch (type) {
+				case TYPE_ONE:
+					newsHolder = (NewsHolder) convertView.getTag();
+					newsHolder.newslaber = (TextView) convertView.findViewById(R.id.news_laber);
+					newsHolder.newstext = (TextView) convertView.findViewById(R.id.news_text);
+					newsHolder.newstime = (TextView) convertView.findViewById(R.id.news_time);
+					newsHolder.newsauthorname = (TextView) convertView.findViewById(R.id.new_author_name);
+					newsHolder.newsauthoravatar = (AvatarView) convertView.findViewById(R.id.news_author_avatar);
+					newsHolder.newsAvatar = (AvatarNewsView) convertView.findViewById(R.id.news_avatar);
+					//以上定义，以下赋值
+					newsHolder.newslaber.setText(news.getTitle());
+					newsHolder.newstext.setText(news.getText());
+					String dateStr = DateFormat.format("MMdd hh:mm", news.getCreateDate()).toString();
+					newsHolder.newstime.setText(dateStr);
+					newsHolder.newsauthoravatar.load(Server.serverAddress+news.getAuthorAvatar());
+					newsHolder.newsauthorname.setText(news.getAuthorName());
+					final String[] newsImg = news.getAvatar().split("\\|");  //按  |  分隔
+					newsHolder.newsAvatar.load(Server.serverAddress+newsImg[0]);
+					break;
+
+				case TYPE_TWO:
+					newsPicHolder = (NewsPicHolder) convertView.getTag();
+					newsPicHolder.picnewslaber = (TextView) convertView.findViewById(R.id.picnews_laber);
+					newsPicHolder.picnewsauthorname = (TextView) convertView.findViewById(R.id.author_name);
+					newsPicHolder.picnewstime = (TextView) convertView.findViewById(R.id.picnewstime);
+					newsPicHolder.img1 = (AvatarNewsView) convertView.findViewById(R.id.img1);
+					newsPicHolder.img2 = (AvatarNewsView) convertView.findViewById(R.id.img2);
+					newsPicHolder.img3 = (AvatarNewsView) convertView.findViewById(R.id.img3);
+					
+					
+					newsPicHolder.picnewslaber.setText(news.getTitle());
+					newsPicHolder.picnewsauthorname.setText(news.getAuthorName());
+					String dateStr1 = DateFormat.format("MMdd hh:mm", news.getCreateDate()).toString();
+					newsPicHolder.picnewstime.setText(dateStr1);
+					
+					
+					
+					//处理图片
+					final String[] newsImg1 = news.getAvatar().split("\\|");  //按  |  分隔
+					if (newsImg1.length == 3) {
+						for (int i = 0; i < newsImg1.length; i++) {
+							AvatarNewsView[] imgs = new AvatarNewsView[]{newsPicHolder.img1,newsPicHolder.img2,newsPicHolder.img3};
+							imgs[i].load(Server.serverAddress+newsImg1[i]);
+						}
+						//等等图片点击效果
+					}else if (newsImg1.length == 2) {
+						newsPicHolder.img3.setVisibility(AvatarNewsView.GONE);
+						for (int i = 0; i < newsImg1.length; i++) {
+							AvatarNewsView[] imgs = new AvatarNewsView[]{newsPicHolder.img1,newsPicHolder.img2};
+							imgs[i].load(Server.serverAddress+newsImg1[i]);
+						}
+					}
+					break;
+				}
 			}
-			
-			AvatarNewsView avatarNewsView = (AvatarNewsView) view .findViewById(R.id.news_avatar);
-			AvatarView avatarAuthorView = (AvatarView) view.findViewById(R.id.news_author_avatar);
-			TextView newslaber = (TextView) view.findViewById(R.id.news_laber);
-			TextView newstext = (TextView) view.findViewById(R.id.news_text);
-			TextView newsAuthorName = (TextView) view.findViewById(R.id.new_author_name);
-			TextView newsTime = (TextView) view.findViewById(R.id.news_time);
-			
-			News news = data.get(position);
-			String dateStr = DateFormat.format("MM-dd hh:mm", news.getCreateDate()).toString();
-			newslaber.setText(news.getTitle());
-			newstext.setText(news.getText());
-			newsAuthorName.setText(news.getAuthorName());
-			newsTime.setText(dateStr);
-			avatarAuthorView.load(Server.serverAddress + news.getAuthorAvatar());
-			avatarNewsView.load(Server.serverAddress+news.getAvatar());
-			return view;
+//			View view = null;
+//			if (convertView == null) {
+//				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+//				view = inflater.inflate(R.layout.example_news_main, null);
+//			} else {
+//				view = convertView;
+//			}
+//			
+//			AvatarNewsView avatarNewsView = (AvatarNewsView) view .findViewById(R.id.news_avatar);
+//			AvatarView avatarAuthorView = (AvatarView) view.findViewById(R.id.news_author_avatar);
+//			TextView newslaber = (TextView) view.findViewById(R.id.news_laber);
+//			TextView newstext = (TextView) view.findViewById(R.id.news_text);
+//			TextView newsAuthorName = (TextView) view.findViewById(R.id.new_author_name);
+//			TextView newsTime = (TextView) view.findViewById(R.id.news_time);
+//			
+//			News news = data.get(position);
+//			String dateStr = DateFormat.format("MM-dd hh:mm", news.getCreateDate()).toString();
+//			newslaber.setText(news.getTitle());
+//			newstext.setText(news.getText());
+//			newsAuthorName.setText(news.getAuthorName());
+//			newsTime.setText(dateStr);
+//			avatarAuthorView.load(Server.serverAddress + news.getAuthorAvatar());
+//			avatarNewsView.load(Server.serverAddress+news.getAvatar());
+//			return view;
+			return convertView;
 		}
 
 		@Override
@@ -268,5 +416,23 @@ public class MainFragment extends Fragment {
 			// TODO Auto-generated method stub
 			return data == null ? 0 : data.size();
 		}
+		
+		/** 该方法返回多少个不同的布局*/ 
+		@Override
+		public int getViewTypeCount() {
+			return 2;
+		}
+		
+		 /** 根据position返回相应的Item*/  
+		public int getItemViewType(int position) {
+			News news = data.get(position);
+			final String[] newsImg = news.getAvatar().split("\\|");  //按  |  分隔
+			if(newsImg.length<=1){
+				return TYPE_ONE;
+			}else {
+				return TYPE_TWO;
+			}
+		}
+		
 	};
 }
