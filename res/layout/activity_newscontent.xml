@@ -2,49 +2,55 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="#F5F5F5" >
 
     <ListView
         android:id="@+id/list_comment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-		android:fadingEdge="none"
-		android:scrollbars="none"
+        android:layout_above="@+id/newslinner"
         android:background="#F5F5F5"
-        android:layout_above="@+id/newslinner">
+        android:fadingEdge="none"
+        android:scrollbars="none" >
     </ListView>
-    
+
     <LinearLayout
         android:id="@+id/newslinner"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="7dp"
         android:background="#F5F5F5"
-        android:layout_marginTop="7dp" 
-        android:layout_alignParentBottom="true">
-        
-        <Button 
+        android:orientation="horizontal" >
+
+        <Button
             android:id="@+id/btn_back"
             android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:background="@drawable/left"/>
-
-        <Button
-            android:id="@+id/btn_good"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="130dp"
-            android:text="赞"
-            android:background="@drawable/shape_1"
-            android:layout_marginRight="2dp" />
+            android:background="@drawable/left" />
 
         <Button
             android:id="@+id/btn_comment"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:background="@drawable/arrow_upload" />
+
+        <Button
+            android:id="@+id/btn_good"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+			android:layout_marginLeft="7dp"
+            android:background="@drawable/good_black" />
+
+        <TextView
+            android:id="@+id/btn_goodnum"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:text="评论" 
-            android:background="@drawable/shape_1"/>
+            android:gravity="top"
+            android:text="3" />
+
+
     </LinearLayout>
 
 </RelativeLayout>

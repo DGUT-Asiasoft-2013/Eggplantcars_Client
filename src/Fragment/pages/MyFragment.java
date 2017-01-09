@@ -218,7 +218,7 @@ public class MyFragment extends Fragment{
 		avatar.load(user);
 		textView.setVisibility(View.VISIBLE);
 		nicheng.setTextColor(Color.BLUE);
-		textView.setText("”√ªß√˚£∫"+user.getAccount());
+		textView.setText("’À∫≈£∫"+user.getAccount());
 		nicheng.setText(user.getName());
 	}
 

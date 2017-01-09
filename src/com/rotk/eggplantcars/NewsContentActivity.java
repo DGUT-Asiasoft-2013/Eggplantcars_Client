@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jauker.widget.BadgeView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +53,7 @@ public class NewsContentActivity extends Activity {
 	View btnLoadMore;
 	View headerView;
 	TextView textLoadMore;
+    TextView goodNum;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class NewsContentActivity extends Activity {
 
 		headerView = LayoutInflater.from(NewsContentActivity.this).inflate(R.layout.activity_newscontent_header, null);
 		
+		goodNum = (TextView) findViewById(R.id.btn_goodnum);
 		btn_goback = (Button) findViewById(R.id.btn_back);
 		btn_good = (Button)findViewById(R.id.btn_good);
 		btn_concern = (ImageButton)headerView.findViewById(R.id.btn_concern);
@@ -258,8 +262,10 @@ public class NewsContentActivity extends Activity {
 	}
 
 	private void onCheckLikedResult(boolean result) {
-		isLiked = result;
-		btn_good.setTextColor(result ? Color.BLUE : Color.BLACK);
+		isLiked = result;	
+		goodNum.setTextColor(result ? Color.BLUE : Color.BLACK);
+		btn_good.setBackgroundResource(result ? R.drawable.good_bule : R.drawable.good_black);
+		
 	}
 
 	//获取有多少个赞
@@ -304,12 +310,13 @@ public class NewsContentActivity extends Activity {
 			}
 		});
 	}
-
+		
 	private void onReloadLikesResult(Integer count) {
+
 		if(count>0){
-			btn_good.setText("赞("+count+")");
-		}else{
-			btn_good.setText("无");
+              goodNum.setText(count+"");
+		}if(count==0){
+			  goodNum.setText(" ");
 		}
 	}
 

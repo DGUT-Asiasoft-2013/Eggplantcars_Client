@@ -80,7 +80,7 @@ public class ConcernOneUserActivity extends Activity {
 		TextView concern_usertime = (TextView)findViewById(R.id.concern_usertime);
 		concern_usertime.setText("¹Ø×¢Ê±¼ä£º"+DateFormat.format("MM-dd hh:mm", concern.getCreateDate()).toString());
 		
-		AvatarView concern_user_avatar = (AvatarView)findViewById(R.id.concern_user_avatar);
+		AvatarView concern_user_avatar = (AvatarView)findViewById(R.id.concern_user_avatar); 
 		concern_user_avatar.load(Server.serverAddress+concern.getIdKey().getNews_author().getAvatar());
 	}
 
@@ -161,7 +161,8 @@ public class ConcernOneUserActivity extends Activity {
 			newsAuthorName.setText(news.getAuthorName());
 			newsTime.setText(dateStr);
 			avatarAuthorView.load(Server.serverAddress + news.getAuthorAvatar());
-			avatarNewsView.load(Server.serverAddress+news.getAvatar());
+			final String[] newsImg = news.getAvatar().split("\\|");
+			avatarNewsView.load(Server.serverAddress+newsImg[0]);
 			return view;
 		}
 
