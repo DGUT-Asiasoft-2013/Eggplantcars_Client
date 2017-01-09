@@ -109,7 +109,7 @@ public class LoginActivity extends Activity {
 			}
 		});
 
-		findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
+		findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -117,7 +117,7 @@ public class LoginActivity extends Activity {
 			}
 		});
 
-		findViewById(R.id.btn_forgot_password).setOnClickListener(new View.OnClickListener() {
+		findViewById(R.id.forgot_password).setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
