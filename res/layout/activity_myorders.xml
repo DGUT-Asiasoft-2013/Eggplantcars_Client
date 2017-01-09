@@ -45,26 +45,29 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
+        android:weightSum="1"
         android:background="#F5F5F5" >
 
         <Button
             android:id="@+id/btn_buyer"
-            android:layout_width="160dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="match_parent"
             android:background="@drawable/button"
             android:text="我购买的" />
 
         <Button
             android:id="@+id/btn_seller"
-            android:layout_width="160dp"
+             android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:background="@drawable/button"
             android:text="我卖出的" />
-    </FrameLayout>
+    </LinearLayout>
 
 </FrameLayout>
