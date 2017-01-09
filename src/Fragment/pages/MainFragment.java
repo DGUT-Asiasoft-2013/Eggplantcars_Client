@@ -9,6 +9,7 @@ import com.rotk.eggplantcars.NewsContentActivity;
 import com.rotk.eggplantcars.NewsUpLoading;
 import com.rotk.eggplantcars.R;
 import com.rotk.eggplantcars.ShowPrivateLatter;
+import com.rotk.eggplantcars.ViewPagerShoepicActivity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -190,7 +191,7 @@ public class MainFragment extends Fragment {
 						public void run() {
 							MainFragment.this.page = data.getNumber();
 							MainFragment.this.data = data.getContent();
-							listAdapter.notifyDataSetInvalidated();
+							listAdapter.notifyDataSetChanged();
 						}
 					});
 				} catch (final Exception e) {
@@ -247,7 +248,7 @@ public class MainFragment extends Fragment {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			
 			View view;
-			News news =MainFragment.this.data.get(position);
+		    News news =MainFragment.this.data.get(position);
 			int type = getItemViewType(position);
 			NewsHolder newsHolder = null;
 			NewsPicHolder newsPicHolder = null;
@@ -273,7 +274,6 @@ public class MainFragment extends Fragment {
 					newsHolder.newsauthorname.setText(news.getAuthorName());
 					final String[] newsImg = news.getAvatar().split("\\|");  //按  |  分隔
 					newsHolder.newsAvatar.load(Server.serverAddress+newsImg[0]);
-					
 					convertView.setTag(newsHolder);
 					break;
 
@@ -305,12 +305,72 @@ public class MainFragment extends Fragment {
 							imgs[i].load(Server.serverAddress+newsImg1[i]);
 						}
 						//等等图片点击效果
+						final String sendpicurl = news.getAvatar();
+						newsPicHolder.img3.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",3);
+								startActivity(intent);	
+							}
+						});
+						newsPicHolder.img2.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",2);
+								startActivity(intent);	
+							}
+						});
+						newsPicHolder.img1.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",1);
+								startActivity(intent);			
+							}
+						});
+						
+						
+						//
 					}else if (newsImg1.length == 2) {
 						newsPicHolder.img3.setVisibility(AvatarNewsView.GONE);
 						for (int i = 0; i < newsImg1.length; i++) {
 							AvatarNewsView[] imgs = new AvatarNewsView[]{newsPicHolder.img1,newsPicHolder.img2};
 							imgs[i].load(Server.serverAddress+newsImg1[i]);
 						}
+						final String sendpicurl = news.getAvatar();
+						newsPicHolder.img2.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",2);
+								startActivity(intent);	
+							}
+						});
+						newsPicHolder.img1.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",1);
+								startActivity(intent);			
+							}
+						});
 					}
 	
 					convertView.setTag(newsPicHolder);
@@ -362,12 +422,73 @@ public class MainFragment extends Fragment {
 							imgs[i].load(Server.serverAddress+newsImg1[i]);
 						}
 						//等等图片点击效果
+						//等等图片点击效果
+						final String sendpicurl = news.getAvatar();
+						newsPicHolder.img3.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",3);
+								startActivity(intent);	
+							}
+						});
+						newsPicHolder.img2.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",2);
+								startActivity(intent);	
+							}
+						});
+						newsPicHolder.img1.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",1);
+								startActivity(intent);			
+							}
+						});				
+						
+						//
 					}else if (newsImg1.length == 2) {
 						newsPicHolder.img3.setVisibility(AvatarNewsView.GONE);
 						for (int i = 0; i < newsImg1.length; i++) {
 							AvatarNewsView[] imgs = new AvatarNewsView[]{newsPicHolder.img1,newsPicHolder.img2};
 							imgs[i].load(Server.serverAddress+newsImg1[i]);
 						}
+						//
+						final String sendpicurl = news.getAvatar();
+						newsPicHolder.img2.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",2);
+								startActivity(intent);	
+							}
+						});
+						newsPicHolder.img1.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								Intent intent = new Intent(getActivity(),ViewPagerShoepicActivity.class);
+								intent.putExtra("newsImgurl",sendpicurl);
+								intent.putExtra("picposition",1);
+								startActivity(intent);			
+							}
+						});
 					}
 					break;
 				}
