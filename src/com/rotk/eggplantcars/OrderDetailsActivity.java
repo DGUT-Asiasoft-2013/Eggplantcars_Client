@@ -87,7 +87,7 @@ public class OrderDetailsActivity extends Activity {
 							rejectedtype("买家申请退款");
 						}
 					}
-
+					//任务栏提示
 				})
 				.setNegativeButton("返回", null)
 				.show();
@@ -137,7 +137,7 @@ public class OrderDetailsActivity extends Activity {
 							if(type.equals("买家申请退款")){
 								Toast.makeText(OrderDetailsActivity.this,"申请退款成功，等待卖家取消订单", Toast.LENGTH_LONG).show();
 							}
-							
+
 						}
 						else{
 							new AlertDialog.Builder(OrderDetailsActivity.this)
@@ -407,7 +407,7 @@ public class OrderDetailsActivity extends Activity {
 		MultipartBody body = new MultipartBody.Builder()
 				.addFormDataPart("deal_id",String.valueOf(deal_id))
 				.build();
-		
+
 		Request request = Server.requestBuilderWithApi("deal/"+deal_id+"/pullmysale")
 				.post(body)
 				.build();
@@ -421,7 +421,7 @@ public class OrderDetailsActivity extends Activity {
 				if(result){
 					runOnUiThread( new Runnable() {
 						public void run() {
-							
+
 						}
 					});
 
@@ -429,7 +429,7 @@ public class OrderDetailsActivity extends Activity {
 				else{
 					runOnUiThread( new Runnable() {
 						public void run() {
-						
+
 						}
 					});
 				}
