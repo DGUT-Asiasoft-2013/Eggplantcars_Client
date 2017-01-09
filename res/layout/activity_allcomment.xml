@@ -36,25 +36,29 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_gravity="bottom"
         android:background="@android:color/white"
-        android:layout_gravity="bottom" >
+        android:weightSum="1" >
 
-        <Button 
+        <Button
             android:id="@+id/btn_comment"
-            android:layout_width="160dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:background="@android:color/holo_orange_light"
-            android:text="评论我的"/>
-        <Button 
+            android:text="评论我的" />
+
+        <Button
             android:id="@+id/btn_mycomment"
-            android:layout_width="160dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="0.5"
             android:background="@android:color/holo_orange_dark"
-            android:text="我的评论"
-            android:layout_gravity="right"/>
-    </FrameLayout>
+            android:text="我的评论" />
+    </LinearLayout>
 
 </FrameLayout>
